@@ -2,12 +2,31 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Role
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
 
+@api.route('/role', methods=["POST"])
+def create_role():
+    name = request.json.get("name", None)
 
+    not_unique_name = Role.query.filter_by(name = name).first()
+    if not_unique_name != None:
+        return jsonify({"message": "Este rol ya existe, prueba con otro."}),401
+    
+    if name == '' or name == None:
+        return jsonify({"message": "Introduce un rol"}), 401
+
+        
+
+    new_role = Role(name = name)
+    db.session.add(new_role)
+    db.session.commit()
+
+    return jsonify({"message" : "Rol creado"}),200
+
+ 
 
 @api.route('/signup', methods=["POST"])
 def create_user():
