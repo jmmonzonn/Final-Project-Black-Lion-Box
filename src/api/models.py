@@ -48,6 +48,7 @@ class Suscription(db.Model):
     tokens = db.Column(db.Integer, unique=False, nullable=False)
     suscription_image = db.Column(db.String(256), unique=False, nullable=False)
     suscription_type_id = db.Column(db.Integer, db.ForeignKey('suscription_type.id'), unique=False, nullable=False)
+    suscription_type = db.relationship('Suscription_type', backref='suscription', lazy=True)
 
     def __repr__(self):
         return '<Suscription %r>' % self.name
@@ -59,7 +60,6 @@ class Suscription(db.Model):
             "description": self.description,
             "price": self.price,
             "tokens": self.tokens
-            # do not serialize the password, its a security breach
         }
 
 class Sessions(db.Model):
@@ -86,7 +86,6 @@ class Sessions(db.Model):
             "start_time": self.start_time,
             "duration": self.duration,
             "max-users": self.max_users
-            # do not serialize the password, its a security breach
         }
         
 class Payments(db.Model):
@@ -106,7 +105,6 @@ class Payments(db.Model):
             "user_id": self.user_id,
             "payment_date": self.payment_date,
             "stripe_id": self.stripe_id
-            # do not serialize the password, its a security breach
         }
         
 class Role(db.Model):
