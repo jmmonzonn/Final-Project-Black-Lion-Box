@@ -1,9 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
-
-        
-
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(24), unique=True, nullable=False)
@@ -18,9 +15,10 @@ class User(db.Model):
     marketing_comunication = db.Column(db.Boolean(), unique=False, nullable=False)
     info = db.Column(db.String(256), unique=False, nullable=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-    #role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=False)
-    #role = db.relationship('Role', backref='user', lazy=True)
-    #suscription_id = db.Column(db.Integer, ForeignKey('Suscription.id'))
+    role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
+    suscription_id = db.Column(db.Integer, db.ForeignKey('suscription.id'))
+    role = db.relationship('Role', backref='user', lazy=True)
+   
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -48,7 +46,8 @@ class Suscription(db.Model):
     description = db.Column(db.String(48), unique=False, nullable=False)
     price = db.Column(db.Float, unique=False, nullable=False)
     tokens = db.Column(db.Integer, unique=False, nullable=False)
-    #suscription_type_id = db.Column(db.Integer, unique=False, nullable=False, ForeignKey('suscription_type.id'))
+    suscription_image = db.Column(db.String(256), unique=False, nullable=False)
+    suscription_type_id = db.Column(db.Integer, db.ForeignKey('suscription_type.id'), unique=False, nullable=False)
 
     def __repr__(self):
         return '<Suscription %r>' % self.name
@@ -72,7 +71,7 @@ class Sessions(db.Model):
     start_time = db.Column(db.Time, unique=False, nullable=False)
     duration = db.Column(db.Integer, unique=False, nullable=False)
     max_users = db.Column(db.Integer, unique=False, nullable=False)
-    #sessions_type_id = db.Column(db.Integer, unique=False, nullable=False, ForeignKey('Sessions_type.id'))
+    sessions_type_id = db.Column(db.Integer, db.ForeignKey('sessions_type.id'), nullable=False)
 
     def __repr__(self):
         return '<Sessions %r>' % self.name
@@ -92,10 +91,10 @@ class Sessions(db.Model):
         
 class Payments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    #suscription_id = db.Column(db.Integer, unique=False, nullable=False, ForeignKey('Suscription.id'))
-    #user_id = db.Column(db.Integer, unique=False, nullable=False, ForeignKey('User.id'))
-    #payment_date
-    #stripe_id
+    suscription_id = db.Column(db.Integer, db.ForeignKey('suscription.id'), unique=False, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), unique=False, nullable=False)
+    payment_date = db.Column(db.DateTime, nullable=False)
+    stripe_id = db.Column(db.Integer, unique=True, nullable=False)
 
     def __repr__(self):
         return '<Payments %r>' % self.id
@@ -151,8 +150,8 @@ class Suscription_type(db.Model):
 
 class User_sessions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    #user_id = db.Column(db.Integer, unique=False, nullable=False, ForeignKey('User.id'))
-    #sessions_id = db.Column(db.Integer, unique=False, nullable=False, ForeignKey('Sessions.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), unique=False, nullable=False)
+    sessions_id = db.Column(db.Integer, db.ForeignKey('sessions.id'), unique=False, nullable=False)
     is_coach = db.Column(db.Boolean)
 
     def __repr__(self):
@@ -168,8 +167,8 @@ class User_sessions(db.Model):
 
 class Available_sessions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    #sessions_type_id = db.Column(db.Integer, unique=False, nullable=False, ForeignKey('sessions_type.id'))
-    #suscription_id = db.Column(db.Integer, unique=False, nullable=False, ForeignKey('suscription.id'))
+    sessions_type_id = db.Column(db.Integer, db.ForeignKey('sessions_type.id'), unique=False, nullable=False)
+    suscription_id = db.Column(db.Integer, db.ForeignKey('suscription.id'), unique=False, nullable=False)
 
     def __repr__(self):
         return '<User_sessions %r>' % self.id
