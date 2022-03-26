@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: ["./src/**/*.{html,js}", "./node_modules/flowbite/**/*.js"],
   theme: {
     colors: {
       // Black Lion Box color palette
@@ -20,5 +20,5 @@ module.exports = {
     },
     extend: {},
   },
-  plugins: [],
+  plugins: [require("flowbite/plugin")],
 };

@@ -75,6 +75,7 @@
 	},
 	"dependencies": {
 		"autoprefixer": "^10.4.4",
+		"flowbite": "^1.4.1",
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
 		"react-dom": "^16.8.4",
