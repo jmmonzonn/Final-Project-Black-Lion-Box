@@ -72,6 +72,7 @@ class Sessions(db.Model):
     duration = db.Column(db.Integer, unique=False, nullable=False)
     max_users = db.Column(db.Integer, unique=False, nullable=False)
     sessions_type_id = db.Column(db.Integer, db.ForeignKey('sessions_type.id'), nullable=False)
+    session_type = db.relationship('Sessions_type', backref='user', lazy=True)
 
     def __repr__(self):
         return '<Sessions %r>' % self.name
