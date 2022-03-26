@@ -2,31 +2,11 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Role
+from api.models import db, User, Role, Suscription, Sessions
 from api.utils import generate_sitemap, APIException
 
 api = Blueprint('api', __name__)
 
-@api.route('/role', methods=["POST"])
-def create_role():
-    name = request.json.get("name", None)
-
-    not_unique_name = Role.query.filter_by(name = name).first()
-    if not_unique_name != None:
-        return jsonify({"message": "Este rol ya existe, prueba con otro."}),401
-    
-    if name == '' or name == None:
-        return jsonify({"message": "Introduce un rol"}), 401
-
-        
-
-    new_role = Role(name = name)
-    db.session.add(new_role)
-    db.session.commit()
-
-    return jsonify({"message" : "Rol creado"}),200
-
- 
 
 @api.route('/signup', methods=["POST"])
 def create_user():
@@ -94,3 +74,73 @@ def create_user():
     db.session.commit()
     
     return jsonify({"message" : "Usuario registrado"}),200
+
+
+@api.route('/suscription', methods=["POST"])
+def create_suscription():
+     name = request.json.get("name", None)
+     description = request.json.get("description", None)
+     price = request.json.get("price", None)
+     tokens = request.json.get("tokens", None)
+     suscription_image = request.json.get("suscription_image", None)
+    
+
+     not_unique_name = Suscription.query.filter_by(name = name).first()  
+     if not_unique_name != None:
+        return jsonify({"message": "Este suscritor ya existe, prueba con otro."}),401
+
+     if name == '' or name == None or description == '' or description == None or price == '' or price == None or tokens == '' or tokens == None or suscription_image == '' or suscription_image == None:
+        return jsonify({"message": "Rellena todos los campos obligatorios"}), 401
+    
+    
+     new_suscription = Suscription(name = name, description = description, price = price, tokens = tokens, suscription_image = suscription_image)
+     db.session.add(new_suscription)
+     db.session.commit()
+ 
+     return jsonify({"message" : "Suscription nueva creada"}),200
+
+
+@api.route('/sessions', methods=["POST"])
+def create_sessions():
+     name = request.json.get("name", None)
+     description = request.json.get("description", None)
+     regular = request.json.get("regular", None)
+     days = request.json.get("days", None)
+     start_time = request.json.get("start_time", None)
+     duration = request.json.get("duration", None)
+     max_users = request.json.get("max_users", None)
+
+     not_unique_name = Sessions.query.filter_by(name = name).first()  
+     if not_unique_name != None:
+        return jsonify({"message": "Este nombre ya existe, prueba con otro."}),401
+    
+     if name == '' or name == None or description == '' or description == None or regular == '' or regular == None or days == '' or days == None or start_time == '' or start_time == None or duration == '' or duration == None or max_users == '' or max_users == None:
+        return jsonify({"message": "Rellena todos los campos obligatorios"}), 401
+
+     new_sessions = Sessions(name = name, description = description, regular = regular, days = days, start_time = start_time, duration = duration, max_users = max_users)
+     db.session.add(new_sessions)
+     db.session.commit()
+ 
+     return jsonify({"message" : "Session nueva creada"}),200
+
+
+
+    
+     
+
+@api.route('/role', methods=["POST"])
+def create_role():
+    name = request.json.get("name", None)
+
+    not_unique_name = Role.query.filter_by(name = name).first()
+    if not_unique_name != None:
+        return jsonify({"message": "Este rol ya existe, prueba con otro."}),401
+    
+    if name == '' or name == None:
+        return jsonify({"message": "Introduce un rol"}), 401
+
+    new_role = Role(name = name)
+    db.session.add(new_role)
+    db.session.commit()
+
+    return jsonify({"message" : "Rol creado"}),200
