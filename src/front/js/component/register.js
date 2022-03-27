@@ -93,7 +93,16 @@ export const Register = () => {
           <button
             type="button"
             onClick={() => {
-              fetch;
+              fetch(
+                "https://3001-jorgepardor-jwtauthentic-27b4o6b76ht.ws-eu38.gitpod.io/api/register",
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(user),
+                }
+              );
             }}
             className="btn btn-danger mx-auto px-auto"
           >
