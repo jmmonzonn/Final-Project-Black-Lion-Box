@@ -12,12 +12,13 @@ class User(db.Model):
     adress = db.Column(db.String(64), unique=False, nullable=True)
     avatar_url = db.Column(db.String(128), unique=False, nullable=True)
     conditions_terms = db.Column(db.Boolean(), unique=False, nullable=False)
-    marketing_comunication = db.Column(db.Boolean(), unique=False, nullable=False)
+    marketing_comunication = db.Column(db.Boolean(), unique=False, nullable=True)
     info = db.Column(db.String(256), unique=False, nullable=True)
     is_active = db.Column(db.Boolean(), unique=False, nullable=True)
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
     suscription_id = db.Column(db.Integer, db.ForeignKey('suscription.id'))
     role = db.relationship('Role', backref='user', lazy=True)
+    suscription = db.relationship('Suscription', backref='user', lazy=True)
    
 
     def __repr__(self):
@@ -72,7 +73,7 @@ class Sessions(db.Model):
     duration = db.Column(db.Integer, unique=False, nullable=False)
     max_users = db.Column(db.Integer, unique=False, nullable=False)
     sessions_type_id = db.Column(db.Integer, db.ForeignKey('sessions_type.id'), nullable=False)
-    session_type = db.relationship('Sessions_type', backref='user', lazy=True)
+    session_type = db.relationship('Sessions_type', backref='sessions', lazy=True)
 
     def __repr__(self):
         return '<Sessions %r>' % self.name
@@ -113,7 +114,7 @@ class Role(db.Model):
     name = db.Column(db.String(24), unique=True, nullable=False)
 
     def __repr__(self):
-        return '<Role %r>' % self.name
+        return self.name
 
     def serialize(self):
         return {
@@ -139,7 +140,7 @@ class Suscription_type(db.Model):
     name = db.Column(db.String(24), unique=True, nullable=False)
 
     def __repr__(self):
-        return '<Suscription_type %r>' % self.name
+        return self.name
 
     def serialize(self):
         return {
@@ -150,7 +151,9 @@ class Suscription_type(db.Model):
 class User_sessions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), unique=False, nullable=False)
+    user = db.relationship('User', backref='user_sessions', lazy=True)
     sessions_id = db.Column(db.Integer, db.ForeignKey('sessions.id'), unique=False, nullable=False)
+    session = db.relationship('Sessions', backref='user_sessions', lazy=True)
     is_coach = db.Column(db.Boolean)
 
     def __repr__(self):
@@ -167,7 +170,9 @@ class User_sessions(db.Model):
 class Available_sessions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sessions_type_id = db.Column(db.Integer, db.ForeignKey('sessions_type.id'), unique=False, nullable=False)
+    session_type = db.relationship('Sessions_type', backref='available_sessions', lazy=True)
     suscription_id = db.Column(db.Integer, db.ForeignKey('suscription.id'), unique=False, nullable=False)
+    suscription = db.relationship('Suscription', backref='available_sessions', lazy=True)
 
     def __repr__(self):
         return '<User_sessions %r>' % self.id
