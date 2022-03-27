@@ -14,7 +14,7 @@ class User(db.Model):
     conditions_terms = db.Column(db.Boolean(), unique=False, nullable=False)
     marketing_comunication = db.Column(db.Boolean(), unique=False, nullable=False)
     info = db.Column(db.String(256), unique=False, nullable=True)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    is_active = db.Column(db.Boolean(), unique=False, nullable=True)
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
     suscription_id = db.Column(db.Integer, db.ForeignKey('suscription.id'))
     role = db.relationship('Role', backref='user', lazy=True)

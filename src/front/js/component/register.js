@@ -90,19 +90,55 @@ export const Register = () => {
             className="form-control py-1 my-2"
             placeholder="Introduce info"
           ></input>
+
+          <div class="form-check">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id="exampleCheck1"
+              onClick={() => {
+                user.conditions_terms
+                  ? user.conditions_terms == true
+                    ? setUser({ conditions_terms: false })
+                    : setUser({ conditions_terms: true })
+                  : setUser({ ...user, conditions_terms: true });
+              }}
+            ></input>
+            <label className="form-check-label" for="exampleCheck1">
+              Aceptar términos y condiciones
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id="exampleCheck1"
+              onClick={() => {
+                user.marketing_comunication
+                  ? user.marketing_comunication == true
+                    ? setUser({ marketing_comunication: false })
+                    : setUser({ marketing_comunication: true })
+                  : setUser({ ...user, marketing_comunication: true });
+              }}
+            ></input>
+            <label className="form-check-label" for="exampleCheck1">
+              Marketing y comunicaciones
+            </label>
+          </div>
+
           <button
             type="button"
             onClick={() => {
-              fetch(
-                "https://3001-jorgepardor-jwtauthentic-27b4o6b76ht.ws-eu38.gitpod.io/api/register",
-                {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify(user),
-                }
-              );
+              fetch(process.env.BACKEND_URL + "/api/signup", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(user),
+              })
+                .then((resp) => resp.json())
+                .then((data) => print(data));
             }}
             className="btn btn-danger mx-auto px-auto"
           >
