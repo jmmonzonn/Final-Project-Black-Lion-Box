@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 export const Navbar = () => {
+  let history = useHistory();
+
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
@@ -29,13 +31,22 @@ export const Navbar = () => {
               </button>
             </li>
             <li class="nav-item  me-3">
-              <button type="button" class="btn btn-danger">
+              <button
+                type="button"
+                class="btn btn-danger"
+                onClick={() => history.push("/home/register")}
+              >
                 Register
               </button>
             </li>
             <li class="nav-item  me-3">
               <button type="button" class="btn btn-danger">
                 Login
+              </button>
+            </li>
+            <li class="nav-item  me-3">
+              <button type="button" class="btn btn-danger">
+                Log Out
               </button>
             </li>
           </ul>

@@ -83,7 +83,6 @@ def create_suscription():
      price = request.json.get("price", None)
      tokens = request.json.get("tokens", None)
      suscription_image = request.json.get("suscription_image", None)
-    
 
      not_unique_name = Suscription.query.filter_by(name = name).first()  
      if not_unique_name != None:
@@ -123,10 +122,6 @@ def create_sessions():
  
      return jsonify({"message" : "Session nueva creada"}),200
 
-
-
-    
-     
 
 @api.route('/role', methods=["POST"])
 def create_role():
