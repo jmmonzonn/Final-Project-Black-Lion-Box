@@ -4,11 +4,14 @@ export const MainHeader = () => {
   return (
     <div className="container">
       <header>
-        <div>Welcome to my site!</div>
+        <img
+          src="https://res.cloudinary.com/jorgepardor/image/upload/v1648495274/logo_alpha_zamw4v.svg"
+          className="mx-auto h-96"
+        />
         <video className="w-100 h-100" autoPlay muted loop>
           <source
-            src="https://res.cloudinary.com/jorgepardor/video/upload/v1648485644/pexels-tima-miroshnichenko-6388436_2_x8rkwx.mp4"
-            type="video/mp4"
+            src="https://res.cloudinary.com/jorgepardor/video/upload/v1648494451/Comp_1_1_nhq8pr.webm"
+            type="video/webm"
           />
           Your browser does not support the video tag.
         </video>
