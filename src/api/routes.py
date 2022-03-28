@@ -6,7 +6,7 @@ from api.models import db, User, Role, Suscription, Sessions, Sessions_type
 from api.utils import generate_sitemap, APIException
 from sqlalchemy.exc import IntegrityError
 from psycopg2.errors import NotNullViolation, UniqueViolation
-from flask_jwt_extended import jwt_required, create_access_token
+from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
 
 api = Blueprint('api', __name__)
 
@@ -161,3 +161,13 @@ def create_suscription_type():
     db.session.commit()
 
     return jsonify({"message" : "Tu suscripcion ha sido creada"}),200
+
+@api.route("/validate", methods=["GET"])
+@jwt_required()
+def handle_validate():
+    current_user_id = get_jwt_identity()
+    user = User.query.get(current_user_id)
+    if user:
+        return jsonify({"validate": True}), 200
+    else:
+        return jsonify({"validate": False}), 400

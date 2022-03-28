@@ -9,6 +9,19 @@ const getState = ({ getStore, getActions, setStore }) => {
       exampleFunction: () => {
         getActions().changeColor(0, "green");
       },
+      validate: async () => {
+        const response = await fetch(
+          "https://3001-4geeksacademy-reactflask-n3j8neui2wu.ws-eu38.gitpod.io/api/validate",
+          {
+            method: "GET",
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          }
+        );
+        const data = await response.json();
+        return data.validate;
+      },
 
       getMessage: () => {
         // fetching data from the backend
