@@ -54,11 +54,14 @@ export const Login = () => {
                 }
               )
                 .then((resp) => resp.json())
-                .then((data) =>
-                  data.token
-                    ? history.push("/user/dashboard")
-                    : history.push("/register")
-                );
+                .then((data) => {
+                  if (data.token) {
+                    localStorage.setItem("token", data.token);
+                    history.push("/user/dashboard");
+                  } else {
+                    history.push("/register");
+                  }
+                });
             }}
             className="btn btn-danger mx-auto px-auto"
           >

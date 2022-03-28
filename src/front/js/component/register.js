@@ -141,7 +141,7 @@ export const Register = () => {
                 }
               )
                 .then((resp) => resp.json())
-                .then((data) => print(data));
+                .then((data) => console.log(data));
             }}
             className="btn btn-danger mx-auto px-auto"
           >
