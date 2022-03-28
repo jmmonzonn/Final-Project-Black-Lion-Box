@@ -872,9 +872,18 @@ input:checked + .toggle-bg {
   margin-right: auto;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
 }
 
 .mb-3 {
@@ -883,10 +892,6 @@ input:checked + .toggle-bg {
 
 .mt-auto {
   margin-top: auto;
-}
-
-.mr-2 {
-  margin-right: 0.5rem;
 }
 
 .ml-auto {
@@ -945,12 +950,12 @@ input:checked + .toggle-bg {
   display: none;
 }
 
-.h-full {
-  height: 100%;
-}
-
 .h-10 {
   height: 2.5rem;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .h-48 {
@@ -1142,11 +1147,6 @@ input:checked + .toggle-bg {
   border-color: rgb(243 244 246 / var(--tw-border-opacity));
 }
 
-.bg-L-Gray-light {
-  --tw-bg-opacity: 1;
-  background-color: rgb(241 240 242 / var(--tw-bg-opacity));
-}
-
 .bg-L-Gray-dark {
   --tw-bg-opacity: 1;
   background-color: rgb(109 111 115 / var(--tw-bg-opacity));
@@ -1155,6 +1155,11 @@ input:checked + .toggle-bg {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-L-Gray-light {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 240 242 / var(--tw-bg-opacity));
 }
 
 .bg-gray-200 {
@@ -1214,6 +1219,11 @@ input:checked + .toggle-bg {
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
 .px-2 {
