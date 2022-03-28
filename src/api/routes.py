@@ -6,6 +6,7 @@ from api.models import db, User, Role, Suscription, Sessions, Sessions_type
 from api.utils import generate_sitemap, APIException
 from sqlalchemy.exc import IntegrityError
 from psycopg2.errors import NotNullViolation, UniqueViolation
+from flask_jwt_extended import jwt_required, create_access_token
 
 api = Blueprint('api', __name__)
 
@@ -33,6 +34,7 @@ def create_user():
                         marketing_comunication = marketing_comunication, info = info, is_active = False)
         db.session.add(new_user)
         db.session.commit()
+        token = create_access_token(identity=new_user.username)
     except IntegrityError as ex:
         print(ex)
         if isinstance(ex.orig, NotNullViolation):
@@ -41,8 +43,24 @@ def create_user():
             return jsonify({"message" : "Ya se encuentra un usuario regisgtrado con estos datos"}),400
         return jsonify({"message" : ex.orig}),400 
 
-    return jsonify({"message" : "Usuario registrado"}),200
+    return jsonify({"message" : "Usuario registrado", "token": token}),200
 
+@api.route('/login', methods=['POST'])
+def login():
+    username = request.json.get("username")
+    password = request.json.get("password")
+
+    user = User.query.filter_by(username=username, password=password).first()
+    if not user:
+        return jsonify({"message": "El usuario no fue encontrado."}), 401
+
+    token = create_access_token(identity=user.id)
+
+    data_response = {
+        "token": token,
+        "username": user.username,
+    }
+    return jsonify(data_response), 200
 
 @api.route('/suscription', methods=["POST"])
 def create_suscription():

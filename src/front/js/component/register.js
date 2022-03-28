@@ -130,13 +130,16 @@ export const Register = () => {
           <button
             type="button"
             onClick={() => {
-              fetch(process.env.BACKEND_URL + "/api/signup", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(user),
-              })
+              fetch(
+                "https://3001-4geeksacademy-reactflask-n3j8neui2wu.ws-eu38.gitpod.io/api/signup",
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(user),
+                }
+              )
                 .then((resp) => resp.json())
                 .then((data) => print(data));
             }}

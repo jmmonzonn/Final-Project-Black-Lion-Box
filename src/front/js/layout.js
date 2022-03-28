@@ -10,6 +10,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { UserDashboard } from "./pages/userDashboard";
 import { Register } from "./component/register";
+import { Login } from "./component/login";
 
 //create your first component
 const Layout = () => {
@@ -37,6 +38,9 @@ const Layout = () => {
             </Route>
             <Route exact path="/home/register">
               <Register />
+            </Route>
+            <Route exact path="/home/login">
+              <Login />
             </Route>
             <Route>
               <h1>Not found!</h1>
