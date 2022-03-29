@@ -4,22 +4,29 @@
 @tailwind components;
 @tailwind utilities;
 
-.link-underline {
-  border-bottom-width: 0;
-  background-image: linear-gradient(transparent, transparent),
-    linear-gradient(#fff, #fff);
-  background-size: 0 3px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  transition: background-size 0.5s ease-in-out;
+.mainheader {
+  margin: 0;
+  /* height: 100vh; */
+  background: #e3ebea;
 }
 
-.link-underline-black {
-  background-image: linear-gradient(transparent, transparent),
-    linear-gradient(#f2c, #f2c);
+.container {
+  /* width: 60%;
+  margin: 8em auto; */
+  text-align: center;
 }
 
-.link-underline:hover {
-  background-size: 100% 3px;
-  background-position: 0 100%;
+.logoheader {
+  clip-path: url(#logoheadermask);
+  /* width: 60%; */
+  /* object-fit: cover; */
+}
+
+.logoheader-container {
+  position: absolute;
+  margin: auto;
+}
+
+.hideme {
+  height: 0px;
 }
