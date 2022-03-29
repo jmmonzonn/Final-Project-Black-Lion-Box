@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import emailjs from "emailjs-com";
 
 export const Contact = () => {
+  const form = useRef();
   function sendEmail(e) {
     e.preventDefault();
     emailjs
@@ -22,22 +23,63 @@ export const Contact = () => {
   return (
     <div className="container">
       <div className="row">
-        <div className="col">
-          <form onSubmit={sendEmail}>
-            <label>Name</label>
-            <input type="text" name="user_name" />
-            <label>Email</label>
-            <input type="email" placeholder="Email Address" name="email" />
-            <label>Message</label>
-            <textarea name="message" />
-            <input
-              type="submit"
-              className="btn btn-info"
-              value="Send Message"
-            />
-          </form>
+        <div className="d-flex justify-content-center">
+          <h1>Formulario de contacto</h1>
         </div>
-        <button type="button"></button>
+        <form onSubmit={sendEmail}>
+          <div className="mb-3">
+            <label for="exampleInputEmail1" className="form-label">
+              Nombre
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Nombre"
+              name="name"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label for="exampleInputPassword1" className="form-label">
+              Apellidos
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Apellidos"
+              name="Last"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label for="exampleInputPassword1" className="form-label">
+              Correo electronico
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Email"
+              name="email"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label for="exampleInputPassword1" className="form-label">
+              Mensaje
+            </label>
+            <input type="text" className="form-control" placeholder="Mensaje" />
+          </div>
+
+          <button
+            type="submit"
+            classNameName="btn btn-success"
+            id="button"
+            value="ENVIAR MENSAJE"
+            required
+          >
+            Enviar Mensaje
+          </button>
+        </form>
       </div>
     </div>
   );
