@@ -8,7 +8,7 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div className="text-center mt-5">
+    <div className="text-center">
       <MainHeader />
       <img src={logo} className="mx-auto mb-5 h-48" alt="Big Lion Box logo" />
       <h1 className="text-3xl text-L-Gray-dark mb-2">Coming soon!</h1>
