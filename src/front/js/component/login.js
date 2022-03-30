@@ -43,16 +43,13 @@ export const Login = () => {
           <button
             type="button"
             onClick={() => {
-              fetch(
-                "https://3001-4geeksacademy-reactflask-n3j8neui2wu.ws-eu38.gitpod.io/api/login",
-                {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify(user),
-                }
-              )
+              fetch(process.env.BACKEND_URL + "/api/login", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(user),
+              })
                 .then((resp) => resp.json())
                 .then((data) => {
                   if (data.token) {
