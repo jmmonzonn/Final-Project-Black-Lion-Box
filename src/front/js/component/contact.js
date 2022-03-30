@@ -2,13 +2,20 @@ import React, { useContext, useState, useRef } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import emailjs from "emailjs-com";
+import { init } from "@emailjs/browser";
+init("75IF0AuPvicgNL5xA");
 
 export const Contact = () => {
   const form = useRef();
   function sendEmail(e) {
     e.preventDefault();
     emailjs
-      .sendForm("service_lta4l1r", "template_d5v9dc8", e.target, "blacklionbox")
+      .sendForm(
+        "service_lta4l1r",
+        "template_uwflltm",
+        e.target,
+        "75IF0AuPvicgNL5xA"
+      )
       .then(
         (result) => {
           console.log(result.text);
@@ -28,7 +35,7 @@ export const Contact = () => {
         </div>
         <form onSubmit={sendEmail}>
           <div className="mb-3">
-            <label for="exampleInputEmail1" className="form-label">
+            <label htmlFor="exampleInputEmail1" className="form-label">
               Nombre
             </label>
             <input
@@ -40,7 +47,7 @@ export const Contact = () => {
             />
           </div>
           <div className="mb-3">
-            <label for="exampleInputPassword1" className="form-label">
+            <label htmlFor="exampleInputPassword1" className="form-label">
               Apellidos
             </label>
             <input
@@ -52,7 +59,7 @@ export const Contact = () => {
             />
           </div>
           <div className="mb-3">
-            <label for="exampleInputPassword1" className="form-label">
+            <label htmlFor="exampleInputPassword1" className="form-label">
               Correo electronico
             </label>
             <input
@@ -64,7 +71,7 @@ export const Contact = () => {
             />
           </div>
           <div className="mb-3">
-            <label for="exampleInputPassword1" className="form-label">
+            <label htmlFor="exampleInputPassword1" className="form-label">
               Mensaje
             </label>
             <input type="text" className="form-control" placeholder="Mensaje" />
@@ -72,7 +79,7 @@ export const Contact = () => {
 
           <button
             type="submit"
-            classNameName="btn btn-success"
+            className="btn btn-success"
             id="button"
             value="ENVIAR MENSAJE"
             required

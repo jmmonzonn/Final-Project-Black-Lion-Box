@@ -862,6 +862,10 @@ input:checked + .toggle-bg {
   z-index: 40;
 }
 
+.m-3 {
+  margin: 0.75rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -959,6 +963,10 @@ input:checked + .toggle-bg {
   height: 100%;
 }
 
+.h-96 {
+  height: 24rem;
+}
+
 .h-16 {
   height: 4rem;
 }
@@ -981,10 +989,6 @@ input:checked + .toggle-bg {
 
 .h-9 {
   height: 2.25rem;
-}
-
-.h-96 {
-  height: 24rem;
 }
 
 .w-4 {
