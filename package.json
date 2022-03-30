@@ -77,6 +77,9 @@
 		]
 	},
 	"dependencies": {
+		"@emailjs/browser": "^3.5.0",
+		"emailjs": "^3.8.0",
+		"emailjs-com": "^3.2.0",
 		"@fortawesome/fontawesome-svg-core": "^6.1.1",
 		"@fortawesome/free-brands-svg-icons": "^6.1.1",
 		"@fortawesome/free-solid-svg-icons": "^6.1.1",

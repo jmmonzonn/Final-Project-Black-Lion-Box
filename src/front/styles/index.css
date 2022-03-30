@@ -862,6 +862,10 @@ input:checked + .toggle-bg {
   z-index: 40;
 }
 
+.m-3 {
+  margin: 0.75rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
