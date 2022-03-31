@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Role, Suscription, Sessions, Sessions_type
+from api.models import db, User, Role, Suscription, Sessions, Sessions_type, Suscription_type
 from api.utils import generate_sitemap, APIException
 from sqlalchemy.exc import IntegrityError
 from psycopg2.errors import NotNullViolation, UniqueViolation
@@ -59,6 +59,7 @@ def login():
     data_response = {
         "token": token,
         "username": user.username,
+        "role_id": user.role_id
     }
     return jsonify(data_response), 200
 
@@ -126,6 +127,14 @@ def create_role():
     db.session.commit()
 
     return jsonify({"message" : "Rol creado"}),200
+
+@api.route("/get_role", methods=["GET"])
+def get_role():
+    roles = Role.query.all()
+    all_roles = []
+    for role in roles:
+        all_roles.append(role)
+    return jsonify({"roles": all-roles}), 200
 
 
 @api.route('/sessions_type', methods=["POST"])

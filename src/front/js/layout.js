@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./pages/home";
-import { AdminDashboard } from "./pages/adminManageTiers";
+import { AdminDashboard } from "./pages/adminDashboard";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
