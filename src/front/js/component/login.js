@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 
 export const Login = () => {
   const [user, setUser] = useState({});
+  const [response, setResponse] = useState({});
   let history = useHistory();
 
   return (
@@ -54,7 +55,11 @@ export const Login = () => {
                 .then((data) => {
                   if (data.token) {
                     localStorage.setItem("token", data.token);
-                    history.push("/user/dashboard");
+                    if (data.role_id == 1) {
+                      history.push("/admin/dashboard");
+                    } else {
+                      history.push("/user/dashboard");
+                    }
                   } else {
                     history.push("/register");
                   }
