@@ -40,7 +40,7 @@ class User(db.Model):
             "info": self.info,
             "is_active": self.is_active,
             "role_id": self.role_id,
-            "role": self.role
+            "role": self.role.name
         }
 
 class Suscription(db.Model):
