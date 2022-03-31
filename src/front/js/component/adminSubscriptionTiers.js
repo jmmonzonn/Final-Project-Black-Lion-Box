@@ -46,37 +46,37 @@ export const SubscriptionTiers = () => {
       </table>
       <div>
         <p>Agregar suscripciones:</p>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">
+        <div className="input-group mb-3">
+          <span className="input-group-text" id="basic-addon1">
             Nombre
           </span>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             placeholder="Username"
             aria-label="Username"
             aria-describedby="basic-addon1"
           />
         </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">
+        <div className="input-group mb-3">
+          <span className="input-group-text" id="basic-addon1">
             Precio
           </span>
           <input
             type="number"
-            class="form-control"
+            className="form-control"
             placeholder="Username"
             aria-label="Username"
             aria-describedby="basic-addon1"
           />
         </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">
+        <div className="input-group mb-3">
+          <span className="input-group-text" id="basic-addon1">
             Beneficios:
           </span>
           <input
             type="number"
-            class="form-control"
+            className="form-control"
             placeholder="Username"
             aria-label="Username"
             aria-describedby="basic-addon1"

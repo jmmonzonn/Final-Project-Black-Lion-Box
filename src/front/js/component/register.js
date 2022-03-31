@@ -142,7 +142,7 @@ export const Register = () => {
             }}
             className="btn btn-danger mx-auto px-auto"
           >
-            Dale marico
+            Registro
           </button>
         </div>
       </div>

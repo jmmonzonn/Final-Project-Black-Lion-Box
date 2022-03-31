@@ -3,6 +3,8 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import logo from "../../img/BLB_Logo_512px.png";
 import { MainHeader } from "../component/header.js";
+import { Maps } from "../component/maps";
+import { Contact } from "../component/contact";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -10,6 +12,8 @@ export const Home = () => {
   return (
     <div className="text-center">
       <MainHeader />
+      <Maps />
+      <Contact />
       <img src={logo} className="mx-auto mb-5 h-48" alt="Big Lion Box logo" />
       <h1 className="text-3xl text-L-Gray-dark mb-2">Coming soon!</h1>
       <p className=" text-L-Gray-med">

@@ -67,7 +67,7 @@ export const Login = () => {
             }}
             className="btn btn-danger mx-auto px-auto"
           >
-            Dale marico
+            Entrar
           </button>
         </div>
       </div>
