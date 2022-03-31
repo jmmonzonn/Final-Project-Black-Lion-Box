@@ -13,6 +13,7 @@ import { Register } from "./component/register";
 import { Login } from "./component/login";
 import { Contact } from "./component/contact";
 import { Maps } from "./component/maps";
+import { Features } from "./component/features";
 
 //create your first component
 const Layout = () => {
@@ -49,6 +50,9 @@ const Layout = () => {
             </Route>
             <Route exact path="/home/maps">
               <Maps />
+            </Route>
+            <Route exact path="/home/features">
+              <Features />
             </Route>
             <Route>
               <h1>Not found!</h1>
