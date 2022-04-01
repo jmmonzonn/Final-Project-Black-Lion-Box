@@ -13,6 +13,7 @@ import { Register } from "./component/register";
 import { Login } from "./component/login";
 import { Contact } from "./component/contact";
 import { Maps } from "./component/maps";
+import { Features } from "./component/features";
 
 //create your first component
 const Layout = () => {
@@ -21,7 +22,7 @@ const Layout = () => {
   const basename = process.env.BASENAME || "";
 
   return (
-    <div className=" bg-L-Gray-light h-full">
+    <div className=" bg-L-Gray-light h-full d-flex flex-column min-vh-100">
       <BrowserRouter basename={basename}>
         <ScrollToTop>
           <Navbar />
@@ -49,6 +50,9 @@ const Layout = () => {
             </Route>
             <Route exact path="/maps">
               <Maps />
+            </Route>
+            <Route exact path="/home/features">
+              <Features />
             </Route>
             <Route>
               <h1>Not found!</h1>

@@ -45,6 +45,10 @@ def create_user():
 
     return jsonify({"message" : "Usuario registrado", "token": token}),200
 
+@api.route("/get_users", methods=["GET"])
+def get_users():
+    return jsonify([user.serialize() for user in User.query.all()]), 200
+
 @api.route('/login', methods=['POST'])
 def login():
     username = request.json.get("username")
@@ -59,7 +63,7 @@ def login():
     data_response = {
         "token": token,
         "username": user.username,
-        "role_id": user.role_id
+        "role": user.role.name
     }
     return jsonify(data_response), 200
 
@@ -112,6 +116,7 @@ def create_sessions():
 
 
 @api.route('/role', methods=["POST"])
+@jwt_required()
 def create_role():
     name = request.json.get("name", None)
 
@@ -130,12 +135,10 @@ def create_role():
 
 @api.route("/get_role", methods=["GET"])
 def get_role():
-    roles = Role.query.all()
-    all_roles = []
-    for role in roles:
-        all_roles.append(role)
-    return jsonify({"roles": all-roles}), 200
+    return jsonify([role.serialize() for role in Role.query.all()]), 200
 
+
+    
 
 @api.route('/sessions_type', methods=["POST"])
 def create_sessions_type():
@@ -155,6 +158,7 @@ def create_sessions_type():
     return jsonify({"message" : "Nuevo tipo de sesion creada"}),200
 
 @api.route('/suscription_type', methods=["POST"])
+@jwt_required()
 def create_suscription_type():
     name = request.json.get("name", None)
 
@@ -170,6 +174,10 @@ def create_suscription_type():
     db.session.commit()
 
     return jsonify({"message" : "Tu suscripcion ha sido creada"}),200
+
+@api.route("/get_suscription_types", methods=["GET"])
+def get_suscription_type():
+    return jsonify([suscription_type.serialize() for suscription_type in Suscription_type.query.all()]), 200
 
 @api.route("/validate", methods=["GET"])
 @jwt_required()
