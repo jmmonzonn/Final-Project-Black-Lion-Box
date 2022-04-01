@@ -31,7 +31,7 @@ export const Contact = () => {
     <div className="container">
       <div className="row">
         <div className="d-flex justify-content-center">
-          <h1>Formulario de contacto</h1>
+          <p className="lead mb-4">Formulario de contacto</p>
         </div>
         <form onSubmit={sendEmail}>
           <div className="mb-3">
@@ -42,19 +42,7 @@ export const Contact = () => {
               type="text"
               className="form-control"
               placeholder="Nombre"
-              name="name"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">
-              Apellidos
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Apellidos"
-              name="Last"
+              name="from_name"
               required
             />
           </div>
@@ -66,7 +54,7 @@ export const Contact = () => {
               type="email"
               className="form-control"
               placeholder="Email"
-              name="email"
+              name="from_email"
               required
             />
           </div>
@@ -74,12 +62,17 @@ export const Contact = () => {
             <label htmlFor="exampleInputPassword1" className="form-label">
               Mensaje
             </label>
-            <input type="text" className="form-control" placeholder="Mensaje" />
+            <textarea
+              type="text"
+              name="message"
+              className="form-control"
+              placeholder="Mensaje"
+            />
           </div>
 
           <button
             type="submit"
-            className="btn btn-success"
+            className="btn btn-success mb-9"
             id="button"
             value="ENVIAR MENSAJE"
             required

@@ -54,7 +54,11 @@ export const Login = () => {
                 .then((data) => {
                   if (data.token) {
                     localStorage.setItem("token", data.token);
-                    history.push("/user/dashboard");
+                    if (data.role == "admin") {
+                      history.push("/admin/dashboard");
+                    } else {
+                      history.push("/user/dashboard");
+                    }
                   } else {
                     history.push("/register");
                   }
@@ -62,7 +66,7 @@ export const Login = () => {
             }}
             className="btn btn-danger mx-auto px-auto"
           >
-            Dale marico
+            Entrar
           </button>
         </div>
       </div>

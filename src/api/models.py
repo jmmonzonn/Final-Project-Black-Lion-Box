@@ -38,7 +38,9 @@ class User(db.Model):
             "conditions_terms": self.conditions_terms,
             "marketing_comunication": self.marketing_comunication,
             "info": self.info,
-            "is_active": self.is_active
+            "is_active": self.is_active,
+            "role_id": self.role_id,
+            "role": self.role.name
         }
 
 class Suscription(db.Model):
