@@ -11,7 +11,7 @@ export const Navbar = () => {
       <div className="container flex items-center justify-center px-6 py-8 mx-auto text-L-Gray-dark capitalize">
         <img src={isolight} className="mr-3 h-16 sm:h-9" alt="Big Lion Box" />
         <a
-          href="#"
+          href="/"
           className="border-b-2 border-transparent hover: text-gray-800 hover:border-M-Lime mx-1.5 sm:mx-6"
         >
           home
