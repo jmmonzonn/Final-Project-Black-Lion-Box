@@ -1,22 +1,22 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
+import { useHistory } from "react-router-dom";
 
-export const AdminRole = () => {
+export const AdminCreateUser = () => {
   const { store, actions } = useContext(Context);
   const [checkValidate, setCheckValidate] = useState(false);
-  const [role, setRole] = useState({});
-  const [roleList, setRoleList] = useState([]);
+  const [user, setUser] = useState({});
+  const [usersList, setUsersList] = useState([]);
   let history = useHistory();
 
   useEffect(async () => {
     await validate();
-    getRoles();
+    getUsers();
   }, []);
 
   useEffect(() => {
-    getRoles();
-  }, [roleList]);
+    getUsers();
+  }, [usersList]);
 
   const validate = async () => {
     if (!(await actions.validate())) {
@@ -26,10 +26,10 @@ export const AdminRole = () => {
     }
   };
 
-  const getRoles = () => {
-    fetch(process.env.BACKEND_URL + "/api/get_role")
+  const getUsers = () => {
+    fetch(process.env.BACKEND_URL + "/api/get_users")
       .then((resp) => resp.json())
-      .then((data) => setRoleList(data));
+      .then((data) => setUsersList(data));
   };
 
   return (
@@ -39,48 +39,52 @@ export const AdminRole = () => {
           <div className="container">
             <div className="row">
               <div className="col-3 mx-auto">
+                <h1>
+                  <strong>Crear usuario</strong>
+                </h1>
                 <input
                   type="text"
-                  className="form-control py-1 my-2"
-                  placeholder="Introduce nuevo rol"
-                  onChange={(event) => {
-                    setRole({ ...role, name: event.target.value });
+                  onChange={(e) => {
+                    setUser({ ...user, name: e.target.value });
                   }}
+                  className="form-control py-1 my-2"
+                  placeholder="Introduce usuario"
                 ></input>
+
                 <button
                   type="button"
-                  className="btn btn-danger mx-auto px-auto"
                   onClick={() => {
-                    fetch(process.env.BACKEND_URL + "/api/role", {
+                    fetch(process.env.BACKEND_URL + "/api/suscription_type", {
                       method: "POST",
                       headers: {
                         "Content-Type": "application/json",
                         Authorization:
                           "Bearer " + localStorage.getItem("token"),
                       },
-                      body: JSON.stringify(role),
+                      body: JSON.stringify(user),
                     })
                       .then((resp) => resp.json())
                       .then((data) => {
                         console.log(data);
                       });
                   }}
+                  className="btn btn-danger mx-auto px-auto"
                 >
-                  Añadir rol
+                  Dale marico
                 </button>
               </div>
-              <div>
-                {roleList.map((value, index) => {
-                  return (
-                    <div className="container" key={index}>
-                      <div className="row">
-                        <div className="col-6 mx-auto">{value.name}</div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
             </div>
+          </div>
+          <div>
+            {usersList.map((value, index) => {
+              return (
+                <div className="container" key={index}>
+                  <div className="row">
+                    <div className="col-6 mx-auto">{value.username}</div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </>
       ) : null}
