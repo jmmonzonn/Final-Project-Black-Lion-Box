@@ -903,16 +903,16 @@ input:checked + .toggle-bg {
   margin-bottom: 2.25rem;
 }
 
+.mt-auto {
+  margin-top: auto;
+}
+
 .mt-2 {
   margin-top: 0.5rem;
 }
 
 .mr-4 {
   margin-right: 1rem;
-}
-
-.mt-auto {
-  margin-top: auto;
 }
 
 .mr-3 {

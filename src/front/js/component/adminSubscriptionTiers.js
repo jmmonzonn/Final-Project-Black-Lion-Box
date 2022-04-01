@@ -25,8 +25,12 @@ export const SubscriptionTiers = () => {
               mes.
             </td>
             <td>
-              <button>📝</button>
-              <button>❌</button>
+              <button>
+                <FontAwesomeIcon icon={["fa", "faPenToSquare"]} />
+              </button>
+              <button>
+                <FontAwesomeIcon icon={["fa", "faXmark"]} />
+              </button>
             </td>
           </tr>
           <tr>
@@ -38,8 +42,12 @@ export const SubscriptionTiers = () => {
               motivacional de 6 horas incluida (obligatoria).
             </td>
             <td>
-              <button>📝</button>
-              <button>❌</button>
+              <button>
+                <FontAwesomeIcon icon={["fa", "faPenToSquare"]} />
+              </button>
+              <button>
+                <FontAwesomeIcon icon={["fa", "faXmark"]} />
+              </button>
             </td>
           </tr>
         </tbody>
