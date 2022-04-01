@@ -14,10 +14,6 @@ export const AdminRole = () => {
     getRoles();
   }, []);
 
-  useEffect(() => {
-    getRoles();
-  }, [roleList]);
-
   const validate = async () => {
     if (!(await actions.validate())) {
       history.push("/");

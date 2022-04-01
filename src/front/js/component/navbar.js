@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useNavigate } from "react-router-dom";
 import isolight from "../../img/BLB_ISO_Light_64px.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

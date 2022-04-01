@@ -14,10 +14,6 @@ export const AdminSuscription = () => {
     getSuscriptions();
   }, []);
 
-  useEffect(() => {
-    getSuscriptions();
-  }, [suscriptionList]);
-
   const validate = async () => {
     if (!(await actions.validate())) {
       history.push("/");
