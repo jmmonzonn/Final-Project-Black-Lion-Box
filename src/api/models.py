@@ -40,7 +40,7 @@ class User(db.Model):
             "info": self.info,
             "is_active": self.is_active,
             "role_id": self.role_id,
-            "role": self.role.name
+            "role": self.role.name if self.role else None
         }
 
 class Suscription(db.Model):
@@ -113,7 +113,7 @@ class Payments(db.Model):
         
 class Role(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(24), unique=True, nullable=False)
+    name = db.Column(db.String(24), unique=True, nullable=True)
 
     def __repr__(self):
         return self.name
