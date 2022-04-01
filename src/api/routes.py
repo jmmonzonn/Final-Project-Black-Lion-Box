@@ -45,6 +45,10 @@ def create_user():
 
     return jsonify({"message" : "Usuario registrado", "token": token}),200
 
+@api.route("/get_users", methods=["GET"])
+def get_users():
+    return jsonify([user.serialize() for user in User.query.all()]), 200
+
 @api.route('/login', methods=['POST'])
 def login():
     username = request.json.get("username")
@@ -154,6 +158,7 @@ def create_sessions_type():
     return jsonify({"message" : "Nuevo tipo de sesion creada"}),200
 
 @api.route('/suscription_type', methods=["POST"])
+@jwt_required()
 def create_suscription_type():
     name = request.json.get("name", None)
 

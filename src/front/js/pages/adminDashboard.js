@@ -4,6 +4,8 @@ import { Context } from "../store/appContext";
 import { AdminHeader } from "../component/adminHeader";
 import { AdminUserList } from "../component/adminUserlist";
 import { AdminSuscription } from "../component/adminSuscription";
+import { AdminCreateUser } from "../component/adminCreateUser";
+
 import { AdminRole } from "../component/adminRole.js";
 import { SubscriptionTiers } from "../component/adminSubscriptionTiers";
 import "../../styles/home.css";
@@ -32,6 +34,7 @@ export const AdminDashboard = () => {
           {/* <AdminHeader /> */}
           <AdminSuscription />
           <AdminRole />
+          <AdminCreateUser />
           {/* <SubscriptionTiers /> */}
           {/* <AdminUserList /> */}
         </div>
