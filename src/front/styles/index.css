@@ -866,10 +866,6 @@ input:checked + .toggle-bg {
   margin: 0.75rem;
 }
 
-.m-auto {
-  margin: auto;
-}
-
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -895,11 +891,6 @@ input:checked + .toggle-bg {
   margin-bottom: 1rem;
 }
 
-.my-auto {
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
 .mb-3 {
   margin-bottom: 0.75rem;
 }
@@ -910,6 +901,10 @@ input:checked + .toggle-bg {
 
 .mb-9 {
   margin-bottom: 2.25rem;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
 }
 
 .mt-auto {
@@ -944,20 +939,12 @@ input:checked + .toggle-bg {
   margin-top: 1.25rem;
 }
 
-.mb-5 {
-  margin-bottom: 1.25rem;
-}
-
 .-mb-px {
   margin-bottom: -1px;
 }
 
 .mb-1 {
   margin-bottom: 0.25rem;
-}
-
-.mb-auto {
-  margin-bottom: auto;
 }
 
 .block {
