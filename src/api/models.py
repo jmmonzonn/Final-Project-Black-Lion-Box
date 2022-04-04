@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 db = SQLAlchemy()
 
 class User(db.Model):
@@ -71,7 +72,7 @@ class Sessions(db.Model):
     description = db.Column(db.String(48), unique=False, nullable=False)
     regular = db.Column(db.Boolean(), unique=False, nullable=False)
     days = db.Column(db.String(96), unique=False, nullable=False)
-    start_time = db.Column(db.DateTime, unique=False, nullable=False)
+    start_time = db.Column(db.Time, unique=False, nullable=False)
     duration = db.Column(db.Integer, unique=False, nullable=False)
     max_users = db.Column(db.Integer, unique=False, nullable=False)
     sessions_type_id = db.Column(db.Integer, db.ForeignKey('sessions_type.id'), nullable=False)
@@ -87,9 +88,11 @@ class Sessions(db.Model):
             "description": self.description,
             "regular": self.regular,
             "days": self.days,
-            "start_time": self.start_time,
+            "start_time": self.start_time.strftime("%H:%M:%S"),
             "duration": self.duration,
-            "max-users": self.max_users
+            "max-users": self.max_users,
+            "session_type": self.session_type.name if self.session_type else None
+
         }
         
 class Payments(db.Model):

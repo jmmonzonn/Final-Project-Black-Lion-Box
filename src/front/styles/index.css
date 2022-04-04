@@ -903,6 +903,13 @@ input:checked + .toggle-bg {
   margin-bottom: 2.25rem;
 }
 
+<<<<<<< HEAD
+=======
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
+>>>>>>> main
 .mt-auto {
   margin-top: auto;
 }
@@ -933,10 +940,6 @@ input:checked + .toggle-bg {
 
 .mt-5 {
   margin-top: 1.25rem;
-}
-
-.mb-5 {
-  margin-bottom: 1.25rem;
 }
 
 .-mb-px {

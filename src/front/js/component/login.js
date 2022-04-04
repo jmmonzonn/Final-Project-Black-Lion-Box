@@ -30,14 +30,6 @@ export const Login = () => {
             placeholder="Introduce contraseña"
           ></input>
 
-          <div class="form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="exampleCheck1"
-            ></input>
-          </div>
-
           <button
             type="button"
             onClick={() => {

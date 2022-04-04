@@ -7,6 +7,8 @@ from api.utils import generate_sitemap, APIException
 from sqlalchemy.exc import IntegrityError
 from psycopg2.errors import NotNullViolation, UniqueViolation
 from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
+from datetime import date, timedelta
+import calendar
 
 api = Blueprint('api', __name__)
 
@@ -189,3 +191,18 @@ def handle_validate():
         return jsonify({"validate": True}), 200
     else:
         return jsonify({"validate": False}), 400
+
+@api.route("/thisweek", methods=["GET"])
+def weeklysessions():
+    today = date.today()
+    data_response = []
+    i = 0
+    while i < 6:
+        endDate = date.today() + timedelta(days=i)
+        whichDay = calendar.day_name[endDate.weekday()]
+        dsessions = Sessions.query.filter(Sessions.days.ilike("%"+whichDay+"%")).order_by(Sessions.start_time).all()
+        i += 1
+        var = {whichDay: [dailysessions.serialize() for dailysessions in dsessions]}
+        data_response.append(var)
+
+    return jsonify(data_response),200
