@@ -15,10 +15,7 @@ export const MainHeader = () => {
           />
         </div>
         <div className="content">
-          <svg
-            viewBox="0 0 1 1"
-            className="hideme preserveAspectRatio=xMidYMid meet"
-          >
+          <svg viewBox="0 0 1 1" className="hideme">
             <defs>
               <clipPath id="logoheadermask">
                 <path
