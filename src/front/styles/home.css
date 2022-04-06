@@ -4,6 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.headerbg {
+  background: url("https://res.cloudinary.com/blacklionbox/image/upload/v1649261385/fondoheader2_sybjbj.jpg")
+    center center/cover no-repeat;
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+  object-fit: contain;
+}
+
 .mainheader {
   height: 60vh;
   background: #e3ebea;
@@ -12,13 +24,8 @@
 .logoheader {
   clip-path: url(#logoheadermask);
   width: 50%;
-  /* object-fit: cover; */
+  display: inline-flex;
 }
-
-/* .logoheader-container {
-  position: absolute;
-  top: 50%;
-} */
 
 .hideme {
   height: 0px;
@@ -73,5 +80,3 @@
   width: 300px;
   height: 500px;
 }
-
-/* Configuración button cards */
