@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Role, Suscription, Sessions, Sessions_type, Suscription_type
+from api.models import db, User, Role, Suscription, Sessions, Sessions_type, Suscription_type, Weekdays
 from api.utils import generate_sitemap, APIException
 from sqlalchemy.exc import IntegrityError
 from psycopg2.errors import NotNullViolation, UniqueViolation
@@ -140,7 +140,26 @@ def create_role():
 def get_role():
     return jsonify([role.serialize() for role in Role.query.all()]), 200
 
+@api.route("/weekdays", methods=["GET"])
+def get_weekdays():
+    return jsonify([name.serialize() for name in Weekdays.query.all()]), 200
 
+@api.route('/weekdays', methods=["POST"])
+def create_weekdays():
+    name = request.json.get("name", None)
+
+    not_unique_name = Weekdays.query.filter_by(name = name).first()
+    if not_unique_name != None:
+        return jsonify({"message": "Este día de la semana ya está creado, burro"}),401
+    
+    if name == '' or name == None:
+        return jsonify({"message": "Debes introducir un nombre"}), 401
+
+    new_sessions_type = Weekdays(name = name)
+    db.session.add(new_sessions_type)
+    db.session.commit()
+
+    return jsonify({"message" : "Día de la semana creado con éxito"}),200
     
 
 @api.route('/sessions_type', methods=["POST"])

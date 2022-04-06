@@ -44,6 +44,20 @@ class User(db.Model):
             "role": self.role.name if self.role else None
         }
 
+class Weekdays(db.Model):
+    __tablename__ = 'weekdays'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(24), unique=True, nullable=False)
+        
+    def __repr__(self):
+        return '<Weekdays %r>' % self.name
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+        }
+
 class Suscription(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(24), unique=True, nullable=False)
@@ -71,12 +85,13 @@ class Sessions(db.Model):
     name = db.Column(db.String(24), unique=True, nullable=False)
     description = db.Column(db.String(48), unique=False, nullable=False)
     regular = db.Column(db.Boolean(), unique=False, nullable=False)
-    days = db.Column(db.String(96), unique=False, nullable=False)
     start_time = db.Column(db.Time, unique=False, nullable=False)
     duration = db.Column(db.Integer, unique=False, nullable=False)
     max_users = db.Column(db.Integer, unique=False, nullable=False)
     sessions_type_id = db.Column(db.Integer, db.ForeignKey('sessions_type.id'), nullable=False)
     session_type = db.relationship('Sessions_type', backref='sessions', lazy=True)
+    weekdays_id = db.Column(db.Integer, db.ForeignKey('weekdays.id'), nullable=False)
+    weekdays = db.relationship('Weekdays', backref='sessions', lazy=True)
 
     def __repr__(self):
         return '<Sessions %r>' % self.name
@@ -87,7 +102,6 @@ class Sessions(db.Model):
             "name": self.name,
             "description": self.description,
             "regular": self.regular,
-            "days": self.days,
             "start_time": self.start_time.strftime("%H:%M:%S"),
             "duration": self.duration,
             "max-users": self.max_users,

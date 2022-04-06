@@ -33,16 +33,16 @@
 
 /* Configuración cards invertidas */
 
-/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+/* Container cards invertidas*/
 .flip-card {
   background-color: transparent;
-  width: 400px;
-  height: 600px;
+  width: 300px;
+  height: 500px;
   border: 1px solid #f1f1f1;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
-/* This container is needed to position the front and back side */
+/* Container para colocar el anverso y el reverso */
 .flip-card-inner {
   position: relative;
   width: 100%;
@@ -52,12 +52,7 @@
   transform-style: preserve-3d;
 }
 
-/* Do an horizontal flip when you move the mouse over the flip box container */
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Position the front and back side */
+/* Posicion anverso, reverso */
 .flip-card-front,
 .flip-card-back {
   position: absolute;
@@ -67,22 +62,23 @@
   backface-visibility: hidden;
 }
 
-/* Style the front side (fallback if image is missing) */
+/* Stilo de la  card anversa */
 .flip-card-front {
   background-color: #bbb;
   color: black;
 }
 
-/* Style the back side */
+/* Stilo parte trasera de la card */
 .flip-card-back {
   background-color: dodgerblue;
   color: white;
   transform: rotateY(180deg);
 }
 
+/* Stilo de la imagen*/
 .image {
-  width: 400px;
-  height: 600px;
+  width: 300px;
+  height: 500px;
 }
 
 /* Configuración button cards */
