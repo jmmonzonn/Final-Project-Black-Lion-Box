@@ -4,27 +4,27 @@
 @tailwind components;
 @tailwind utilities;
 
-.mainheader {
-  margin: 0;
-  /* height: 100vh; */
-  background: #e3ebea;
+.headerbg {
+  background: url("https://res.cloudinary.com/blacklionbox/image/upload/v1649261385/fondoheader2_sybjbj.jpg")
+    center center/cover no-repeat;
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+  object-fit: contain;
 }
 
-.container {
-  /* width: 60%;
-  margin: 8em auto; */
-  text-align: center;
+.mainheader {
+  height: 60vh;
+  background: #e3ebea;
 }
 
 .logoheader {
   clip-path: url(#logoheadermask);
-  /* width: 60%; */
-  /* object-fit: cover; */
-}
-
-.logoheader-container {
-  position: absolute;
-  margin: auto;
+  width: 50%;
+  display: inline-flex;
 }
 
 .hideme {
