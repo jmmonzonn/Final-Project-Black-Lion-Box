@@ -997,10 +997,6 @@ input:checked + .toggle-bg {
   margin-left: auto;
 }
 
-.mt-5 {
-  margin-top: 1.25rem;
-}
-
 .mb-5 {
   margin-bottom: 1.25rem;
 }
@@ -1540,11 +1536,10 @@ input:checked + .toggle-bg {
 
 .flip-card {
   background-color: transparent;
-  width: 300px;
-  height: 500px;
+  width: 320px;
+  height: 480px;
   border: 1px solid #f1f1f1;
   perspective: 1000px;
-  /* Remove this if you don't want the 3D effect */
 }
 
 /* Container para colocar el anverso y el reverso */
@@ -1566,33 +1561,38 @@ input:checked + .toggle-bg {
   width: 100%;
   height: 100%;
   -webkit-backface-visibility: hidden;
-  /* Safari */
   backface-visibility: hidden;
-}
-
-/* Stilo de la  card anversa */
-
-.flip-card-front {
-  background-color: #bbb;
-  color: black;
 }
 
 /* Stilo parte trasera de la card */
 
 .flip-card-back {
-  background-color: dodgerblue;
-  color: white;
+  background-color: white;
+  color: black;
   transform: rotateY(180deg);
 }
 
 /* Stilo de la imagen*/
 
 .image {
-  width: 300px;
-  height: 500px;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 /* Configuración button cards */
+
+.btn-features {
+  position: absolute;
+  top: 85%;
+  left: 35%;
+}
+
+.btn-features-back {
+  position: absolute;
+  top: 0%;
+  left: 80%;
+}
 
 .hover\:border-M-Lime:hover {
   --tw-border-opacity: 1;
