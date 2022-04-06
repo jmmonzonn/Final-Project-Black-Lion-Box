@@ -4,6 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Configuración del header  */
+
+/* Fondo hero style del header */
 .headerbg {
   background: url("https://res.cloudinary.com/blacklionbox/image/upload/v1649261385/fondoheader2_sybjbj.jpg")
     center center/cover no-repeat;
@@ -16,22 +19,25 @@
   object-fit: contain;
 }
 
+/* Contenedor de los elementos del header */
 .mainheader {
   height: 60vh;
   background: #e3ebea;
 }
 
+/* Máscara del video */
 .logoheader {
   clip-path: url(#logoheadermask);
   width: 50%;
   display: inline-flex;
 }
 
+/* Oculta el svg que sirve de máscara al video */
 .hideme {
   height: 0px;
 }
 
-/* Configuración cards invertidas */
+/* Configuración de las imágenes de Features */
 
 /* Container cards invertidas*/
 .flip-card {
@@ -62,29 +68,16 @@
   backface-visibility: hidden;
 }
 
-/* Stilo parte trasera de la card */
+/* Estilo parte trasera de la card */
 .flip-card-back {
   background-color: white;
   color: black;
   transform: rotateY(180deg);
 }
 
-/* Stilo de la imagen*/
-.image {
+/* Estilo de la imagen*/
+.image-features {
   display: block;
   width: 100%;
   height: 100%;
-}
-
-/* Configuración button cards */
-.btn-features {
-  position: absolute;
-  top: 85%;
-  left: 35%;
-}
-
-.btn-features-back {
-  position: absolute;
-  top: 0%;
-  left: 80%;
 }

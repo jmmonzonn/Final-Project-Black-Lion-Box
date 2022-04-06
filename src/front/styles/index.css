@@ -919,6 +919,10 @@ input:checked + .toggle-bg {
   margin-bottom: 2.25rem;
 }
 
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
 .mt-auto {
   margin-top: auto;
 }
@@ -931,10 +935,6 @@ input:checked + .toggle-bg {
   margin-right: 1rem;
 }
 
-.mt-5 {
-  margin-top: 1.25rem;
-}
-
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -943,21 +943,12 @@ input:checked + .toggle-bg {
   margin-bottom: 0.5rem;
 }
 
-<<<<<<< HEAD
 .mr-3 {
   margin-right: 0.75rem;
 }
 
 .ml-auto {
   margin-left: auto;
-=======
-.ml-auto {
-  margin-left: auto;
-}
-
-.mb-5 {
-  margin-bottom: 1.25rem;
->>>>>>> main
 }
 
 .-mb-px {
@@ -1113,6 +1104,10 @@ input:checked + .toggle-bg {
           appearance: none;
 }
 
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
@@ -1151,6 +1146,10 @@ input:checked + .toggle-bg {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
@@ -1470,6 +1469,10 @@ input:checked + .toggle-bg {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
+/* Configuración del header  */
+
+/* Fondo hero style del header */
+
 .headerbg {
   background: url("https://res.cloudinary.com/blacklionbox/image/upload/v1649261385/fondoheader2_sybjbj.jpg")
     center center/cover no-repeat;
@@ -1483,10 +1486,14 @@ input:checked + .toggle-bg {
      object-fit: contain;
 }
 
+/* Contenedor de los elementos del header */
+
 .mainheader {
   height: 60vh;
   background: #e3ebea;
 }
+
+/* Máscara del video */
 
 .logoheader {
   -webkit-clip-path: url(#logoheadermask);
@@ -1495,11 +1502,13 @@ input:checked + .toggle-bg {
   display: inline-flex;
 }
 
+/* Oculta el svg que sirve de máscara al video */
+
 .hideme {
   height: 0px;
 }
 
-/* Configuración cards invertidas */
+/* Configuración de las imágenes de Features */
 
 /* Container cards invertidas*/
 
@@ -1533,7 +1542,7 @@ input:checked + .toggle-bg {
   backface-visibility: hidden;
 }
 
-/* Stilo parte trasera de la card */
+/* Estilo parte trasera de la card */
 
 .flip-card-back {
   background-color: white;
@@ -1541,31 +1550,14 @@ input:checked + .toggle-bg {
   transform: rotateY(180deg);
 }
 
-/* Stilo de la imagen*/
+/* Estilo de la imagen*/
 
-.image {
+.image-features {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-<<<<<<< HEAD
-=======
-/* Configuración button cards */
-
-.btn-features {
-  position: absolute;
-  top: 85%;
-  left: 35%;
-}
-
-.btn-features-back {
-  position: absolute;
-  top: 0%;
-  left: 80%;
-}
-
->>>>>>> main
 .hover\:border-M-Lime:hover {
   --tw-border-opacity: 1;
   border-color: rgb(220 219 55 / var(--tw-border-opacity));
