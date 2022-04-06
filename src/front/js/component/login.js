@@ -43,7 +43,6 @@ export const Login = () => {
                 .then((resp) => resp.json())
                 .then((data) => {
                   if (data.token) {
-                    setStore({ username: data.username });
                     localStorage.setItem("token", data.token);
                     if (data.role == "admin") {
                       history.push("/admin/dashboard");

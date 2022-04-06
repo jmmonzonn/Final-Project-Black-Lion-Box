@@ -34,7 +34,7 @@ def create_user():
         new_user = User(username = username, password = password, email = email, phone = phone, 
                         first_name = first_name, last_name = last_name, adress = adress, 
                         avatar_url = avatar_url, conditions_terms = conditions_terms, 
-                        marketing_comunication = marketing_comunication, info = info, is_active = False, role_id = role.id)
+                        marketing_comunication = marketing_comunication, info = info, is_active = False, role = role)
         db.session.add(new_user)
         db.session.commit()
         token = create_access_token(identity=new_user.username)
