@@ -5,27 +5,20 @@
 @tailwind utilities;
 
 .mainheader {
-  margin: 0;
-  /* height: 100vh; */
+  height: 60vh;
   background: #e3ebea;
-}
-
-.container {
-  /* width: 60%;
-  margin: 8em auto; */
-  text-align: center;
 }
 
 .logoheader {
   clip-path: url(#logoheadermask);
-  /* width: 60%; */
+  width: 50%;
   /* object-fit: cover; */
 }
 
-.logoheader-container {
+/* .logoheader-container {
   position: absolute;
-  margin: auto;
-}
+  top: 50%;
+} */
 
 .hideme {
   height: 0px;
