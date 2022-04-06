@@ -2,11 +2,13 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Role, Suscription, Sessions, Sessions_type, Suscription_type
+from api.models import db, User, Role, Suscription, Sessions, Sessions_type, Suscription_type, Weekdays
 from api.utils import generate_sitemap, APIException
 from sqlalchemy.exc import IntegrityError
 from psycopg2.errors import NotNullViolation, UniqueViolation
 from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
+from datetime import date, timedelta
+import calendar
 
 api = Blueprint('api', __name__)
 
@@ -138,7 +140,26 @@ def create_role():
 def get_role():
     return jsonify([role.serialize() for role in Role.query.all()]), 200
 
+@api.route("/weekdays", methods=["GET"])
+def get_weekdays():
+    return jsonify([name.serialize() for name in Weekdays.query.all()]), 200
 
+@api.route('/weekdays', methods=["POST"])
+def create_weekdays():
+    name = request.json.get("name", None)
+
+    not_unique_name = Weekdays.query.filter_by(name = name).first()
+    if not_unique_name != None:
+        return jsonify({"message": "Este día de la semana ya está creado, burro"}),401
+    
+    if name == '' or name == None:
+        return jsonify({"message": "Debes introducir un nombre"}), 401
+
+    new_sessions_type = Weekdays(name = name)
+    db.session.add(new_sessions_type)
+    db.session.commit()
+
+    return jsonify({"message" : "Día de la semana creado con éxito"}),200
     
 
 @api.route('/sessions_type', methods=["POST"])
@@ -189,3 +210,18 @@ def handle_validate():
         return jsonify({"validate": True}), 200
     else:
         return jsonify({"validate": False}), 400
+
+@api.route("/thisweek", methods=["GET"])
+def weeklysessions():
+    today = date.today()
+    data_response = []
+    i = 0
+    while i < 6:
+        endDate = date.today() + timedelta(days=i)
+        whichDay = calendar.day_name[endDate.weekday()]
+        dsessions = Sessions.query.filter(Sessions.days.ilike("%"+whichDay+"%")).order_by(Sessions.start_time).all()
+        i += 1
+        var = {whichDay: [dailysessions.serialize() for dailysessions in dsessions]}
+        data_response.append(var)
+
+    return jsonify(data_response),200

@@ -4,6 +4,7 @@ import "../../styles/home.css";
 import { useHistory } from "react-router-dom";
 
 export const Login = () => {
+  const { store, actions } = useContext(Context);
   const [user, setUser] = useState({});
   let history = useHistory();
 
@@ -42,6 +43,7 @@ export const Login = () => {
                 .then((resp) => resp.json())
                 .then((data) => {
                   if (data.token) {
+                    setStore({ username: data.username });
                     localStorage.setItem("token", data.token);
                     if (data.role == "admin") {
                       history.push("/admin/dashboard");
