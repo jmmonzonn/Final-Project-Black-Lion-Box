@@ -4,6 +4,7 @@ import "../../styles/home.css";
 import { useHistory } from "react-router-dom";
 
 export const Login = () => {
+  const { store, actions } = useContext(Context);
   const [user, setUser] = useState({});
   let history = useHistory();
 

@@ -20,7 +20,8 @@ export const AdminDashboard = () => {
   }, []);
 
   const validate = async () => {
-    if (!(await actions.validate())) {
+    let token = await localStorage.getItem("token");
+    if (!token) {
       history.push("/");
     } else {
       setCheckValidate(true);
@@ -40,8 +41,6 @@ export const AdminDashboard = () => {
         </div>
       ) : null}
     </>
-    // // <>
-    // //   {checkValidate ? (
     // <div className="text-center mt-5">
     //   <div className="border-b border-gray-200 dark:border-gray-700">
     //     <div>
@@ -117,7 +116,5 @@ export const AdminDashboard = () => {
     //     </div>
     //   </div>
     // </div>
-    // //   ) : null}
-    // // </>
   );
 };
