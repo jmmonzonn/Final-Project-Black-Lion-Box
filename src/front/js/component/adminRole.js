@@ -45,7 +45,7 @@ export const AdminRole = () => {
                 })
                   .then((resp) => resp.json())
                   .then((data) => {
-                    console.log(data);
+                    getRoles();
                   });
               }}
             >

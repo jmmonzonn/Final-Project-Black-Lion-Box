@@ -45,12 +45,12 @@ export const AdminSuscription = () => {
                 })
                   .then((resp) => resp.json())
                   .then((data) => {
-                    console.log(data);
+                    getSuscriptions();
                   });
               }}
               className="btn btn-danger mx-auto px-auto"
             >
-              Dale marico
+              Añadir tarifa
             </button>
           </div>
         </div>
