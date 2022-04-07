@@ -30,8 +30,9 @@ export const AdminDashboard = () => {
 
   return (
     <>
-      {/* {checkValidate ? (
-        <> */}
+      <div>
+        <AdminHeader />
+      </div>
       <div className="mb-4 border-b border-gray-200">
         <ul
           className="flex flex-wrap -mb-px text-sm font-medium text-center"
@@ -130,15 +131,7 @@ export const AdminDashboard = () => {
           role="tabpanel"
           aria-labelledby="settings-tab"
         >
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            This is some placeholder content the{" "}
-            <strong className="font-medium text-gray-800 dark:text-white">
-              Settings tab's associated content
-            </strong>
-            . Clicking another tab will toggle the visibility of this one for
-            the next. The tab JavaScript swaps classes to control the content
-            visibility and styling.
-          </p>
+          <SubscriptionTiers />
         </div>
         <div
           className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
