@@ -92,7 +92,7 @@ class Sessions(db.Model):
     session_type = db.relationship('Sessions_type', backref='sessions', lazy=True)
     weekdays_id = db.Column(db.Integer, db.ForeignKey('weekdays.id'), nullable=False)
     weekdays = db.relationship('Weekdays', backref='sessions', lazy=True)
-
+    
     def __repr__(self):
         return '<Sessions %r>' % self.name
 
@@ -105,7 +105,8 @@ class Sessions(db.Model):
             "start_time": self.start_time.strftime("%H:%M:%S"),
             "duration": self.duration,
             "max-users": self.max_users,
-            "session_type": self.session_type.name if self.session_type else None
+            "session_type": self.session_type.name if self.session_type else None,
+            "weekdays": self.weekdays.name if self.weekdays else None
 
         }
         

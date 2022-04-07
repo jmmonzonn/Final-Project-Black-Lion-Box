@@ -10,8 +10,9 @@ from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identi
 from datetime import date, timedelta
 import calendar
 
-api = Blueprint('api', __name__)
+from babel.dates import format_date
 
+api = Blueprint('api', __name__)
 
 @api.route('/signup', methods=["POST"])
 def create_user():
@@ -71,6 +72,7 @@ def login():
     return jsonify(data_response), 200
 
 @api.route('/suscription', methods=["POST"])
+@jwt_required()
 def create_suscription():
      name = request.json.get("name", None)
      description = request.json.get("description", None)
@@ -94,6 +96,7 @@ def create_suscription():
 
 
 @api.route('/sessions', methods=["POST"])
+@jwt_required()
 def create_sessions():
      name = request.json.get("name", None)
      description = request.json.get("description", None)
@@ -137,14 +140,17 @@ def create_role():
     return jsonify({"message" : "Rol creado"}),200
 
 @api.route("/get_role", methods=["GET"])
+@jwt_required()
 def get_role():
     return jsonify([role.serialize() for role in Role.query.all()]), 200
 
 @api.route("/weekdays", methods=["GET"])
+@jwt_required()
 def get_weekdays():
     return jsonify([name.serialize() for name in Weekdays.query.all()]), 200
 
 @api.route('/weekdays', methods=["POST"])
+@jwt_required()
 def create_weekdays():
     name = request.json.get("name", None)
 
@@ -163,6 +169,7 @@ def create_weekdays():
     
 
 @api.route('/sessions_type', methods=["POST"])
+@jwt_required()
 def create_sessions_type():
     name = request.json.get("name", None)
 
@@ -198,6 +205,7 @@ def create_suscription_type():
     return jsonify({"message" : "Tu suscripcion ha sido creada"}),200
 
 @api.route("/get_suscription_types", methods=["GET"])
+@jwt_required()
 def get_suscription_type():
     return jsonify([suscription_type.serialize() for suscription_type in Suscription_type.query.all()]), 200
 
@@ -212,14 +220,15 @@ def handle_validate():
         return jsonify({"validate": False}), 400
 
 @api.route("/thisweek", methods=["GET"])
+@jwt_required()
 def weeklysessions():
     today = date.today()
     data_response = []
     i = 0
-    while i < 6:
+    while i < 7:
         endDate = date.today() + timedelta(days=i)
-        whichDay = calendar.day_name[endDate.weekday()]
-        dsessions = Sessions.query.filter(Sessions.days.ilike("%"+whichDay+"%")).order_by(Sessions.start_time).all()
+        whichDay = format_date(endDate, format='EEEE', locale='es').capitalize()
+        dsessions = Sessions.query.filter(Sessions.weekdays.has(name=whichDay)).order_by(Sessions.start_time).all()
         i += 1
         var = {whichDay: [dailysessions.serialize() for dailysessions in dsessions]}
         data_response.append(var)

@@ -8,6 +8,7 @@ import {
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 import {
+  fas,
   faCheck,
   faPenToSquare,
   faXmark,
@@ -16,6 +17,7 @@ import {
 function initFontAwesome() {
   library.add(
     fab,
+    fas,
     faTwitterSquare,
     faFacebook,
     faLinkedin,
