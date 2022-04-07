@@ -7,6 +7,7 @@ import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
+import { NavbarAdmin } from "./component/navbarAdmin";
 import { Footer } from "./component/footer";
 import { UserDashboard } from "./pages/userDashboard";
 import { Register } from "./component/register";
@@ -25,27 +26,31 @@ const Layout = () => {
     <div className=" bg-L-Gray-light h-full d-flex flex-column min-vh-100">
       <BrowserRouter basename={basename}>
         <ScrollToTop>
-          <Navbar />
           <Switch>
             <Route exact path="/">
+              <Navbar />
               <Home />
             </Route>
             <Route exact path="/user/dashboard">
               <UserDashboard />
             </Route>
             <Route exact path="/admin/dashboard">
+              <NavbarAdmin />
               <AdminDashboard />
             </Route>
             <Route exact path="/single/:theid">
               <Single />
             </Route>
             <Route exact path="/register">
+              <Navbar />
               <Register />
             </Route>
             <Route exact path="/login">
+              <Navbar />
               <Login />
             </Route>
             <Route exact path="/contact">
+              <Navbar />
               <Contact />
             </Route>
             <Route exact path="/maps">

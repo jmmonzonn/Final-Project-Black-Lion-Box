@@ -154,7 +154,7 @@ export const AdminCreateUser = () => {
                   body: JSON.stringify(user),
                 })
                   .then((resp) => resp.json())
-                  .then((data) => console.log(data));
+                  .then((data) => getUsers());
               }}
               className="btn btn-danger mx-auto px-auto"
             >
