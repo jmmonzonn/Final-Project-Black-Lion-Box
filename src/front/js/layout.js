@@ -15,6 +15,7 @@ import { Login } from "./component/login";
 import { Contact } from "./component/contact";
 import { Maps } from "./component/maps";
 import { Features } from "./component/features";
+import { SubscriptionTiers } from "./component/adminSubscriptionTiers";
 
 //create your first component
 const Layout = () => {
@@ -58,6 +59,9 @@ const Layout = () => {
             </Route>
             <Route exact path="/features">
               <Features />
+            </Route>
+            <Route exact path="/asubscriptions">
+              <SubscriptionTiers />
             </Route>
             <Route>
               <h1>Not found!</h1>
