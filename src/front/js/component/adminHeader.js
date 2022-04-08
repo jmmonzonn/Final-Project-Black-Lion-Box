@@ -1,12 +1,12 @@
 import React from "react";
 
 export const AdminHeader = () => {
+  let username = localStorage.getItem("username");
   return (
     <div className="container">
       <p>
-        Hola, <span>username</span>
+        Hola, <span>{username}</span>
       </p>
-      <p>youremail@email.com</p>
     </div>
   );
 };

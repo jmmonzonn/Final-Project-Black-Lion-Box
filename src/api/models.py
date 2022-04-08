@@ -64,7 +64,7 @@ class Suscription(db.Model):
     description = db.Column(db.String(48), unique=False, nullable=False)
     price = db.Column(db.Float, unique=False, nullable=False)
     tokens = db.Column(db.Integer, unique=False, nullable=False)
-    suscription_image = db.Column(db.String(256), unique=False, nullable=False)
+    suscription_image = db.Column(db.String(256), unique=False, nullable=True)
     suscription_type_id = db.Column(db.Integer, db.ForeignKey('suscription_type.id'), unique=False, nullable=True)
     suscription_type = db.relationship('Suscription_type', backref='suscription', lazy=True)
 
@@ -77,7 +77,8 @@ class Suscription(db.Model):
             "name": self.name,
             "description": self.description,
             "price": self.price,
-            "tokens": self.tokens
+            "tokens": self.tokens,
+            "suscription_type": self.suscription_type.name if self.suscription_type else None
         }
 
 class Sessions(db.Model):
