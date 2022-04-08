@@ -44,6 +44,7 @@ export const Login = () => {
                 .then((data) => {
                   if (data.token) {
                     localStorage.setItem("token", data.token);
+                    localStorage.setItem("username", data.username);
                     if (data.role == "admin") {
                       history.push("/admin/dashboard");
                     } else {

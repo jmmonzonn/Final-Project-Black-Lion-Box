@@ -78,21 +78,26 @@ def create_suscription():
      description = request.json.get("description", None)
      price = request.json.get("price", None)
      tokens = request.json.get("tokens", None)
-     suscription_image = request.json.get("suscription_image", None)
+    #  suscription_type = request.json.get("suscription_type", None)
 
-     not_unique_name = Suscription.query.filter_by(name = name).first()  
-     if not_unique_name != None:
-        return jsonify({"message": "Este suscritor ya existe, prueba con otro."}),401
+    #  not_unique_name = Suscription.query.filter_by(name = name).first()  
+    #  if not_unique_name != None:
+    #     return jsonify({"message": "Este suscritor ya existe, prueba con otro."}),401
 
-     if name == '' or name == None or description == '' or description == None or price == '' or price == None or tokens == '' or tokens == None or suscription_image == '' or suscription_image == None:
-        return jsonify({"message": "Rellena todos los campos obligatorios"}), 401
+    #  if name == '' or name == None or description == '' or description == None or price == '' or price == None or tokens == '' or tokens == None:
+    #     return jsonify({"message": "Rellena todos los campos obligatorios"}), 401
     
     
-     new_suscription = Suscription(name = name, description = description, price = price, tokens = tokens, suscription_image = suscription_image)
+     new_suscription = Suscription(name = name, description = description, price = price, tokens = tokens)
      db.session.add(new_suscription)
      db.session.commit()
  
      return jsonify({"message" : "Suscription nueva creada"}),200
+
+@api.route("/get_suscriptions", methods=["GET"])
+@jwt_required()
+def get_suscriptions():
+    return jsonify([suscription.serialize() for suscription in Suscription.query.all()]), 200
 
 
 @api.route('/sessions', methods=["POST"])
