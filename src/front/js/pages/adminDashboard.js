@@ -45,41 +45,42 @@ export const AdminDashboard = () => {
           >
             <li className="mr-2" role="presentation">
               <button
-                className="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-400 border-blue-600 dark:border-blue-500"
-                id="profile-tab"
-                data-tabs-target="#profile"
-                type="button"
-                role="tab"
-                aria-controls="profile"
-                aria-selected="true"
-              >
-                Profile
-              </button>
-            </li>
-            <li className="mr-2" role="presentation">
-              <button
                 className="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700"
-                id="dashboard-tab"
-                data-tabs-target="#dashboard"
+                id="users-tab"
+                data-tabs-target="#users"
                 type="button"
                 role="tab"
-                aria-controls="dashboard"
-                aria-selected="false"
+                aria-controls="users"
+                aria-selected="true"
               >
                 Usuarios
               </button>
             </li>
             <li className="mr-2" role="presentation">
               <button
-                className="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700"
-                id="settings-tab"
-                data-tabs-target="#settings"
+                className="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-400 border-blue-600 dark:border-blue-500"
+                id="training-tab"
+                data-tabs-target="#training"
                 type="button"
                 role="tab"
-                aria-controls="settings"
+                aria-controls="training"
                 aria-selected="false"
               >
-                Settings
+                Tipos de entrenamiento
+              </button>
+            </li>
+
+            <li className="mr-2" role="presentation">
+              <button
+                className="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700"
+                id="subscription-tab"
+                data-tabs-target="#subscription"
+                type="button"
+                role="tab"
+                aria-controls="subscription"
+                aria-selected="false"
+              >
+                Tarifas
               </button>
             </li>
             <li role="presentation">
@@ -101,26 +102,27 @@ export const AdminDashboard = () => {
 
       <div id="myTabContent">
         <div
-          className="p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
-          id="profile"
-          role="tabpanel"
-          aria-labelledby="profile-tab"
-        >
-          <AdminSuscription />
-        </div>
-        <div
           className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
-          id="dashboard"
+          id="users"
           role="tabpanel"
-          aria-labelledby="dashboard-tab"
+          aria-labelledby="users-tab"
         >
           <AdminCreateUser />
         </div>
         <div
-          className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
-          id="settings"
+          className="p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
+          id="training"
           role="tabpanel"
-          aria-labelledby="settings-tab"
+          aria-labelledby="training-tab"
+        >
+          <AdminSuscription />
+        </div>
+
+        <div
+          className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
+          id="subscription"
+          role="tabpanel"
+          aria-labelledby="subscription-tab"
         >
           <SubscriptionTiers />
         </div>
