@@ -26,17 +26,17 @@ export const AdminSuscription = () => {
   return (
     <>
       <div>
-        <div class="table w-full ...">
-          <div class="table-header-group ...">
-            <div class="table-row">
-              <div class="table-cell text-left ...">Nombre</div>
+        <div className="table w-full ...">
+          <div className="table-header-group ...">
+            <div className="table-row">
+              <div className="table-cell text-left ...">Nombre</div>
             </div>
           </div>
-          <div class="table-row-group">
+          <div className="table-row-group">
             {suscriptionList.map((value, index) => {
               return (
-                <div class="table-row" key={index}>
-                  <div class="table-cell ...">{value.name}</div>
+                <div className="table-row" key={index}>
+                  <div className="table-cell ...">{value.name}</div>
                 </div>
               );
             })}
@@ -87,7 +87,7 @@ export const AdminSuscription = () => {
                 Introduce los datos del nuevo tipo de entrenamiento:
               </h3>
               <div>
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
                   Nombre
                 </label>
                 <input
