@@ -63,7 +63,7 @@ export const AdminDashboard = () => {
               aria-controls="dashboard"
               aria-selected="false"
             >
-              Dashboard
+              Usuarios
             </button>
           </li>
           <li className="mr-2" role="presentation">
@@ -101,13 +101,7 @@ export const AdminDashboard = () => {
           role="tabpanel"
           aria-labelledby="profile-tab"
         >
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            This is some placeholder content the{" "}
-            <strong className="font-medium text-gray-800 dark:text-white">
-              Profile tab's associated content
-            </strong>
-            .tuculo
-          </p>
+          <AdminSuscription />
         </div>
         <div
           className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
@@ -115,15 +109,7 @@ export const AdminDashboard = () => {
           role="tabpanel"
           aria-labelledby="dashboard-tab"
         >
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            This is some placeholder content the{" "}
-            <strong className="font-medium text-gray-800 dark:text-white">
-              Dashboard tab's associated content
-            </strong>
-            . Clicking another tab will toggle the visibility of this one for
-            the next. The tab JavaScript swaps classes to control the content
-            visibility and styling.
-          </p>
+          <AdminCreateUser />
         </div>
         <div
           className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"

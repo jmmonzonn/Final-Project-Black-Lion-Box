@@ -13,7 +13,12 @@ export const AdminSuscription = () => {
   }, []);
 
   const getSuscriptions = () => {
-    fetch(process.env.BACKEND_URL + "/api/get_suscription_types")
+    fetch(process.env.BACKEND_URL + "/api/get_suscription_types", {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
       .then((resp) => resp.json())
       .then((data) => setSuscriptionList(data));
   };
