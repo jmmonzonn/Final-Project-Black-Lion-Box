@@ -205,3 +205,22 @@ class Available_sessions(db.Model):
             "sessions_id": self.sessions_id,
             "is_coach": self.is_coach
         }
+
+    class SessionsJoined(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    sessions_id = db.Column(db.Integer, db.ForeignKey('sessions.id'), unique=False, nullable=False)
+    session = db.relationship('Sessions', backref='available_sessions', lazy=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), unique=False, nullable=False)
+    user = db.relationship('Suscription', backref='available_sessions', lazy=True)
+
+    def __repr__(self):
+        return '<SesionsJoined %r>' % self.id
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "sessions_id": self.sessions_id,
+            "session": self.session,
+            "user_id": self.user_id,
+            "user": self.user
+        }
