@@ -22,6 +22,15 @@ module.exports = {
       "A-Orange": "#F26722",
     },
     extend: {},
+    fontFamily: {
+      sans: ["Archivo Narrow", "sans-serif"],
+      heading: ["Bebas Neue", "sans-serif"],
+    },
   },
-  plugins: [require("flowbite/plugin")],
+  plugins: [
+    require("flowbite/plugin"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 };
