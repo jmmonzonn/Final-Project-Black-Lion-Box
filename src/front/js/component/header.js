@@ -1,5 +1,4 @@
 import React from "react";
-import fondoheader from "../../img/fondoheader.jpg";
 
 export const MainHeader = () => {
   return (
@@ -27,14 +26,14 @@ export const MainHeader = () => {
             </defs>
           </svg>
         </div>
-        <p className="display-2 mb-3 text-L-Gray-light">
+        <p className="display-2 mb-3 text-D-Gray-light font-heading text-6xl opacity-75">
           Especialistas en entrenamiento funcional
         </p>
-        <p className="display-5 text-L-Gray-light">
+        <p className="display-5 text-L-Gray-light text-2xl font-medium opacity-75">
           {" "}
           Regístrate hoy y disfruta de la primera sesión gratis:
         </p>
-        <button className=" mt-5 focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900">
+        <button className="mt-5 text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-heading font-medium rounded-lg text-xl px-6 py-3.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
           Regístrate ahora!
         </button>
       </div>

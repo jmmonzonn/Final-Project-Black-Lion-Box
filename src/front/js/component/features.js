@@ -6,43 +6,48 @@ export const Features = () => {
   const [rotate3, setRotate3] = useState({});
 
   return (
-    <div className="container mt-5">
-      <div className="grid grid-cols-3 gap-4">
-        <div className="flip-card">
-          <div className="flip-card-inner" style={rotate}>
-            <div className="flip-card-front">
-              <img
-                className="image-features"
-                src="https://res.cloudinary.com/blacklionbox/image/upload/v1649278645/feat2_cx4eav.jpg"
-                alt="Cardio"
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  setRotate({ transform: "rotateY(180deg)" });
-                }}
-                className="btn btn-primary btn-features"
-              >
-                Open box
-              </button>
-            </div>
-            <div className="flip-card-back">
-              <p className="lead mt-5">Open box</p>
-              <p className="mt-5 px-2">
-                Mejora tu resistencia, condición física y capacidad de
-                regeneración utilizando cintas de correr, crosstrainers,
-                steppers, máquinas de remo y mucho más.
-              </p>
-              <i
-                className="fas fa-chevron-circle-right mt-5"
-                onClick={() => {
-                  setRotate({});
-                }}
-              ></i>
+    <div className="bg-L-gray-light container block items-center justify-center mx-auto">
+      <div className=" py-6 my-6 font-sans text-5xl text-L-Gray-dark">
+        ¿Qué te ofrecemos?
+      </div>
+      <div className="grid grid-cols-3 gap-0 container flex items-center justify-center mx-auto">
+        <div className="flex items-center">
+          <div className="flip-card m-auto ">
+            <div className="flip-card-inner" style={rotate}>
+              <div className="flip-card-front">
+                <img
+                  className="image-features"
+                  src="https://res.cloudinary.com/blacklionbox/image/upload/v1649278645/feat2_cx4eav.jpg"
+                  alt="Cardio"
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    setRotate({ transform: "rotateY(180deg)" });
+                  }}
+                  className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"
+                >
+                  Open box
+                </button>
+              </div>
+              <div className="flip-card-back ">
+                <p className="lead mt-5">Open box</p>
+                <p className="mt-5 px-2">
+                  Mejora tu resistencia, condición física y capacidad de
+                  regeneración utilizando cintas de correr, crosstrainers,
+                  steppers, máquinas de remo y mucho más.
+                </p>
+                <i
+                  className="fas fa-chevron-circle-right mt-5"
+                  onClick={() => {
+                    setRotate({});
+                  }}
+                ></i>
+              </div>
             </div>
           </div>
         </div>
-        <div className="flip-card">
+        <div className="flip-card m-auto flex items-center">
           <div className="flip-card-inner" style={rotate2}>
             <div className="flip-card-front">
               <img
@@ -55,7 +60,7 @@ export const Features = () => {
                 onClick={() => {
                   setRotate2({ transform: "rotateY(180deg)" });
                 }}
-                className="btn btn-primary btn-features"
+                className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"
               >
                 Entrenamiento Funcional
               </button>
@@ -78,7 +83,7 @@ export const Features = () => {
             </div>
           </div>
         </div>
-        <div className="flip-card">
+        <div className="flip-card m-auto flex items-center">
           <div className="flip-card-inner" style={rotate3}>
             <div className="flip-card-front">
               <img
@@ -91,7 +96,7 @@ export const Features = () => {
                 onClick={() => {
                   setRotate3({ transform: "rotateY(180deg)" });
                 }}
-                className="btn btn-primary btn-features"
+                className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"
               >
                 {" "}
                 Competicion
