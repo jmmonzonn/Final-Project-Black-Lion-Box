@@ -1,5 +1,13 @@
 /* Configuración de tailwindcss */
 
+/* Tipografía del cuerpo de la página */
+
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;700&display=swap");
+
+/* Tipografía de los encabezados de la página */
+
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
