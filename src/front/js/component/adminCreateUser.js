@@ -206,8 +206,8 @@ export const AdminCreateUser = () => {
                     return (
                       <option
                         key={index}
-                        onClick={() => {
-                          createRole(value.name);
+                        onSelect={() => {
+                          setUser({ ...user, role: value.name });
                         }}
                       >
                         {value.name}
@@ -274,34 +274,34 @@ export const AdminCreateUser = () => {
         </div>
       </div>
       <div>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Nombre</th>
-              <th scope="col">Apellidos</th>
-              <th scope="col">Nombre de usuario</th>
-              <th scope="col">Email</th>
-              <th scope="col">Teléfono</th>
-              <th scope="col">Dirección</th>
-              <th scope="col">Rol</th>
-            </tr>
-          </thead>
-          <tbody>
+        <div class="table w-full ...">
+          <div class="table-header-group ...">
+            <div class="table-row">
+              <div class="table-cell text-left ...">Nombre</div>
+              <div class="table-cell text-left ...">Apellidos</div>
+              <div class="table-cell text-left ...">Nombre de usuario</div>
+              <div class="table-cell text-left ...">Email</div>
+              <div class="table-cell text-left ...">Teléfono</div>
+              <div class="table-cell text-left ...">Dirección</div>
+              <div class="table-cell text-left ...">Rol</div>
+            </div>
+          </div>
+          <div class="table-row-group">
             {usersList.map((value, index) => {
               return (
-                <tr key={index}>
-                  <td>{value.first_name}</td>
-                  <td>{value.last_name}</td>
-                  <td>{value.username}</td>
-                  <td>{value.email}</td>
-                  <td>{value.phone}</td>
-                  <td>{value.adress}</td>
-                  <td>{value.role}</td>
-                </tr>
+                <div class="table-row" key={index}>
+                  <div class="table-cell ...">{value.first_name}</div>
+                  <div class="table-cell ...">{value.last_name}</div>
+                  <div class="table-cell ...">{value.username}</div>
+                  <div class="table-cell ...">{value.email}</div>
+                  <div class="table-cell ...">{value.phone}</div>
+                  <div class="table-cell ...">{value.adress}</div>
+                  <div class="table-cell ...">{value.role}</div>
+                </div>
               );
             })}
-          </tbody>
-        </table>
+          </div>
+        </div>
       </div>
     </>
   );
