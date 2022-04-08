@@ -12,21 +12,7 @@ import "../../styles/home.css";
 
 export const AdminDashboard = () => {
   const { store, actions } = useContext(Context);
-  const [checkValidate, setCheckValidate] = useState(false);
   let history = useHistory();
-
-  useEffect(() => {
-    validate();
-  }, []);
-
-  const validate = async () => {
-    let token = await localStorage.getItem("token");
-    if (!token) {
-      history.push("/");
-    } else {
-      setCheckValidate(true);
-    }
-  };
 
   return (
     <div className="container block items-center justify-center mx-auto">
@@ -45,7 +31,7 @@ export const AdminDashboard = () => {
           >
             <li className="mr-2" role="presentation">
               <button
-                className="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700"
+                className="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-400 border-blue-600 dark:border-blue-500"
                 id="users-tab"
                 data-tabs-target="#users"
                 type="button"
@@ -58,7 +44,7 @@ export const AdminDashboard = () => {
             </li>
             <li className="mr-2" role="presentation">
               <button
-                className="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-400 border-blue-600 dark:border-blue-500"
+                className="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700"
                 id="training-tab"
                 data-tabs-target="#training"
                 type="button"
@@ -102,7 +88,7 @@ export const AdminDashboard = () => {
 
       <div id="myTabContent">
         <div
-          className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
+          className="p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
           id="users"
           role="tabpanel"
           aria-labelledby="users-tab"
@@ -110,7 +96,7 @@ export const AdminDashboard = () => {
           <AdminCreateUser />
         </div>
         <div
-          className="p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
+          className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
           id="training"
           role="tabpanel"
           aria-labelledby="training-tab"

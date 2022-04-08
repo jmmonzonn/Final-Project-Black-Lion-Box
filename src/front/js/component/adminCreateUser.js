@@ -42,29 +42,29 @@ export const AdminCreateUser = () => {
   return (
     <>
       <div className="container flex items-center justify-center mx-auto">
-        <div class="table w-full ...">
-          <div class="table-header-group ...">
-            <div class="table-row">
-              <div class="table-cell text-left ...">Nombre</div>
-              <div class="table-cell text-left ...">Apellidos</div>
-              <div class="table-cell text-left ...">Nombre de usuario</div>
-              <div class="table-cell text-left ...">Email</div>
-              <div class="table-cell text-left ...">Teléfono</div>
-              <div class="table-cell text-left ...">Dirección</div>
-              <div class="table-cell text-left ...">Rol</div>
+        <div className="table w-full ...">
+          <div className="table-header-group ...">
+            <div className="table-row">
+              <div className="table-cell text-left ...">Nombre</div>
+              <div className="table-cell text-left ...">Apellidos</div>
+              <div className="table-cell text-left ...">Nombre de usuario</div>
+              <div className="table-cell text-left ...">Email</div>
+              <div className="table-cell text-left ...">Teléfono</div>
+              <div className="table-cell text-left ...">Dirección</div>
+              <div className="table-cell text-left ...">Rol</div>
             </div>
           </div>
-          <div class="table-row-group">
+          <div className="table-row-group">
             {usersList.map((value, index) => {
               return (
-                <div class="table-row" key={index}>
-                  <div class="table-cell ...">{value.first_name}</div>
-                  <div class="table-cell ...">{value.last_name}</div>
-                  <div class="table-cell ...">{value.username}</div>
-                  <div class="table-cell ...">{value.email}</div>
-                  <div class="table-cell ...">{value.phone}</div>
-                  <div class="table-cell ...">{value.adress}</div>
-                  <div class="table-cell ...">{value.role}</div>
+                <div className="table-row" key={index}>
+                  <div className="table-cell ...">{value.first_name}</div>
+                  <div className="table-cell ...">{value.last_name}</div>
+                  <div className="table-cell ...">{value.username}</div>
+                  <div className="table-cell ...">{value.email}</div>
+                  <div className="table-cell ...">{value.phone}</div>
+                  <div className="table-cell ...">{value.adress}</div>
+                  <div className="table-cell ...">{value.role}</div>
                 </div>
               );
             })}
@@ -116,7 +116,7 @@ export const AdminCreateUser = () => {
                   Introduce los datos del nuevo usuario:
                 </h3>
                 <div>
-                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
                     Nombre
                   </label>
                   <input
@@ -128,7 +128,7 @@ export const AdminCreateUser = () => {
                     placeholder="Introduce nombre"
                   ></input>
 
-                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
                     Apellidos
                   </label>
                   <input
@@ -140,7 +140,7 @@ export const AdminCreateUser = () => {
                     placeholder="Introduce apellido"
                   ></input>
 
-                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
                     Nombre de usuario
                   </label>
                   <input
@@ -152,7 +152,7 @@ export const AdminCreateUser = () => {
                     placeholder="Introduce usuario"
                   ></input>
 
-                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
                     Contraseña
                   </label>
                   <input
@@ -164,7 +164,7 @@ export const AdminCreateUser = () => {
                     placeholder="Introduce contraseña"
                   ></input>
 
-                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
                     Email
                   </label>
                   <input
@@ -176,7 +176,7 @@ export const AdminCreateUser = () => {
                     placeholder="Introduce email"
                   ></input>
 
-                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
                     Teléfono
                   </label>
                   <input
@@ -188,7 +188,7 @@ export const AdminCreateUser = () => {
                     placeholder="Introduce teléfono"
                   ></input>
 
-                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
                     Dirección
                   </label>
                   <input
@@ -200,7 +200,7 @@ export const AdminCreateUser = () => {
                     placeholder="Introduce dirección"
                   ></input>
 
-                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
                     Avatar
                   </label>
                   <input
@@ -212,7 +212,7 @@ export const AdminCreateUser = () => {
                     placeholder="Introduce url de tu avatar"
                   ></input>
 
-                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
                     Info
                   </label>
                   <input
@@ -223,12 +223,12 @@ export const AdminCreateUser = () => {
                     className="my-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="Introduce info"
                   ></input>
-                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
                     Rol
                   </label>
                   <select
                     id="countries"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
                     {rolesList.map((value, index) => {
                       return (
@@ -244,7 +244,7 @@ export const AdminCreateUser = () => {
                     })}
                   </select>
 
-                  <div class="form-check">
+                  <div className="form-check">
                     <input
                       type="checkbox"
                       className="form-check-input"
@@ -257,16 +257,16 @@ export const AdminCreateUser = () => {
                           : setUser({ ...user, conditions_terms: true });
                       }}
                     ></input>
-                    <label className="form-check-label" for="exampleCheck1">
+                    <label className="form-check-label" htmlFor="exampleCheck1">
                       Aceptar términos y condiciones
                     </label>
                   </div>
 
-                  <div class="form-check">
+                  <div className="form-check">
                     <input
                       type="checkbox"
                       className="form-check-input"
-                      id="exampleCheck1"
+                      id="exampleCheck2"
                       onClick={() => {
                         user.marketing_comunication
                           ? user.marketing_comunication == true
@@ -275,7 +275,7 @@ export const AdminCreateUser = () => {
                           : setUser({ ...user, marketing_comunication: true });
                       }}
                     ></input>
-                    <label className="form-check-label" for="exampleCheck1">
+                    <label className="form-check-label" htmlFor="exampleCheck1">
                       Marketing y comunicaciones
                     </label>
                   </div>

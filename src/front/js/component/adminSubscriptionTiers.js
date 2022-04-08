@@ -40,25 +40,27 @@ export const SubscriptionTiers = () => {
   return (
     <>
       <div>
-        <div class="table w-full ...">
-          <div class="table-header-group ...">
-            <div class="table-row">
-              <div class="table-cell text-left ...">Nombre</div>
-              <div class="table-cell text-left ...">Descripción</div>
-              <div class="table-cell text-left ...">Precio</div>
-              <div class="table-cell text-left ...">Sesiones</div>
-              <div class="table-cell text-left ...">Tipo de entrenamiento</div>
+        <div className="table w-full ...">
+          <div className="table-header-group ...">
+            <div className="table-row">
+              <div className="table-cell text-left ...">Nombre</div>
+              <div className="table-cell text-left ...">Descripción</div>
+              <div className="table-cell text-left ...">Precio</div>
+              <div className="table-cell text-left ...">Sesiones</div>
+              <div className="table-cell text-left ...">
+                Tipo de entrenamiento
+              </div>
             </div>
           </div>
-          <div class="table-row-group">
+          <div className="table-row-group">
             {suscriptionList.map((value, index) => {
               return (
-                <div class="table-row" key={index}>
-                  <div class="table-cell ...">{value.name}</div>
-                  <div class="table-cell ...">{value.description}</div>
-                  <div class="table-cell ...">{value.price}</div>
-                  <div class="table-cell ...">{value.tokens}</div>
-                  <div class="table-cell ...">{value.suscription_type}</div>
+                <div className="table-row" key={index}>
+                  <div className="table-cell ...">{value.name}</div>
+                  <div className="table-cell ...">{value.description}</div>
+                  <div className="table-cell ...">{value.price}</div>
+                  <div className="table-cell ...">{value.tokens}</div>
+                  <div className="table-cell ...">{value.suscription_type}</div>
                 </div>
               );
             })}
@@ -108,7 +110,7 @@ export const SubscriptionTiers = () => {
                   Introduce los datos del nuevo usuario:
                 </h3>
                 <div>
-                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
                     Nombre
                   </label>
                   <input
@@ -120,7 +122,7 @@ export const SubscriptionTiers = () => {
                     placeholder="Introduce nombre"
                   ></input>
 
-                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
                     Descripción
                   </label>
                   <input
@@ -135,7 +137,7 @@ export const SubscriptionTiers = () => {
                     placeholder="Introduce apellido"
                   ></input>
 
-                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
                     Precio
                   </label>
                   <input
@@ -147,7 +149,7 @@ export const SubscriptionTiers = () => {
                     placeholder="Introduce usuario"
                   ></input>
 
-                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
                     Sesiones
                   </label>
                   <input
@@ -162,12 +164,12 @@ export const SubscriptionTiers = () => {
                     placeholder="Introduce contraseña"
                   ></input>
 
-                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
                     Tipos de entrenamiento
                   </label>
                   <select
                     id="trainings"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
                     {suscriptionTypeList.map((value, index) => {
                       return (
