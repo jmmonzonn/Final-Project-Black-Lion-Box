@@ -27,11 +27,13 @@ def create_user():
     conditions_terms = request.json.get("conditions_terms", None)
     marketing_comunication = request.json.get("marketing_comunication", None)
     info = request.json.get("info", None)
+    role_id = request.json.get("role_id", None)
 
     # if None in [username, password, email, phone, first_name, last_name, conditions_terms]:
     #     return jsonify({"message" : "Alguno de los campos obligatorios no furula"}),400
     try:
-        role = Role.query.filter_by(name="user").first()
+
+        role = Role.query.filter_by(name="user").first() if not role_id else Role.query.filter_by(id=role_id).first()
         new_user = User(username = username, password = password, email = email, phone = phone, 
                         first_name = first_name, last_name = last_name, adress = adress, 
                         avatar_url = avatar_url, conditions_terms = conditions_terms, 
