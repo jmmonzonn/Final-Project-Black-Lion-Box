@@ -6,14 +6,14 @@ export const MainHeader = () => {
       <div className="headerbg">
         <div className="logoheader-container">
           <video
-            className="logoheader"
-            src="https://res.cloudinary.com/blacklionbox/video/upload/v1649247344/Comp_1_2_yp3ou0.webm"
+            className="logoheader my-8 py-8"
+            src="https://res.cloudinary.com/blacklionbox/video/upload/v1649699244/Comp_1_f08zb9.webm"
             autoPlay
             loop
             muted
           />
         </div>
-        <div className="content">
+        {/* <div className="content">
           <svg viewBox="0 0 1 1" className="hideme">
             <defs>
               <clipPath id="logoheadermask">
@@ -25,7 +25,7 @@ export const MainHeader = () => {
               </clipPath>
             </defs>
           </svg>
-        </div>
+        </div> */}
         <p className="display-2 mb-3 text-D-Gray-light font-heading text-6xl opacity-75">
           Especialistas en entrenamiento funcional
         </p>

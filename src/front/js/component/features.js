@@ -10,8 +10,8 @@ export const Features = () => {
       <div className=" py-6 my-6 font-sans text-5xl text-L-Gray-dark">
         ¿Qué te ofrecemos?
       </div>
-      <div className="grid grid-cols-3 gap-0 container flex items-center justify-center mx-auto">
-        <div className="flex items-center">
+      <div className="grid grid-cols-3 gap-0 justify-center mx-auto">
+        <div className="flex items-center drop-shadow-lg">
           <div className="flip-card m-auto ">
             <div className="flip-card-inner" style={rotate}>
               <div className="flip-card-front">
@@ -25,7 +25,7 @@ export const Features = () => {
                   onClick={() => {
                     setRotate({ transform: "rotateY(180deg)" });
                   }}
-                  className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"
+                  className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:focus:ring-yellow-900 button-feat mx-auto"
                 >
                   Open box
                 </button>
@@ -47,7 +47,7 @@ export const Features = () => {
             </div>
           </div>
         </div>
-        <div className="flip-card m-auto flex items-center">
+        <div className="flip-card m-auto drop-shadow-lg">
           <div className="flip-card-inner" style={rotate2}>
             <div className="flip-card-front">
               <img
@@ -60,7 +60,7 @@ export const Features = () => {
                 onClick={() => {
                   setRotate2({ transform: "rotateY(180deg)" });
                 }}
-                className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"
+                className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900 button-feat"
               >
                 Entrenamiento Funcional
               </button>
