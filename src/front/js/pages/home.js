@@ -6,6 +6,7 @@ import { MainHeader } from "../component/header.js";
 import { Maps } from "../component/maps";
 import { Contact } from "../component/contact";
 import { Features } from "../component/features";
+import { SubscriptionTiers } from "../component/subscriptionTiers";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -13,6 +14,7 @@ export const Home = () => {
   return (
     <div className="text-center">
       <MainHeader />
+      <SubscriptionTiers />
       <Features />
       <Maps />
       <Contact />

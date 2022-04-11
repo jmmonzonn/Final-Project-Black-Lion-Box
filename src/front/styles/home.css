@@ -35,8 +35,8 @@
 
 /* Máscara del video */
 .logoheader {
-  clip-path: url(#logoheadermask);
-  width: 50%;
+  /* clip-path: url(#logoheadermask); */
+  width: 70%;
   display: inline-flex;
 }
 
@@ -88,4 +88,10 @@
   display: block;
   width: 100%;
   height: 100%;
+  z-index: -1;
+}
+
+.button-feat {
+  position: absolute;
+  bottom: 0;
 }
