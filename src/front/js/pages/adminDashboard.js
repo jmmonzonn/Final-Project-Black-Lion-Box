@@ -8,12 +8,27 @@ import { SubscriptionTiers } from "../component/adminSubscriptionTiers";
 import "../../styles/home.css";
 
 export const AdminDashboard = () => {
+  const active_class =
+    "tab inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-400 border-blue-600 dark:border-blue-500";
+  const deactive_class =
+    "tab inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700";
+
   const changeTab = (e) => {
     let id = e.target.getAttribute("data-tabs-target");
+
     document
-      .querySelectorAll(".contentTab")
+      .querySelectorAll("#myTabContent > div")
       .forEach((el) => el.classList.add("hidden"));
-    document.querySelector(id).classList.toggle("hidden");
+
+    document.querySelector(id).classList.remove("hidden");
+
+    // Deactive buttons
+    document
+      .querySelectorAll(".tab")
+      .forEach((element) => (element.className = deactive_class));
+
+    // Active buttons
+    document.querySelector(`#${e.target.id}`).className = active_class;
   };
 
   const { store, actions } = useContext(Context);
@@ -36,7 +51,7 @@ export const AdminDashboard = () => {
           >
             <li className="mr-2" role="presentation">
               <button
-                className="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-400 border-blue-600 dark:border-blue-500"
+                className={active_class}
                 id="users-tab"
                 data-tabs-target="#users"
                 type="button"
@@ -44,7 +59,7 @@ export const AdminDashboard = () => {
                 aria-controls="users"
                 aria-selected="true"
                 onClick={(e) => {
-                  changeTab;
+                  changeTab(e);
                 }}
               >
                 Usuarios
@@ -52,7 +67,7 @@ export const AdminDashboard = () => {
             </li>
             <li className="mr-2" role="presentation">
               <button
-                className="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700"
+                className={deactive_class}
                 id="training-tab"
                 data-tabs-target="#training"
                 type="button"
@@ -60,7 +75,7 @@ export const AdminDashboard = () => {
                 aria-controls="training"
                 aria-selected="false"
                 onClick={(e) => {
-                  changeTab;
+                  changeTab(e);
                 }}
               >
                 Tipos de entrenamiento
@@ -69,7 +84,7 @@ export const AdminDashboard = () => {
 
             <li className="mr-2" role="presentation">
               <button
-                className="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700"
+                className={deactive_class}
                 id="subscription-tab"
                 data-tabs-target="#subscription"
                 type="button"
@@ -77,7 +92,7 @@ export const AdminDashboard = () => {
                 aria-controls="subscription"
                 aria-selected="false"
                 onClick={(e) => {
-                  changeTab;
+                  changeTab(e);
                 }}
               >
                 Tarifas
@@ -85,7 +100,7 @@ export const AdminDashboard = () => {
             </li>
             <li role="presentation">
               <button
-                className="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700"
+                className={deactive_class}
                 id="contacts-tab"
                 data-tabs-target="#contacts"
                 type="button"
@@ -93,7 +108,7 @@ export const AdminDashboard = () => {
                 aria-controls="contacts"
                 aria-selected="false"
                 onClick={(e) => {
-                  changeTab;
+                  changeTab(e);
                 }}
               >
                 Contacts
