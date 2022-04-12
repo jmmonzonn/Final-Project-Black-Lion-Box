@@ -28,7 +28,7 @@ export const Contact = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container block items-center justify-center mx-auto">
       <div className="row">
         <p className="display-6 mb-4">Formulario de contacto</p>
       </div>
