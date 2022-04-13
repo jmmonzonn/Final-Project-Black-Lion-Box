@@ -1,8 +1,10 @@
 //import react into the bundle
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import "flowbite";
 import initFontAwesome from "./component/initFontAwesome.js";
+
+// NECESARIO PARA QUE CARGUE EL COMPONENTE DE FONTAWESOME
 
 initFontAwesome();
 
