@@ -25,6 +25,7 @@ module.exports = {
     extend: {},
     fontFamily: {
       sans: ["Archivo Narrow", "sans-serif"],
+      bellfort: ["BELLFORT", "sans-serif"],
       heading: ["Bebas Neue", "sans-serif"],
     },
   },
