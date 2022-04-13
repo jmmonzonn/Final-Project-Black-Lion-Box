@@ -80,6 +80,7 @@ def create_suscription():
      description = request.json.get("description", None)
      price = request.json.get("price", None)
      tokens = request.json.get("tokens", None)
+     suscription_type_id = request.json.get("suscription_type_id", None)
     #  suscription_type = request.json.get("suscription_type", None)
 
     #  not_unique_name = Suscription.query.filter_by(name = name).first()  
@@ -90,7 +91,7 @@ def create_suscription():
     #     return jsonify({"message": "Rellena todos los campos obligatorios"}), 401
     
     
-     new_suscription = Suscription(name = name, description = description, price = price, tokens = tokens)
+     new_suscription = Suscription(name = name, description = description, price = price, tokens = tokens, suscription_type_id = suscription_type_id)
      db.session.add(new_suscription)
      db.session.commit()
  
@@ -126,6 +127,12 @@ def create_sessions():
      db.session.commit()
  
      return jsonify({"message" : "Session nueva creada"}),200
+
+
+@api.route("/get_sessions", methods=["GET"])
+@jwt_required()
+def get_sessions():
+    return jsonify([sessions.serialize() for session in Sessions.query.all()]), 200
 
 
 @api.route('/role', methods=["POST"])
@@ -193,6 +200,11 @@ def create_sessions_type():
 
     return jsonify({"message" : "Nuevo tipo de sesion creada"}),200
 
+@api.route("/get_session_types", methods=["GET"])
+@jwt_required()
+def get_session_types():
+    return jsonify([session_type.serialize() for session_type in Sessions_type.query.all()]), 200
+
 @api.route('/suscription_type', methods=["POST"])
 @jwt_required()
 def create_suscription_type():
@@ -231,13 +243,14 @@ def handle_validate():
 def weeklysessions():
     today = date.today()
     data_response = []
-    i = 0
-    while i < 7:
+    for i in range(7):
         endDate = date.today() + timedelta(days=i)
         whichDay = format_date(endDate, format='EEEE', locale='es').capitalize()
         dsessions = Sessions.query.filter(Sessions.weekdays.has(name=whichDay)).order_by(Sessions.start_time).all()
-        i += 1
-        var = {whichDay: [dailysessions.serialize() for dailysessions in dsessions]}
-        data_response.append(var)
+        data_response.append({
+            "label": whichDay,
+            "sessions": [dailysessions.serialize() for dailysessions in dsessions],
+            "date": endDate
+        })
 
     return jsonify(data_response),200

@@ -3,79 +3,99 @@ import { Context } from "../store/appContext";
 import { Link, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const SubscriptionTiers = () => {
-  const { store, actions } = useContext(Context);
-  const [suscription, setSuscription] = useState({});
-  const [suscriptionList, setSuscriptionList] = useState([]);
-  const [suscriptionTypeList, setSuscriptionTypeList] = useState([]);
+export const AdminSessions = () => {
+  const [session, setSession] = useState({});
+  const [sessionsList, setSessionsList] = useState([]);
+  const [sessionsTypeList, setSessionsTypeList] = useState([]);
+  const [weekdays, setWeekdays] = useState([]);
   let history = useHistory();
 
   useEffect(() => {
-    getSuscriptions();
-    getSuscriptions_type();
+    getSessions();
+    getSession_types();
+    getThisWeek();
   }, []);
 
-  const getSuscriptions = () => {
-    fetch(process.env.BACKEND_URL + "/api/get_suscriptions", {
+  const getSessions = () => {
+    fetch(process.env.BACKEND_URL + "/api/get_sessions", {
       method: "GET",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
     })
       .then((resp) => resp.json())
-      .then((data) => setSuscriptionList(data));
+      .then((data) => setSessionsList(data));
   };
 
-  const getSuscriptions_type = () => {
-    fetch(process.env.BACKEND_URL + "/api/get_suscription_types", {
+  const getSession_types = () => {
+    fetch(process.env.BACKEND_URL + "/api/get_session_types", {
       method: "GET",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
     })
       .then((resp) => resp.json())
-      .then((data) => setSuscriptionTypeList(data));
+      .then((data) => setSessionsTypeList(data));
+  };
+
+  const getThisWeek = () => {
+    fetch(process.env.BACKEND_URL + "/api/thisweek", {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((resp) => resp.json())
+      .then((data) => setWeekdays(data));
   };
 
   return (
     <>
-      <div>
+      <div className="container flex items-center justify-center mx-auto">
         <div className="table w-full ...">
           <div className="table-header-group ...">
             <div className="table-row">
               <div className="table-cell text-left ...">Nombre</div>
               <div className="table-cell text-left ...">Descripción</div>
-              <div className="table-cell text-left ...">Precio</div>
-              <div className="table-cell text-left ...">Sesiones</div>
+              <div className="table-cell text-left ...">Regular</div>
+              <div className="table-cell text-left ...">Hora de inicio</div>
+              <div className="table-cell text-left ...">Duración</div>
               <div className="table-cell text-left ...">
-                Tipo de entrenamiento
+                Máximos participantes
               </div>
+              <div className="table-cell text-left ...">Tipo de sesión</div>
+              <div className="table-cell text-left ...">Días de la semana</div>
             </div>
           </div>
           <div className="table-row-group">
-            {suscriptionList.map((value, index) => {
+            {sessionsList.map((value, index) => {
               return (
                 <div className="table-row" key={index}>
                   <div className="table-cell ...">{value.name}</div>
                   <div className="table-cell ...">{value.description}</div>
-                  <div className="table-cell ...">{value.price}</div>
-                  <div className="table-cell ...">{value.tokens}</div>
-                  <div className="table-cell ...">{value.suscription_type}</div>
+                  <div className="table-cell ...">{value.regular}</div>
+                  <div className="table-cell ...">{value.start_time}</div>
+                  <div className="table-cell ...">{value.duration}</div>
+                  <div className="table-cell ...">{value.max_users}</div>
+                  <div className="table-cell ...">{value.session_type}</div>
+                  <div className="table-cell ...">{value.weekdays}</div>
                 </div>
               );
             })}
           </div>
         </div>
+      </div>
+      <div className="container flex items-center justify-center mx-auto my-8">
         <button
           className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           type="button"
-          data-modal-toggle="subscription-modal"
+          data-modal-toggle="session-modal"
         >
-          Añadir nueva tarifa
+          Añadir nueva sesión
         </button>
 
         <div
-          id="subscription-modal"
+          id="session-modal"
           tabIndex="-1"
           aria-hidden="true"
           className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center"
@@ -86,7 +106,7 @@ export const SubscriptionTiers = () => {
                 <button
                   type="button"
                   className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
-                  data-modal-toggle="subscription-modal"
+                  data-modal-toggle="session-modal"
                 >
                   <svg
                     className="w-5 h-5"
@@ -107,7 +127,7 @@ export const SubscriptionTiers = () => {
                 action="#"
               >
                 <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-                  Introduce los datos del nuevo usuario:
+                  Introduce los datos de la sesión:
                 </h3>
                 <div>
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
@@ -116,7 +136,7 @@ export const SubscriptionTiers = () => {
                   <input
                     type="text"
                     onChange={(e) => {
-                      setSuscription({ ...suscription, name: e.target.value });
+                      setSession({ ...session, name: e.target.value });
                     }}
                     className="my-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="Introduce nombre"
@@ -128,8 +148,8 @@ export const SubscriptionTiers = () => {
                   <input
                     type="text"
                     onChange={(e) => {
-                      setSuscription({
-                        ...suscription,
+                      setSession({
+                        ...session,
                         description: e.target.value,
                       });
                     }}
@@ -138,49 +158,58 @@ export const SubscriptionTiers = () => {
                   ></input>
 
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
-                    Precio
+                    Hora de inicio
                   </label>
                   <input
-                    type="text"
+                    type="time"
                     onChange={(e) => {
-                      setSuscription({ ...suscription, price: e.target.value });
+                      setSession({ ...session, start_time: e.target.value });
                     }}
                     className="my-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="Introduce usuario"
                   ></input>
 
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
-                    Sesiones
+                    Duración
                   </label>
                   <input
-                    type="password"
+                    type="text"
                     onChange={(e) => {
-                      setSuscription({
-                        ...suscription,
-                        tokens: e.target.value,
-                      });
+                      setSession({ ...session, duration: e.target.value });
                     }}
                     className="my-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                    placeholder="Introduce contraseña"
+                    placeholder="Introduce usuario"
                   ></input>
 
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
-                    Tipos de entrenamiento
+                    Máximos participantes
+                  </label>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setSession({ ...session, max_users: e.target.value });
+                    }}
+                    className="my-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    placeholder="Introduce usuario"
+                  ></input>
+
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                    Tipos de sesión
                   </label>
                   <select
                     onChange={(e) => {
-                      setSuscription({
-                        ...suscription,
-                        suscription_type_id: e.target.value,
+                      setSession({
+                        ...session,
+                        sessions_type_id: e.target.value,
                       });
                     }}
                     id="trainings"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
                     <option disabled selected value="">
-                      Selecciona el tipo de entrenamiento
+                      Selecciona el tipo de sesión
                     </option>
-                    {suscriptionTypeList.map((value, index) => {
+                    {sessionsTypeList.map((value, index) => {
                       return (
                         <option key={index} value={value.id}>
                           {value.name}
@@ -188,22 +217,65 @@ export const SubscriptionTiers = () => {
                       );
                     })}
                   </select>
+
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                    Días de la semana
+                  </label>
+                  <select
+                    onChange={(e) => {
+                      setSession({
+                        ...session,
+                        weekdays_id: e.target.value,
+                      });
+                    }}
+                    id="trainings"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  >
+                    <option disabled selected value="">
+                      Selecciona el día
+                    </option>
+                    {weekdays.map((value, index) => {
+                      return (
+                        <option key={index} value={value.id}>
+                          {value.label}
+                        </option>
+                      );
+                    })}
+                  </select>
+
+                  <div class="form-check">
+                    <input
+                      type="checkbox"
+                      className="form-check-input"
+                      id="exampleCheck1"
+                      onClick={() => {
+                        session.regular
+                          ? session.regular == true
+                            ? setSession({ regular: false })
+                            : setSession({ regular: true })
+                          : setSession({ ...session, regular: true });
+                      }}
+                    ></input>
+                    <label className="form-check-label" for="exampleCheck1">
+                      Sesión regular
+                    </label>
+                  </div>
                 </div>
                 <button
                   type="submit"
                   className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   onClick={() => {
-                    fetch(process.env.BACKEND_URL + "/api/suscription", {
+                    fetch(process.env.BACKEND_URL + "/api/sessions", {
                       method: "POST",
                       headers: {
                         "Content-Type": "application/json",
                         Authorization:
                           "Bearer " + localStorage.getItem("token"),
                       },
-                      body: JSON.stringify(suscription),
+                      body: JSON.stringify(session),
                     })
                       .then((resp) => resp.json())
-                      .then((data) => getSuscriptions());
+                      .then((data) => getSessions());
                   }}
                 >
                   Añadir tarifa
@@ -216,48 +288,3 @@ export const SubscriptionTiers = () => {
     </>
   );
 };
-
-{
-  /* <div>
-<p>Agregar suscripciones:</p>
-<div className="input-group mb-3">
-  <span className="input-group-text" id="basic-addon1">
-    Nombre
-  </span>
-  <input
-    type="text"
-    className="form-control"
-    placeholder="Username"
-    aria-label="Username"
-    aria-describedby="basic-addon1"
-  />
-</div>
-<div className="input-group mb-3">
-  <span className="input-group-text" id="basic-addon1">
-    Precio
-  </span>
-  <input
-    type="number"
-    className="form-control"
-    placeholder="Username"
-    aria-label="Username"
-    aria-describedby="basic-addon1"
-  />
-</div>
-<div className="input-group mb-3">
-  <span className="input-group-text" id="basic-addon1">
-    Beneficios:
-  </span>
-  <input
-    type="number"
-    className="form-control"
-    placeholder="Username"
-    aria-label="Username"
-    aria-describedby="basic-addon1"
-  />
-</div>
-<div>
-  <button>Agregar Suscripción</button>
-</div>
-</div> */
-}

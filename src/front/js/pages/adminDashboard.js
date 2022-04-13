@@ -3,6 +3,7 @@ import { useHistory, Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { AdminHeader } from "../component/adminHeader";
 import { AdminSuscription } from "../component/adminSuscription";
+import { AdminSessions } from "../component/adminSessions";
 import { AdminCreateUser } from "../component/adminCreateUser";
 import { SubscriptionTiers } from "../component/adminSubscriptionTiers";
 import "../../styles/home.css";
@@ -150,15 +151,7 @@ export const AdminDashboard = () => {
           role="tabpanel"
           aria-labelledby="contacts-tab"
         >
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            This is some placeholder content the{" "}
-            <strong className="font-medium text-gray-800 dark:text-white">
-              Contacts tab's associated content
-            </strong>
-            Clicking another tab will toggle the visibility of this one for the
-            next. The tab JavaScript swaps classes to control the content
-            visibility and styling.
-          </p>
+          <AdminSessions />
         </div>
       </div>
     </div>
