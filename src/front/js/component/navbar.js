@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useHistory, useNavigate } from "react-router-dom";
-import isolight from "../../img/BLB_ISO_Light_64px.png";
+import isolight from "../../img/black-lion-box_large.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Navbar = () => {
@@ -17,6 +17,7 @@ export const Navbar = () => {
     console.log(themeToggleLightIcon);
 
     // Change the icons inside the button based on previous settings
+
     if (
       localStorage.getItem("color-theme") === "dark" ||
       (!("color-theme" in localStorage) &&
@@ -58,41 +59,41 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-L-Gray-light dark:bg-gray-800 dark:border-gray-700 mx-auto">
+    <nav className="bg-L-Gray-light dark:bg-D-Gray-dark dark:border-D-Gray-med mx-auto">
       {/* Logo principal Header */}
 
-      <div className="container flex items-center justify-center px-6 py-8 mx-auto text-L-Gray-dark capitalize">
+      <div className="container flex items-center justify-center px-6 py-3 mx-auto text-L-Gray-dark dark:text-D-Gray-light capitalize">
         <img src={isolight} className="mr-3 h-16 sm:h-9" alt="Big Lion Box" />
 
         {/* Inicio de botones de navegación interna del home */}
 
         <a
           href="/"
-          className="border-b-2 border-transparent hover: text-gray-800 hover:border-M-Lime mx-1.5 sm:mx-6"
+          className="border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-6"
         >
           beneficios
         </a>
 
         <a
           href="#"
-          className="border-b-2 border-transparent hover: text-gray-800 hover:border-M-Lime mx-1.5 sm:mx-6"
+          className="border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-6"
         >
           suscripciones{" "}
         </a>
 
         <a
           href="#"
-          className="border-b-2 border-transparent hover:text-gray-800 hover:border-M-Lime mx-1.5 sm:mx-6"
+          className="border-b-2 border-transparent hover:text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-6"
         >
           contacto
         </a>
 
         {/* Fin de botones de navegación interna del home */}
 
-        {/* Inicio de botones de redes sociales   */}
+        {/* Inicio de botones de redes sociales y modo oscuro */}
         <a
           href="https://www.instagram.com/blacklionbox/?hl=en"
-          className="border-b-2 border-transparent hover:text-gray-800 hover:border-M-Lime mx-1.5 sm:mx-6"
+          className="border-b-2 border-transparent text-L-Gray-dark dark:text-M-Lime hover:text-M-Lime dark:hover:text-D-Gray-light mx-1.5 sm:mx-6"
           target="_blank"
         >
           <FontAwesomeIcon icon={["fab", "instagram"]} />
@@ -100,20 +101,16 @@ export const Navbar = () => {
 
         <a
           href="https://www.facebook.com/Black-Lion-Box-109771724135332"
-          className="border-b-2 border-transparent hover:text-gray-800 hover:border-blue-500 mx-1.5 sm:mx-6"
+          className="border-b-2 border-transparent text-L-Gray-dark dark:text-M-Lime hover:text-M-Lime dark:hover:text-D-Gray-light mx-1.5 sm:mx-6"
           target="_blank"
         >
           <FontAwesomeIcon icon={["fab", "facebook-f"]} />
         </a>
 
-        {/* Fin de botones de redes sociales   */}
-
-        {/* Inicio del botón que habilita el modo oscuro   */}
-
         <button
           id="theme-toggle"
           type="button"
-          className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
+          className="text-L-Gray-dark dark:text-M-Lime hover:text-M-Lime dark:hover:text-D-Gray-light border-transparent focus:outline-none rounded-lg text-sm p-2.5 mr-5"
         >
           <svg
             id="theme-toggle-dark-icon"
@@ -139,36 +136,37 @@ export const Navbar = () => {
           </svg>
         </button>
 
-        {/* Fin del botón que habilita el modo oscuro   */}
+        {/* Fin de botones de redes sociales  y modo oscuro */}
 
         {/* Inicio de botones de acciones de usuario */}
+        <div>
+          <button
+            type="button"
+            className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            onClick={() => history.push("/register")}
+          >
+            registro
+          </button>
 
-        <button
-          type="button"
-          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-          onClick={() => history.push("/register")}
-        >
-          registro
-        </button>
+          <button
+            onClick={() => history.push("/login")}
+            type="button"
+            className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          >
+            entrar
+          </button>
 
-        <button
-          onClick={() => history.push("/login")}
-          type="button"
-          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-        >
-          entrar
-        </button>
-
-        <button
-          type="button"
-          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-          onClick={() => {
-            localStorage.removeItem("token");
-            history.push("/");
-          }}
-        >
-          desconectar
-        </button>
+          <button
+            type="button"
+            className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            onClick={() => {
+              localStorage.removeItem("token");
+              history.push("/");
+            }}
+          >
+            desconectar
+          </button>
+        </div>
 
         {/* Fin de botones de acciones de usuario */}
       </div>
