@@ -9,7 +9,7 @@ export const Login = () => {
   let history = useHistory();
 
   return (
-    <div className="container items-center justify-center mx-auto">
+    <div className="container items-center justify-center mx-auto h-[100vh]">
       <div className="grid xl:grid-cols-2 xl:gap-6">
         <div className="relative z-0 mb-6 w-full group">
           <input

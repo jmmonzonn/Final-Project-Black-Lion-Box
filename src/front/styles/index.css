@@ -1014,6 +1014,11 @@ select{
   position: relative;
 }
 
+.sticky{
+  position: -webkit-sticky;
+  position: sticky;
+}
+
 .inset-0{
   top: 0px;
   right: 0px;
@@ -1035,6 +1040,14 @@ select{
 
 .top-3{
   top: 0.75rem;
+}
+
+.bottom-0{
+  bottom: 0px;
+}
+
+.top-\[100vh\]{
+  top: 100vh;
 }
 
 .z-50{
@@ -1257,6 +1270,26 @@ select{
 
 .h-9{
   height: 2.25rem;
+}
+
+.h-\[100vmin\]{
+  height: 100vmin;
+}
+
+.h-\[100vhmin\]{
+  height: 100vhmin;
+}
+
+.h-\[100vh\]{
+  height: 100vh;
+}
+
+.h-\[100v\]{
+  height: 100v;
+}
+
+.h-\[100h\]{
+  height: 100h;
 }
 
 .w-full{
