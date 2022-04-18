@@ -254,3 +254,12 @@ def weeklysessions():
         })
 
     return jsonify(data_response),200
+
+
+
+
+   
+@api.route("/usersinsession", methods=["GET"])
+@jwt_required()
+def usersinsession():
+    return jsonify([user_sessions.serialize() for sessions_id in Sessions_type.query.all()]), 200
