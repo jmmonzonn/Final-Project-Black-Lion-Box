@@ -7,8 +7,8 @@ export const Register = () => {
   const [user, setUser] = useState({});
 
   return (
-    <div className="container items-center justify-center mx-auto">
-      <div class="relative z-0 mb-6 w-full group">
+    <div className="container items-center justify-center mx-auto h-[100vh]">
+      <div class="relative z-0 mb-6 w-full group ">
         <input
           type="user"
           onChange={(e) => {

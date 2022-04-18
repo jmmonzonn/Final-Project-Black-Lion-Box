@@ -1037,6 +1037,10 @@ select{
   top: 0.75rem;
 }
 
+.bottom-0{
+  bottom: 0px;
+}
+
 .z-50{
   z-index: 50;
 }
@@ -1241,6 +1245,10 @@ select{
 
 .h-5{
   height: 1.25rem;
+}
+
+.h-\[100vh\]{
+  height: 100vh;
 }
 
 .h-16{
