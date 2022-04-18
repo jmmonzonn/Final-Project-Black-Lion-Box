@@ -16,6 +16,9 @@ import { Contact } from "./component/contact";
 import { Maps } from "./component/maps";
 import { Features } from "./component/features";
 import { SubscriptionTiers } from "./component/adminSubscriptionTiers";
+import { Success } from "./component/success";
+import { Cancel } from "./component/cancel";
+import { Payment } from "./component/payment";
 
 //create your first component
 const Layout = () => {
@@ -60,7 +63,16 @@ const Layout = () => {
             <Route exact path="/features">
               <Features />
             </Route>
-            <Route exact path="/asubscriptions">
+            <Route exact path="/payment">
+              <Payment />
+            </Route>
+            <Route exact path="/success">
+              <Success />
+            </Route>
+            <Route exact path="/cancel">
+              <Cancel />
+            </Route>
+            <Route exact path="/subscriptions">
               <SubscriptionTiers />
             </Route>
             <Route>

@@ -112,7 +112,7 @@ class Sessions(db.Model):
             "duration": self.duration,
             "max-users": self.max_users,
             "session_type": self.session_type.name if self.session_type else None,
-            "weekdays": self.weekdays.name if self.weekdays else None
+            "weekdays": self.weekdays.name if self.weekdays else None,
             "users_per_sessions": self.users_per_session,
         }
         
