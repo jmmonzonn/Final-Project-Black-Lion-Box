@@ -26,7 +26,7 @@ export const MainHeader = () => {
             </defs>
           </svg>
         </div> */}
-        <p className="display-2 mb-3 text-D-Gray-light font-heading text-6xl opacity-75">
+        <p className="display-2 mb-3 text-D-Gray-light font-bellfort text-6xl opacity-75">
           Especialistas en entrenamiento funcional
         </p>
         <p className="display-5 text-L-Gray-light text-2xl font-medium opacity-75">

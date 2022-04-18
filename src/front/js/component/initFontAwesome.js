@@ -12,6 +12,8 @@ import {
   faCheck,
   faPenToSquare,
   faXmark,
+  faCloudMoon,
+  faSun,
 } from "@fortawesome/free-solid-svg-icons";
 
 function initFontAwesome() {
@@ -24,7 +26,9 @@ function initFontAwesome() {
     faInstagram,
     faXmark,
     faPenToSquare,
-    faCheck
+    faCheck,
+    faCloudMoon,
+    faSun
   );
 }
 

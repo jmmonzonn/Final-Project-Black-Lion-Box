@@ -7,7 +7,7 @@ export const NavbarAdmin = () => {
   let history = useHistory();
 
   return (
-    <nav className="bg-L-Gray-light">
+    <nav className="bg-L-Gray-light dark:bg-D-Gray-dark dark:border-D-Gray-med ">
       <div className="container flex items-center justify-center px-6 py-8 mx-auto text-L-Gray-dark capitalize">
         <img src={isolight} className="mr-3 h-16 sm:h-9" alt="Big Lion Box" />
         <a

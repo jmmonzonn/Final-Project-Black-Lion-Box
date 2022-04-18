@@ -16,6 +16,9 @@ import { Contact } from "./component/contact";
 import { Maps } from "./component/maps";
 import { Features } from "./component/features";
 import { SubscriptionTiers } from "./component/adminSubscriptionTiers";
+import { Success } from "./component/success";
+import { Cancel } from "./component/cancel";
+import { Payment } from "./component/payment";
 
 //create your first component
 const Layout = () => {
@@ -24,7 +27,7 @@ const Layout = () => {
   const basename = process.env.BASENAME || "";
 
   return (
-    <div className=" bg-L-Gray-light h-full d-flex flex-column min-vh-100">
+    <div className=" bg-L-Gray-light dark:bg-D-Gray-dark dark:border-D-Gray-med h-full d-flex flex-column min-vh-100">
       <BrowserRouter basename={basename}>
         <ScrollToTop>
           <Switch>
@@ -60,7 +63,16 @@ const Layout = () => {
             <Route exact path="/features">
               <Features />
             </Route>
-            <Route exact path="/asubscriptions">
+            <Route exact path="/payment">
+              <Payment />
+            </Route>
+            <Route exact path="/success">
+              <Success />
+            </Route>
+            <Route exact path="/cancel">
+              <Cancel />
+            </Route>
+            <Route exact path="/subscriptions">
               <SubscriptionTiers />
             </Route>
             <Route>

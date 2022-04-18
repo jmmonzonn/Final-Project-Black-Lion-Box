@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Role, Suscription, Sessions, Sessions_type, Suscription_type, Weekdays
+from api.models import db, User, Role, Suscription, Sessions, Sessions_type, Suscription_type, Weekdays, User_sessions
 from api.utils import generate_sitemap, APIException
 from sqlalchemy.exc import IntegrityError
 from psycopg2.errors import NotNullViolation, UniqueViolation
@@ -239,7 +239,7 @@ def handle_validate():
         return jsonify({"validate": False}), 400
 
 @api.route("/thisweek", methods=["GET"])
-@jwt_required()
+# @jwt_required()
 def weeklysessions():
     today = date.today()
     data_response = []
@@ -247,10 +247,13 @@ def weeklysessions():
         endDate = date.today() + timedelta(days=i)
         whichDay = format_date(endDate, format='EEEE', locale='es').capitalize()
         dsessions = Sessions.query.filter(Sessions.weekdays.has(name=whichDay)).order_by(Sessions.start_time).all()
+        for n in dsessions:
+            userspersession = User_sessions.query.filter_by(sessions_id=n.id).count()
+            n.users_per_session = userspersession
         data_response.append({
             "label": whichDay,
             "sessions": [dailysessions.serialize() for dailysessions in dsessions],
-            "date": endDate
+            "date": endDate,
         })
 
     return jsonify(data_response),200

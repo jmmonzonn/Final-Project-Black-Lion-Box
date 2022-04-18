@@ -1,4 +1,5 @@
 module.exports = {
+  darkMode: "class",
   content: [
     "./src/**/*.{html,js,jsx,ts,tsx}",
     "./node_modules/flowbite/**/*.js",
@@ -24,6 +25,7 @@ module.exports = {
     extend: {},
     fontFamily: {
       sans: ["Archivo Narrow", "sans-serif"],
+      bellfort: ["BELLFORT", "sans-serif"],
       heading: ["Bebas Neue", "sans-serif"],
     },
   },
