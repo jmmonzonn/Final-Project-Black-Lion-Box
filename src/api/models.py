@@ -97,8 +97,8 @@ class Sessions(db.Model):
     weekdays_id = db.Column(db.Integer, db.ForeignKey('weekdays.id'), nullable=False)
     weekdays = db.relationship('Weekdays', backref='sessions', lazy=True)
     session_users = db.relationship("User_sessions", back_populates="sessions")
+    users_per_session = 0
 
-    
     def __repr__(self):
         return '<Sessions %r>' % self.name
 
@@ -113,7 +113,7 @@ class Sessions(db.Model):
             "max-users": self.max_users,
             "session_type": self.session_type.name if self.session_type else None,
             "weekdays": self.weekdays.name if self.weekdays else None
-
+            "users_per_sessions": self.users_per_session,
         }
         
 class Payments(db.Model):
