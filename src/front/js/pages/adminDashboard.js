@@ -6,6 +6,8 @@ import { AdminSuscription } from "../component/adminSuscription";
 import { AdminSessions } from "../component/adminSessions";
 import { AdminCreateUser } from "../component/adminCreateUser";
 import { SubscriptionTiers } from "../component/adminSubscriptionTiers";
+import { AdminSessionType } from "../component/adminSessionType";
+import { AdminUserSessions } from "../component/adminUserSession";
 import "../../styles/home.css";
 
 export const AdminDashboard = () => {
@@ -102,17 +104,49 @@ export const AdminDashboard = () => {
             <li role="presentation">
               <button
                 className={deactive_class}
-                id="contacts-tab"
-                data-tabs-target="#contacts"
+                id="sessions-tab"
+                data-tabs-target="#sessions"
                 type="button"
                 role="tab"
-                aria-controls="contacts"
+                aria-controls="sessions"
                 aria-selected="false"
                 onClick={(e) => {
                   changeTab(e);
                 }}
               >
-                Contacts
+                Sesiones
+              </button>
+            </li>
+            <li role="presentation">
+              <button
+                className={deactive_class}
+                id="session_type-tab"
+                data-tabs-target="#session_type"
+                type="button"
+                role="tab"
+                aria-controls="session_type"
+                aria-selected="false"
+                onClick={(e) => {
+                  changeTab(e);
+                }}
+              >
+                Tipo de sesiones
+              </button>
+            </li>
+            <li role="presentation">
+              <button
+                className={deactive_class}
+                id="user_sessions-tab"
+                data-tabs-target="#user_sessions"
+                type="button"
+                role="tab"
+                aria-controls="user_sessions"
+                aria-selected="false"
+                onClick={(e) => {
+                  changeTab(e);
+                }}
+              >
+                User sesions
               </button>
             </li>
           </ul>
@@ -147,11 +181,27 @@ export const AdminDashboard = () => {
         </div>
         <div
           className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
-          id="contacts"
+          id="sessions"
           role="tabpanel"
-          aria-labelledby="contacts-tab"
+          aria-labelledby="sessions-tab"
         >
           <AdminSessions />
+        </div>
+        <div
+          className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
+          id="session_type"
+          role="tabpanel"
+          aria-labelledby="session_type-tab"
+        >
+          <AdminSessionType />
+        </div>
+        <div
+          className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
+          id="user_sessions"
+          role="tabpanel"
+          aria-labelledby="user_sessions-tab"
+        >
+          <AdminUserSessions />
         </div>
       </div>
     </div>
