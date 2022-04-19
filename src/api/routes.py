@@ -9,6 +9,8 @@ from psycopg2.errors import NotNullViolation, UniqueViolation
 from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
 from datetime import date, timedelta
 import calendar
+import stripe
+import os
 
 from babel.dates import format_date
 
@@ -257,3 +259,44 @@ def weeklysessions():
         })
 
     return jsonify(data_response),200
+
+    # This is your Stripe CLI webhook secret for testing your endpoint locally.
+endpoint_secret = os.getenv("endpoint_secret")
+
+@api.route('/webhook', methods=['POST'])
+def webhook():
+    event = None
+    payload = request.data
+
+    try:
+        event = json.loads(payload)
+    except:
+        print('⚠️  Webhook error while parsing basic request.' + str(e))
+        return jsonify(success=False)
+    if endpoint_secret:
+        # Only verify the event if there is an endpoint secret defined
+        # Otherwise use the basic event deserialized with json
+        sig_header = request.headers.get('stripe-signature')
+        try:
+            event = stripe.Webhook.construct_event(
+                payload, sig_header, endpoint_secret
+            )
+        except stripe.error.SignatureVerificationError as e:
+            print('⚠️  Webhook signature verification failed.' + str(e))
+            return jsonify(success=False)
+
+    
+     # Handle the event
+    if event['type'] == 'checkout.session.async_payment_failed':
+      session = event['data']['object']
+    elif event['type'] == 'checkout.session.async_payment_succeeded':
+      session = event['data']['object']
+    elif event['type'] == 'checkout.session.completed':
+      session = event['data']['object']
+    elif event['type'] == 'checkout.session.expired':
+      session = event['data']['object']
+    # ... handle other event types
+    else:
+      print('Unhandled event type {}'.format(event['type']))
+
+    return jsonify(success=True)
