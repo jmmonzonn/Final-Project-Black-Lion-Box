@@ -10,7 +10,7 @@ import { SubscriptionTiers } from "../component/subscriptionTiers";
 export const Home = () => {
   const { store, actions } = useContext(Context);
 
-  // Componentes del home
+  // Estructura del home
 
   return (
     <div className="text-center">

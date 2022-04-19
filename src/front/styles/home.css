@@ -17,6 +17,11 @@
   src: url("../fonts/BellfortRegular.otf");
 }
 
+/* Atributos generales de la página*/
+html {
+  scroll-behavior: smooth;
+}
+
 /* Configuración del header  */
 
 /* Fondo hero style del header */

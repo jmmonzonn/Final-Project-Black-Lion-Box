@@ -2,7 +2,10 @@ import React from "react";
 
 export const SubscriptionTiers = () => {
   return (
-    <div className="container items-center justify-center mx-auto">
+    <div
+      className="container items-center justify-center mx-auto"
+      id="Suscripciones"
+    >
       <div className="grid grid-cols-4 gap-0">
         {/* Primer tier de suscripciones */}
 

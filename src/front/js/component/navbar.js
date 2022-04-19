@@ -70,21 +70,21 @@ export const Navbar = () => {
         {/* Inicio de botones de navegación interna del home */}
 
         <a
-          href="/"
+          href="#Elgimnasio"
           className="border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-6"
         >
           El gimnasio
         </a>
 
         <a
-          href="#"
+          href="#Suscripciones"
           className="border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-6"
         >
           Suscripciones{" "}
         </a>
 
         <a
-          href="#"
+          href="#Contacto"
           className="border-b-2 border-transparent hover:text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-6"
         >
           Contacto
