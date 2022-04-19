@@ -86,9 +86,9 @@ class Suscription(db.Model):
 
 class Sessions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(24), unique=True, nullable=False)
+    name = db.Column(db.String(24), unique=False, nullable=False)
     description = db.Column(db.String(48), unique=False, nullable=False)
-    regular = db.Column(db.Boolean(), unique=False, nullable=False)
+    regular = db.Column(db.Boolean(), unique=False, nullable=True)
     start_time = db.Column(db.Time, unique=False, nullable=False)
     duration = db.Column(db.Integer, unique=False, nullable=False)
     max_users = db.Column(db.Integer, unique=False, nullable=False)
@@ -110,7 +110,7 @@ class Sessions(db.Model):
             "regular": self.regular,
             "start_time": self.start_time.strftime("%H:%M:%S"),
             "duration": self.duration,
-            "max-users": self.max_users,
+            "max_users": self.max_users,
             "session_type": self.session_type.name if self.session_type else None,
             "weekdays": self.weekdays.name if self.weekdays else None,
             "users_per_sessions": self.users_per_session,
@@ -181,7 +181,7 @@ class User_sessions(db.Model):
     sessions_id = db.Column(db.Integer, db.ForeignKey('sessions.id'), unique=False, nullable=False)
     sessions = db.relationship('Sessions', back_populates="session_users")
     # date =  db.Column(db.Date, unique=False, nullable=False)
-    is_coach = db.Column(db.Boolean)
+    # is_coach = db.Column(db.Boolean)
 
     def __repr__(self):
         return '<User_sessions %r>' % self.id
@@ -191,7 +191,9 @@ class User_sessions(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "sessions_id": self.sessions_id,
-            "is_coach": self.is_coach
+            "users": self.users.username if self.users else None,
+            "sessions": self.sessions.name if self.sessions else None,
+            # "is_coach": self.is_coach
         }
 
 class Available_sessions(db.Model):
