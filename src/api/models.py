@@ -70,6 +70,8 @@ class Suscription(db.Model):
     suscription_image = db.Column(db.String(256), unique=False, nullable=True)
     suscription_type_id = db.Column(db.Integer, db.ForeignKey('suscription_type.id'), unique=False, nullable=True)
     suscription_type = db.relationship('Suscription_type', backref='suscription', lazy=True)
+    stripe_id = db.Column(db.String(50), unique=True, nullable=True)
+
 
     def __repr__(self):
         return '<Suscription %r>' % self.name
@@ -81,7 +83,8 @@ class Suscription(db.Model):
             "description": self.description,
             "price": self.price,
             "tokens": self.tokens,
-            "suscription_type": self.suscription_type.name if self.suscription_type else None
+            "suscription_type": self.suscription_type.name if self.suscription_type else None,
+            "stripe_id": self.stripe_id
         }
 
 class Sessions(db.Model):
@@ -121,7 +124,7 @@ class Payments(db.Model):
     suscription_id = db.Column(db.Integer, db.ForeignKey('suscription.id'), unique=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), unique=False, nullable=False)
     payment_date = db.Column(db.DateTime, nullable=False)
-    stripe_id = db.Column(db.Integer, unique=True, nullable=False)
+    
 
     def __repr__(self):
         return '<Payments %r>' % self.id
@@ -132,7 +135,7 @@ class Payments(db.Model):
             "suscription_id": self.suscription_id,
             "user_id": self.user_id,
             "payment_date": self.payment_date,
-            "stripe_id": self.stripe_id
+            
         }
         
 class Role(db.Model):

@@ -76,13 +76,15 @@ def login():
     return jsonify(data_response), 200
 
 @api.route('/suscription', methods=["POST"])
-@jwt_required()
+# @jwt_required()
 def create_suscription():
      name = request.json.get("name", None)
      description = request.json.get("description", None)
      price = request.json.get("price", None)
      tokens = request.json.get("tokens", None)
      suscription_type_id = request.json.get("suscription_type_id", None)
+     stripe_id = request.json.get("stripe_id", None)
+     
     #  suscription_type = request.json.get("suscription_type", None)
 
     #  not_unique_name = Suscription.query.filter_by(name = name).first()  
@@ -93,20 +95,20 @@ def create_suscription():
     #     return jsonify({"message": "Rellena todos los campos obligatorios"}), 401
     
     
-     new_suscription = Suscription(name = name, description = description, price = price, tokens = tokens, suscription_type_id = suscription_type_id)
+     new_suscription = Suscription(name = name, stripe_id= stripe_id, description = description, price = price, tokens = tokens, suscription_type_id = suscription_type_id)
      db.session.add(new_suscription)
      db.session.commit()
  
      return jsonify({"message" : "Suscription nueva creada"}),200
 
 @api.route("/get_suscriptions", methods=["GET"])
-@jwt_required()
+# @jwt_required()
 def get_suscriptions():
     return jsonify([suscription.serialize() for suscription in Suscription.query.all()]), 200
 
 
 @api.route('/sessions', methods=["POST"])
-@jwt_required()
+# @jwt_required()
 def create_sessions():
      name = request.json.get("name", None)
      description = request.json.get("description", None)
@@ -163,7 +165,7 @@ def create_user_sessions():
 
 
 @api.route('/role', methods=["POST"])
-@jwt_required()
+# @jwt_required()
 def create_role():
     name = request.json.get("name", None)
 
@@ -191,7 +193,7 @@ def get_weekdays():
     return jsonify([name.serialize() for name in Weekdays.query.all()]), 200
 
 @api.route('/weekdays', methods=["POST"])
-@jwt_required()
+# @jwt_required()
 def create_weekdays():
     name = request.json.get("name", None)
 
@@ -210,7 +212,7 @@ def create_weekdays():
     
 
 @api.route('/sessions_type', methods=["POST"])
-@jwt_required()
+# @jwt_required()
 def create_sessions_type():
     name = request.json.get("name", None)
 
@@ -233,7 +235,7 @@ def get_session_types():
     return jsonify([session_type.serialize() for session_type in Sessions_type.query.all()]), 200
 
 @api.route('/suscription_type', methods=["POST"])
-@jwt_required()
+# @jwt_required()
 def create_suscription_type():
     name = request.json.get("name", None)
 
