@@ -7,7 +7,7 @@ export const MainHeader = () => {
         <div className="logoheader-container">
           <video
             className="logoheader my-8 py-8"
-            src="https://res.cloudinary.com/blacklionbox/video/upload/v1650456379/hola_wtpq01.webm"
+            src="https://res.cloudinary.com/blacklionbox/video/upload/v1650464596/hola_VP9_1_rmst1a.webm"
             autoPlay
             loop
             muted
