@@ -6,6 +6,7 @@ import { Maps } from "../component/maps";
 import { Contact } from "../component/contact";
 import { Features } from "../component/features";
 import { SubscriptionTiers } from "../component/subscriptionTiers";
+import { HomeFeats } from "../component/homeFeats";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -16,6 +17,7 @@ export const Home = () => {
     <div className="text-center">
       <MainHeader />
       <SubscriptionTiers />
+      {/* <HomeFeats /> */}
       <Features />
       <Maps />
       <Contact />
