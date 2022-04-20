@@ -3,11 +3,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./pages/home";
 import { AdminDashboard } from "./pages/adminDashboard";
-import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
-import { NavbarAdmin } from "./component/navbarAdmin";
 import { Footer } from "./component/footer";
 import { UserDashboard } from "./pages/userDashboard";
 import { Register } from "./component/register";
@@ -19,8 +17,8 @@ import { SubscriptionTiers } from "./component/adminSubscriptionTiers";
 import { Success } from "./component/success";
 import { Cancel } from "./component/cancel";
 import { Payment } from "./component/payment";
+import { NotFound } from "./component/404.js";
 
-//create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
@@ -36,14 +34,12 @@ const Layout = () => {
               <Home />
             </Route>
             <Route exact path="/user/dashboard">
+              <Navbar />
               <UserDashboard />
             </Route>
             <Route exact path="/admin/dashboard">
-              <NavbarAdmin />
+              <Navbar />
               <AdminDashboard />
-            </Route>
-            <Route exact path="/single/:theid">
-              <Single />
             </Route>
             <Route exact path="/register">
               <Navbar />
@@ -54,7 +50,6 @@ const Layout = () => {
               <Login />
             </Route>
             <Route exact path="/contact">
-              <Navbar />
               <Contact />
             </Route>
             <Route exact path="/maps">
@@ -76,7 +71,8 @@ const Layout = () => {
               <SubscriptionTiers />
             </Route>
             <Route>
-              <h1>Not found!</h1>
+              <Navbar />
+              <NotFound />
             </Route>
           </Switch>
           <Footer />

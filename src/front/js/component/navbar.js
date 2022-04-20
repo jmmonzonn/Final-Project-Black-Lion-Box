@@ -63,7 +63,9 @@ export const Navbar = () => {
       {/* Logo principal Header */}
 
       <div className="container flex items-center justify-center px-6 py-3 mx-auto text-L-Gray-dark dark:text-D-Gray-light capitalize">
-        <img src={isolight} className="mr-3 h-16 sm:h-9" alt="Big Lion Box" />
+        <a href="/" alt="Big Lion Box">
+          <img src={isolight} className="mr-3 h-16 sm:h-9" />
+        </a>
 
         {/* Inicio de botones de navegación interna del home */}
 
@@ -71,21 +73,21 @@ export const Navbar = () => {
           href="/"
           className="border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-6"
         >
-          beneficios
+          El gimnasio
         </a>
 
         <a
           href="#"
           className="border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-6"
         >
-          suscripciones{" "}
+          Suscripciones{" "}
         </a>
 
         <a
           href="#"
           className="border-b-2 border-transparent hover:text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-6"
         >
-          contacto
+          Contacto
         </a>
 
         {/* Fin de botones de navegación interna del home */}

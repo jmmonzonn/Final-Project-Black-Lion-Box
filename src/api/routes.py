@@ -111,20 +111,20 @@ def create_sessions():
      name = request.json.get("name", None)
      description = request.json.get("description", None)
      regular = request.json.get("regular", None)
-     days = request.json.get("days", None)
+     weekdays_id = request.json.get("weekdays_id", None)
      start_time = request.json.get("start_time", None)
      duration = request.json.get("duration", None)
      max_users = request.json.get("max_users", None)
-     sessions_type_id = request.json.get("session_type_id", None)
+     sessions_type_id = request.json.get("sessions_type_id", None)
      
-     not_unique_name = Sessions.query.filter_by(name = name).first()  
-     if not_unique_name != None:
-        return jsonify({"message": "Este nombre ya existe, prueba con otro."}),401
+    #  not_unique_name = Sessions.query.filter_by(name = name).first()  
+    #  if not_unique_name != None:
+    #     return jsonify({"message": "Este nombre ya existe, prueba con otro."}),401
     
-     if name == '' or name == None or description == '' or description == None or regular == '' or regular == None or days == '' or days == None or start_time == '' or start_time == None or duration == '' or duration == None or max_users == '' or max_users == None or sessions_type_id == '' or sessions_type_id == None:
-        return jsonify({"message": "Rellena todos los campos obligatorios"}), 401
+    #  if name == '' or name == None or description == '' or description == None or regular == '' or regular == None or days == '' or days == None or start_time == '' or start_time == None or duration == '' or duration == None or max_users == '' or max_users == None or sessions_type_id == '' or sessions_type_id == None:
+    #     return jsonify({"message": "Rellena todos los campos obligatorios"}), 401
 
-     new_sessions = Sessions(name = name, description = description, regular = regular, days = days, start_time = start_time, duration = duration, max_users = max_users, sessions_type_id = sessions_type_id)
+     new_sessions = Sessions(name = name, description = description, regular = regular, weekdays_id = weekdays_id, start_time = start_time, duration = duration, max_users = max_users, sessions_type_id = sessions_type_id)
      db.session.add(new_sessions)
      db.session.commit()
  
@@ -134,7 +134,32 @@ def create_sessions():
 @api.route("/get_sessions", methods=["GET"])
 @jwt_required()
 def get_sessions():
-    return jsonify([sessions.serialize() for session in Sessions.query.all()]), 200
+    return jsonify([sessions.serialize() for sessions in Sessions.query.all()]), 200
+
+@api.route("/get_user_sessions", methods=["GET"])
+@jwt_required()
+def get_user_sessions():
+    return jsonify([user_sessions.serialize() for user_sessions in User_sessions.query.all()]), 200
+
+
+@api.route('/user_sessions', methods=["POST"])
+@jwt_required()
+def create_user_sessions():
+     user_id = request.json.get("user_id", None)
+     sessions_id = request.json.get("sessions_id", None)
+     
+    #  not_unique_name = Sessions.query.filter_by(name = name).first()  
+    #  if not_unique_name != None:
+    #     return jsonify({"message": "Este nombre ya existe, prueba con otro."}),401
+    
+    #  if name == '' or name == None or description == '' or description == None or regular == '' or regular == None or days == '' or days == None or start_time == '' or start_time == None or duration == '' or duration == None or max_users == '' or max_users == None or sessions_type_id == '' or sessions_type_id == None:
+    #     return jsonify({"message": "Rellena todos los campos obligatorios"}), 401
+
+     new_user_sessions = User_sessions(user_id = user_id, sessions_id = sessions_id)
+     db.session.add(new_user_sessions)
+     db.session.commit()
+ 
+     return jsonify({"message" : "User sesion nueva creada"}),200
 
 
 @api.route('/role', methods=["POST"])

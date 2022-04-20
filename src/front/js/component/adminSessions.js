@@ -39,7 +39,7 @@ export const AdminSessions = () => {
   };
 
   const getThisWeek = () => {
-    fetch(process.env.BACKEND_URL + "/api/thisweek", {
+    fetch(process.env.BACKEND_URL + "/api/weekdays", {
       method: "GET",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -237,7 +237,7 @@ export const AdminSessions = () => {
                     {weekdays.map((value, index) => {
                       return (
                         <option key={index} value={value.id}>
-                          {value.label}
+                          {value.name}
                         </option>
                       );
                     })}
