@@ -64,6 +64,7 @@ export const Login = () => {
               if (data.token) {
                 localStorage.setItem("token", data.token);
                 localStorage.setItem("username", data.username);
+                localStorage.setItem("id", data.id);
                 if (data.role == "admin") {
                   history.push("/admin/dashboard");
                 } else {
