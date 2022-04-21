@@ -7,7 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       suscriptionList: [],
     },
     actions: {
-      pay: (user_id, stripe_id) => {
+      pay: (stripe_id) => {
         let stripe = Stripe(process.env.React_APP_STRIPE_KEY);
         stripe
           .redirectToCheckout({

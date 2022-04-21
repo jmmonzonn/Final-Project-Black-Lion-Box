@@ -1,28 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
-
+import PropTypes from "prop-types";
 import { Context } from "../store/appContext.js";
 
-export const SubscriptionTiers = () => {
+export const SubscriptionTiers = (props) => {
   const { store, actions } = useContext(Context);
 
-  const [suscriptionList, setSuscriptionList] = useState([]);
-
-  useEffect(() => {
-    actions.getSuscriptions();
-  }, []);
-
   return (
-    // hacer map de store.suscriptionList
     <div className="container items-center justify-center mx-auto">
       <div className="grid grid-cols-4 gap-0">
         {/* Primer tier de suscripciones */}
 
         <div className="p-4 max-w-sm bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto">
           <h5 className="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">
-            Plan S
+            {props.cards.name}
           </h5>
           <div className="flex items-baseline text-gray-900 dark:text-white">
-            <span className="text-5xl font-extrabold tracking-tight">30</span>
+            <span className="text-5xl font-extrabold tracking-tight">
+              {props.cards.price}
+            </span>
             <span className="text-3xl font-semibold">€</span>
             <span className="ml-1 text-xl font-normal text-gray-500 dark:text-gray-400">
               /al mes
@@ -44,7 +39,7 @@ export const SubscriptionTiers = () => {
                 ></path>
               </svg>
               <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">
-                Acceso ilimitado a las instalaciones
+                {props.cards.description}
               </span>
             </li>
             <li className="flex space-x-3">
@@ -69,7 +64,7 @@ export const SubscriptionTiers = () => {
             type="button"
             className="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
             onClick={() => {
-              actions.pay(store.user_id, store.stripe_id);
+              actions.pay(props.cards.stripe_id);
             }}
           >
             Choose plan
@@ -78,4 +73,7 @@ export const SubscriptionTiers = () => {
       </div>
     </div>
   );
+};
+SubscriptionTiers.propTypes = {
+  cards: PropTypes.object,
 };
