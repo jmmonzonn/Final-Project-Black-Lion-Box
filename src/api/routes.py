@@ -7,10 +7,9 @@ from api.utils import generate_sitemap, APIException
 from sqlalchemy.exc import IntegrityError
 from psycopg2.errors import NotNullViolation, UniqueViolation
 from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 import calendar
-import stripe
-import os
+from sqlalchemy import extract  
 
 from babel.dates import format_date
 
@@ -71,12 +70,13 @@ def login():
     data_response = {
         "token": token,
         "username": user.username,
+        "id": user.id,
         "role": user.role.name
     }
     return jsonify(data_response), 200
 
 @api.route('/suscription', methods=["POST"])
-# @jwt_required()
+#@jwt_required()
 def create_suscription():
      name = request.json.get("name", None)
      description = request.json.get("description", None)
@@ -102,13 +102,13 @@ def create_suscription():
      return jsonify({"message" : "Suscription nueva creada"}),200
 
 @api.route("/get_suscriptions", methods=["GET"])
-# @jwt_required()
+#@jwt_required()
 def get_suscriptions():
     return jsonify([suscription.serialize() for suscription in Suscription.query.all()]), 200
 
 
 @api.route('/sessions', methods=["POST"])
-# @jwt_required()
+#@jwt_required()
 def create_sessions():
      name = request.json.get("name", None)
      description = request.json.get("description", None)
@@ -134,18 +134,25 @@ def create_sessions():
 
 
 @api.route("/get_sessions", methods=["GET"])
-@jwt_required()
+#@jwt_required()
 def get_sessions():
     return jsonify([sessions.serialize() for sessions in Sessions.query.all()]), 200
 
 @api.route("/get_user_sessions", methods=["GET"])
-@jwt_required()
+#@jwt_required()
 def get_user_sessions():
     return jsonify([user_sessions.serialize() for user_sessions in User_sessions.query.all()]), 200
 
+@api.route("/user_sessions/<user_id>", methods=["GET"])
+#@jwt_required()
+def user_sessions(user_id):
+    currentMonth = datetime.now().month
+    currentYear = datetime.now().year
+    results = User_sessions.query.filter_by(user_id=user_id).filter(extract('month', User_sessions.date)==currentMonth).filter(extract('year', User_sessions.date)==currentYear).all()
+    return jsonify([user_sessions.serialize() for user_sessions in results]), 200
 
 @api.route('/user_sessions', methods=["POST"])
-@jwt_required()
+#@jwt_required()
 def create_user_sessions():
      user_id = request.json.get("user_id", None)
      sessions_id = request.json.get("sessions_id", None)
@@ -165,7 +172,7 @@ def create_user_sessions():
 
 
 @api.route('/role', methods=["POST"])
-# @jwt_required()
+#@jwt_required()
 def create_role():
     name = request.json.get("name", None)
 
@@ -183,17 +190,17 @@ def create_role():
     return jsonify({"message" : "Rol creado"}),200
 
 @api.route("/get_role", methods=["GET"])
-@jwt_required()
+#@jwt_required()
 def get_role():
     return jsonify([role.serialize() for role in Role.query.all()]), 200
 
 @api.route("/weekdays", methods=["GET"])
-@jwt_required()
+#@jwt_required()
 def get_weekdays():
     return jsonify([name.serialize() for name in Weekdays.query.all()]), 200
 
 @api.route('/weekdays', methods=["POST"])
-# @jwt_required()
+#@jwt_required()
 def create_weekdays():
     name = request.json.get("name", None)
 
@@ -212,7 +219,7 @@ def create_weekdays():
     
 
 @api.route('/sessions_type', methods=["POST"])
-# @jwt_required()
+#@jwt_required()
 def create_sessions_type():
     name = request.json.get("name", None)
 
@@ -230,12 +237,12 @@ def create_sessions_type():
     return jsonify({"message" : "Nuevo tipo de sesion creada"}),200
 
 @api.route("/get_session_types", methods=["GET"])
-@jwt_required()
+#@jwt_required()
 def get_session_types():
     return jsonify([session_type.serialize() for session_type in Sessions_type.query.all()]), 200
 
 @api.route('/suscription_type', methods=["POST"])
-# @jwt_required()
+#@jwt_required()
 def create_suscription_type():
     name = request.json.get("name", None)
 
@@ -253,12 +260,12 @@ def create_suscription_type():
     return jsonify({"message" : "Tu suscripcion ha sido creada"}),200
 
 @api.route("/get_suscription_types", methods=["GET"])
-@jwt_required()
+#@jwt_required()
 def get_suscription_type():
     return jsonify([suscription_type.serialize() for suscription_type in Suscription_type.query.all()]), 200
 
 @api.route("/validate", methods=["GET"])
-@jwt_required()
+#@jwt_required()
 def handle_validate():
     current_user_id = get_jwt_identity()
     user = User.query.get(current_user_id)

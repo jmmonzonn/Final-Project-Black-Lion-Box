@@ -6,7 +6,10 @@ export const Features = () => {
   const [rotate3, setRotate3] = useState({});
 
   return (
-    <div className="bg-L-gray-light container block items-center justify-center mx-auto">
+    <div
+      className="bg-L-gray-light container block items-center justify-center mx-auto"
+      id="Elgimnasio"
+    >
       <div className=" py-6 my-6 font-sans text-5xl text-L-Gray-dark">
         ¿Qué te ofrecemos?
       </div>
