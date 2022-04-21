@@ -8,7 +8,7 @@ export const UserModifyProfile = () => {
 
   return (
     <div className="container items-center justify-center mx-auto h-[100vh]">
-      <div class="relative z-0 mb-6 w-full group ">
+      <div className="relative z-0 mb-6 w-full group ">
         <input
           type="user"
           onChange={(e) => {
@@ -27,7 +27,7 @@ export const UserModifyProfile = () => {
         </label>
       </div>
 
-      <div class="relative z-0 mb-6 w-full group">
+      <div className="relative z-0 mb-6 w-full group">
         <input
           type="email"
           onChange={(e) => {
@@ -45,7 +45,7 @@ export const UserModifyProfile = () => {
           Correo Electrónico
         </label>
       </div>
-      <div class="relative z-0 mb-6 w-full group">
+      <div className="relative z-0 mb-6 w-full group">
         <input
           type="password"
           onChange={(e) => {
@@ -64,8 +64,8 @@ export const UserModifyProfile = () => {
           Contraseña
         </label>
       </div>
-      <div class="grid xl:grid-cols-2 xl:gap-6">
-        <div class="relative z-0 mb-6 w-full group">
+      <div className="grid xl:grid-cols-2 xl:gap-6">
+        <div className="relative z-0 mb-6 w-full group">
           <input
             type="text"
             name="floating_first_name"
@@ -84,7 +84,7 @@ export const UserModifyProfile = () => {
             Nombre
           </label>
         </div>
-        <div class="relative z-0 mb-6 w-full group">
+        <div className="relative z-0 mb-6 w-full group">
           <input
             type="text"
             onChange={(e) => {
@@ -104,7 +104,7 @@ export const UserModifyProfile = () => {
           </label>
         </div>
       </div>
-      <div class="relative z-0 mb-6 w-full group">
+      <div className="relative z-0 mb-6 w-full group">
         <input
           type="direction"
           onChange={(e) => {
@@ -122,8 +122,8 @@ export const UserModifyProfile = () => {
           Dirección
         </label>
       </div>
-      <div class="grid xl:grid-cols-2 xl:gap-6">
-        <div class="relative z-0 mb-6 w-full group">
+      <div className="grid xl:grid-cols-2 xl:gap-6">
+        <div className="relative z-0 mb-6 w-full group">
           <input
             type="tel"
             onChange={(e) => {
@@ -143,7 +143,7 @@ export const UserModifyProfile = () => {
             Teléfono
           </label>
         </div>
-        <div class="relative z-0 mb-6 w-full group">
+        <div className="relative z-0 mb-6 w-full group">
           <input
             type="text"
             onChange={(e) => {
@@ -181,7 +181,7 @@ export const UserModifyProfile = () => {
                   required
                 />
               </div>
-              <div class="ml-3 text-sm">
+              <div className="ml-3 text-sm">
                 <label
                   htmlFor="terms"
                   className="font-medium text-gray-900 dark:text-gray-300"
@@ -197,9 +197,9 @@ export const UserModifyProfile = () => {
               </div>
             </div>
           </div>
-          <div class="relative z-0 mb-6 w-full group">
-            <div class="flex items-start mb-6">
-              <div class="flex items-center h-5">
+          <div className="relative z-0 mb-6 w-full group">
+            <div className="flex items-start mb-6">
+              <div className="flex items-center h-5">
                 <input
                   id="mkt"
                   aria-describedby="mkt"
@@ -218,7 +218,7 @@ export const UserModifyProfile = () => {
               <div className="ml-3 text-sm">
                 <label
                   htmlFor="mkt"
-                  class="font-medium text-gray-900 dark:text-gray-300"
+                  className="font-medium text-gray-900 dark:text-gray-300"
                 >
                   Acepto el envío de comunicaciones de marketing
                 </label>

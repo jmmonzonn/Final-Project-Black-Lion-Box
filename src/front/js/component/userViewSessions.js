@@ -5,7 +5,7 @@ export const ViewSessions = () => {
   return (
     <div className="container">
       <p>Próximas sesiones disponibles:</p>
-      <table class="table table-striped">
+      <table className="table table-striped">
         <thead>
           <tr>
             <th scope="col">Día</th>
