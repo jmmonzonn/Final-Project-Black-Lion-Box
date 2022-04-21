@@ -180,8 +180,7 @@ class User_sessions(db.Model):
     users = db.relationship('User', back_populates="user_sessions")
     sessions_id = db.Column(db.Integer, db.ForeignKey('sessions.id'), unique=False, nullable=False)
     sessions = db.relationship('Sessions', back_populates="session_users")
-    # date =  db.Column(db.Date, unique=False, nullable=False)
-    # is_coach = db.Column(db.Boolean)
+    date =  db.Column(db.Date, unique=False, nullable=False)
 
     def __repr__(self):
         return '<User_sessions %r>' % self.id
@@ -193,7 +192,7 @@ class User_sessions(db.Model):
             "sessions_id": self.sessions_id,
             "users": self.users.username if self.users else None,
             "sessions": self.sessions.name if self.sessions else None,
-            # "is_coach": self.is_coach
+            "date": self.date
         }
 
 class Available_sessions(db.Model):
