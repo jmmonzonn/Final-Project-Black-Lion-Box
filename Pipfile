@@ -19,6 +19,7 @@ cloudinary = "*"
 flask-admin = "*"
 flask-jwt-extended = "*"
 babel = "*"
+stripe = "*"
 
 [requires]
 python_version = "3.8"

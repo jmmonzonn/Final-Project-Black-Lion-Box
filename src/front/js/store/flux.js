@@ -3,16 +3,15 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       username: "",
       user_id: null,
-      codigo_stripe: "",
+      stripe_id: "",
+      suscriptionList: [],
     },
     actions: {
-      pay: (user_id) => {
+      pay: (stripe_id) => {
         let stripe = Stripe(process.env.React_APP_STRIPE_KEY);
         stripe
           .redirectToCheckout({
-            lineItems: [
-              { price: "price_1Kmd3IDjIaCZ8ivK9L7ZbYPQ", quantity: 1 },
-            ],
+            lineItems: [{ price: stripe_id, quantity: 1 }],
             mode: "subscription",
             successUrl:
               "https://3000-jmmonzonn-finalprojectbl-zeavhkau3qo.ws-eu39b.gitpod.io/success",
@@ -25,6 +24,17 @@ const getState = ({ getStore, getActions, setStore }) => {
               displayError.textContent = result.error.message;
             }
           });
+      },
+
+      getSuscriptions: () => {
+        fetch(process.env.BACKEND_URL + "/api/get_suscriptions", {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+          .then((resp) => resp.json())
+          .then((data) => setStore({ suscriptionList: data }));
       },
 
       setUsername: (username) => {

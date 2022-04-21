@@ -83,6 +83,8 @@ def create_suscription():
      price = request.json.get("price", None)
      tokens = request.json.get("tokens", None)
      suscription_type_id = request.json.get("suscription_type_id", None)
+     stripe_id = request.json.get("stripe_id", None)
+     
     #  suscription_type = request.json.get("suscription_type", None)
 
     #  not_unique_name = Suscription.query.filter_by(name = name).first()  
@@ -93,7 +95,7 @@ def create_suscription():
     #     return jsonify({"message": "Rellena todos los campos obligatorios"}), 401
     
     
-     new_suscription = Suscription(name = name, description = description, price = price, tokens = tokens, suscription_type_id = suscription_type_id)
+     new_suscription = Suscription(name = name, stripe_id= stripe_id, description = description, price = price, tokens = tokens, suscription_type_id = suscription_type_id)
      db.session.add(new_suscription)
      db.session.commit()
  
@@ -291,3 +293,44 @@ def weeklysessions():
         })
 
     return jsonify(data_response),200
+
+    # This is your Stripe CLI webhook secret for testing your endpoint locally.
+endpoint_secret = os.getenv("endpoint_secret")
+
+@api.route('/webhook', methods=['POST'])
+def webhook():
+    event = None
+    payload = request.data
+
+    try:
+        event = json.loads(payload)
+    except:
+        print('⚠️  Webhook error while parsing basic request.' + str(e))
+        return jsonify(success=False)
+    if endpoint_secret:
+        # Only verify the event if there is an endpoint secret defined
+        # Otherwise use the basic event deserialized with json
+        sig_header = request.headers.get('stripe-signature')
+        try:
+            event = stripe.Webhook.construct_event(
+                payload, sig_header, endpoint_secret
+            )
+        except stripe.error.SignatureVerificationError as e:
+            print('⚠️  Webhook signature verification failed.' + str(e))
+            return jsonify(success=False)
+
+    
+     # Handle the event
+    if event['type'] == 'checkout.session.async_payment_failed':
+      session = event['data']['object']
+    elif event['type'] == 'checkout.session.async_payment_succeeded':
+      session = event['data']['object']
+    elif event['type'] == 'checkout.session.completed':
+      session = event['data']['object']
+    elif event['type'] == 'checkout.session.expired':
+      session = event['data']['object']
+    # ... handle other event types
+    else:
+      print('Unhandled event type {}'.format(event['type']))
+
+    return jsonify(success=True)
