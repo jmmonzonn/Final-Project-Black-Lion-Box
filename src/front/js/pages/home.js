@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { MainHeader } from "../component/header.js";
@@ -11,13 +11,20 @@ import { HomeFeats } from "../component/homeFeats";
 export const Home = () => {
   const { store, actions } = useContext(Context);
 
-  // Estructura del home
+  useEffect(() => {
+    actions.getSuscriptions();
+  }, []);
+
+  // Componentes del home
 
   return (
     <div className="text-center">
       <MainHeader />
-      <SubscriptionTiers />
-      {/* <HomeFeats /> */}
+      {/* MAP Y PROPTAIS DE LAS CARDS DE TARIFAS */}
+      {store.suscriptionList.map((value) => {
+        return <SubscriptionTiers key={value.id} cards={value} />;
+      })}
+
       <Features />
       <Maps />
       <Contact />
