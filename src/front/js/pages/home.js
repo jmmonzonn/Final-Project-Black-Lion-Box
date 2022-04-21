@@ -20,7 +20,7 @@ export const Home = () => {
   return (
     <div className="text-center">
       <MainHeader />
-      {/* MAP Y PROPTAIS DE LAS CARDS DE TARIFAS */}
+      {/* Enseña la sección de tipos de tarifa, que recoge de la tabla subscripcions y subscription_types*/}
       {store.suscriptionList.map((value) => {
         return <SubscriptionTiers key={value.id} cards={value} />;
       })}

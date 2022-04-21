@@ -9,7 +9,8 @@ from psycopg2.errors import NotNullViolation, UniqueViolation
 from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
 from datetime import date, timedelta, datetime
 import calendar
-from sqlalchemy import extract  
+from sqlalchemy import extract
+import os
 
 from babel.dates import format_date
 
@@ -146,10 +147,14 @@ def get_user_sessions():
 @api.route("/user_sessions/<user_id>", methods=["GET"])
 #@jwt_required()
 def user_sessions(user_id):
-    currentMonth = datetime.now().month
-    currentYear = datetime.now().year
+
     results = User_sessions.query.filter_by(user_id=user_id).filter(extract('month', User_sessions.date)==currentMonth).filter(extract('year', User_sessions.date)==currentYear).all()
     return jsonify([user_sessions.serialize() for user_sessions in results]), 200
+
+@api.route("/user/<id>", methods=["GET"])
+#@jwt_required()
+def user_info(id):
+    return jsonify([user.serialize() for user in User.query.filter_by(id=id)]), 200
 
 @api.route('/user_sessions', methods=["POST"])
 #@jwt_required()
