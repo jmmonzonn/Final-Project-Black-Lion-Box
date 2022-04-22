@@ -7,6 +7,30 @@ export const Login = () => {
   const { store, actions } = useContext(Context);
   const [user, setUser] = useState({});
   let history = useHistory();
+  let login = () => {
+    fetch(process.env.BACKEND_URL + "/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("username", data.username);
+          localStorage.setItem("id", data.id);
+          if (data.role == "admin") {
+            history.push("/admin/dashboard");
+          } else {
+            history.push("/user/dashboard");
+          }
+        } else {
+          history.push("/register");
+        }
+      });
+  };
 
   return (
     <div className="container items-center justify-center mx-auto h-[100vh]">
@@ -16,6 +40,9 @@ export const Login = () => {
             type="text"
             onChange={(e) => {
               setUser({ ...user, username: e.target.value });
+            }}
+            onKeyDown={(e) => {
+              e.key === "Enter" ? login() : null;
             }}
             name="floating_user"
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -35,6 +62,9 @@ export const Login = () => {
             onChange={(e) => {
               setUser({ ...user, password: e.target.value });
             }}
+            onKeyDown={(e) => {
+              e.key === "Enter" ? login() : null;
+            }}
             name="floating_password"
             id="floating_password"
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -52,28 +82,7 @@ export const Login = () => {
       <button
         type="submit"
         onClick={() => {
-          fetch(process.env.BACKEND_URL + "/api/login", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(user),
-          })
-            .then((resp) => resp.json())
-            .then((data) => {
-              if (data.token) {
-                localStorage.setItem("token", data.token);
-                localStorage.setItem("username", data.username);
-                localStorage.setItem("id", data.id);
-                if (data.role == "admin") {
-                  history.push("/admin/dashboard");
-                } else {
-                  history.push("/user/dashboard");
-                }
-              } else {
-                history.push("/register");
-              }
-            });
+          login();
         }}
         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
