@@ -51,7 +51,7 @@ export const AdminDashboard = () => {
         <div className="flex items-center">
           {/* Carga el encabezado de la sección de administración */}
 
-          <ThisWeek />
+          <AdminHeader />
         </div>
       </div>
       <div className="container flex items-center justify-center mx-auto">

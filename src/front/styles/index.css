@@ -990,6 +990,22 @@ select{
   }
 }
 
+.sr-only{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.pointer-events-none{
+  pointer-events: none;
+}
+
 .visible{
   visibility: visible;
 }
@@ -1019,6 +1035,11 @@ select{
   right: 0px;
   bottom: 0px;
   left: 0px;
+}
+
+.inset-y-0{
+  top: 0px;
+  bottom: 0px;
 }
 
 .top-0{
@@ -1071,6 +1092,18 @@ select{
 
 .col-span-2{
   grid-column: span 2 / span 2;
+}
+
+.col-span-full{
+  grid-column: 1 / -1;
+}
+
+.col-span-12{
+  grid-column: span 12 / span 12;
+}
+
+.col-span-1{
+  grid-column: span 1 / span 1;
 }
 
 .col-start-3{
@@ -1206,6 +1239,10 @@ select{
   margin-bottom: 0.25rem;
 }
 
+.mt-1{
+  margin-top: 0.25rem;
+}
+
 .block{
   display: block;
 }
@@ -1282,6 +1319,10 @@ select{
   height: 1rem;
 }
 
+.h-2{
+  height: 0.5rem;
+}
+
 .h-6{
   height: 1.5rem;
 }
@@ -1316,6 +1357,10 @@ select{
 
 .w-1\/2{
   width: 50%;
+}
+
+.w-80{
+  width: 20rem;
 }
 
 .max-w-md{
@@ -1486,6 +1531,10 @@ select{
   grid-template-rows: repeat(2, minmax(0, 1fr));
 }
 
+.grid-rows-4{
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+}
+
 .flex-col{
   flex-direction: column;
 }
@@ -1534,6 +1583,10 @@ select{
   gap: 2rem;
 }
 
+.gap-4{
+  gap: 1rem;
+}
+
 .space-y-6 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
   margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
@@ -1558,12 +1611,20 @@ select{
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
+.overflow-x-auto{
+  overflow-x: auto;
+}
+
 .overflow-y-auto{
   overflow-y: auto;
 }
 
 .overflow-x-hidden{
   overflow-x: hidden;
+}
+
+.whitespace-nowrap{
+  white-space: nowrap;
 }
 
 .rounded{
@@ -1627,6 +1688,11 @@ select{
 .border-gray-100{
   --tw-border-opacity: 1;
   border-color: rgb(243 244 246 / var(--tw-border-opacity));
+}
+
+.border-L-Gray-light{
+  --tw-border-opacity: 1;
+  border-color: rgb(241 240 242 / var(--tw-border-opacity));
 }
 
 .border-blue-700{
@@ -1808,6 +1874,16 @@ select{
   padding-bottom: 2rem;
 }
 
+.px-3{
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.py-4{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .pb-4{
   padding-bottom: 1rem;
 }
@@ -1816,8 +1892,28 @@ select{
   padding-top: 3rem;
 }
 
+.pt-3{
+  padding-top: 0.75rem;
+}
+
+.pb-3{
+  padding-bottom: 0.75rem;
+}
+
 .pt-2{
   padding-top: 0.5rem;
+}
+
+.pt-4{
+  padding-top: 1rem;
+}
+
+.pl-3{
+  padding-left: 0.75rem;
+}
+
+.pl-10{
+  padding-left: 2.5rem;
 }
 
 .text-left{
@@ -1826,6 +1922,10 @@ select{
 
 .text-center{
   text-align: center;
+}
+
+.text-right{
+  text-align: right;
 }
 
 .font-sans{
@@ -1880,6 +1980,16 @@ select{
   line-height: 1.75rem;
 }
 
+.text-4xl{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-xs{
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
 .font-extrabold{
   font-weight: 800;
 }
@@ -1894,6 +2004,10 @@ select{
 
 .font-normal{
   font-weight: 400;
+}
+
+.uppercase{
+  text-transform: uppercase;
 }
 
 .capitalize{
@@ -1968,6 +2082,16 @@ select{
 .text-blue-600{
   --tw-text-opacity: 1;
   color: rgb(28 100 242 / var(--tw-text-opacity));
+}
+
+.text-L-Gray-med{
+  --tw-text-opacity: 1;
+  color: rgb(163 175 192 / var(--tw-text-opacity));
+}
+
+.text-gray-700{
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 
 .opacity-75{
@@ -2075,6 +2199,13 @@ html {
 /* Fondo hero style del header */
 
 .headerbg {
+  background: url("https://res.cloudinary.com/blacklionbox/image/upload/v1649261385/fondoheader2_sybjbj.jpg")
+    center center/cover no-repeat;
+}
+
+/* Fondo hero style del user header */
+
+.userheaderbg {
   background: url("https://res.cloudinary.com/blacklionbox/image/upload/v1649261385/fondoheader2_sybjbj.jpg")
     center center/cover no-repeat;
 }
@@ -3517,6 +3648,11 @@ html {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-gray-50:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-gradient-to-bl:hover{
   background-image: linear-gradient(to bottom left, var(--tw-gradient-stops));
 }
@@ -3717,6 +3853,11 @@ html {
   border-color: rgb(63 131 248 / var(--tw-border-opacity));
 }
 
+.dark .dark\:border-D-Gray-dark{
+  --tw-border-opacity: 1;
+  border-color: rgb(46 46 48 / var(--tw-border-opacity));
+}
+
 .dark .dark\:bg-D-Gray-dark{
   --tw-bg-opacity: 1;
   background-color: rgb(46 46 48 / var(--tw-bg-opacity));
@@ -3793,6 +3934,11 @@ html {
 .dark .dark\:text-blue-500{
   --tw-text-opacity: 1;
   color: rgb(63 131 248 / var(--tw-text-opacity));
+}
+
+.dark .dark\:text-D-Gray-med{
+  --tw-text-opacity: 1;
+  color: rgb(134 143 155 / var(--tw-text-opacity));
 }
 
 .dark .dark\:placeholder-gray-400::-moz-placeholder{
@@ -3923,6 +4069,10 @@ html {
 
   .sm\:w-1\/4{
     width: 25%;
+  }
+
+  .sm\:rounded-lg{
+    border-radius: 0.5rem;
   }
 
   .sm\:p-8{

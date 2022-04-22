@@ -16,25 +16,25 @@ export const UserHeader = () => {
   };
 
   return (
-    <div className="container">
-      <p>Hola, tuculo:</p>
-      <p>{user.username}</p>
+    <div>
+      {user.map((value, index) => {
+        return (
+          <div className="container my-8" key={index}>
+            <p className="text-2xl text-L-Gray-med dark:text-D-Gray-med pt-3 px-3">
+              Hola,{" "}
+              <span className="text-L-Gray-dark dark:text-D-Gray-light">
+                {value.first_name}
+              </span>
+            </p>
+            <p className="text-m text-L-Gray-dark dark:text-D-Gray-light px-5 pb-3">
+              Actualmente estas suscrito al plan{" "}
+              <span>{user.suscription_id}</span> y tu próxima renovación será el{" "}
+              {value.username}
+            </p>
+            <div className="userheaderbg w-full h-2"></div>
+          </div>
+        );
+      })}
     </div>
   );
 };
-
-{
-  /* <p>
-Hola, <span>username</span>
-</p>
-<p>youremail@email.com</p>
-<div className="ml-auto bg-secondary text-light">
-<p>
-  Tu plan actual es: <span>Plan XXXX</span>
-</p>
-<p>
-  Próxima renovación:
-  <span>01/02/2020</span>
-</p>
-</div> */
-}
