@@ -8,6 +8,7 @@ import { AdminCreateUser } from "../component/adminCreateUser";
 import { SubscriptionTiers } from "../component/adminSubscriptionTiers";
 import { AdminSessionType } from "../component/adminSessionType";
 import { AdminUserSessions } from "../component/adminUserSession";
+import { ThisWeek } from "../component/thisWeek";
 import "../../styles/home.css";
 import { unmountComponentAtNode } from "react-dom";
 
@@ -50,7 +51,7 @@ export const AdminDashboard = () => {
         <div className="flex items-center">
           {/* Carga el encabezado de la sección de administración */}
 
-          <AdminHeader />
+          <ThisWeek />
         </div>
       </div>
       <div className="container flex items-center justify-center mx-auto">

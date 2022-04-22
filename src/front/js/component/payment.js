@@ -7,11 +7,6 @@ export const Payment = () => {
 
   return (
     <div>
-      <img
-        src="https://m.media-amazon.com/images/I/61nWszKX1-L._AC_SL1500_.jpg"
-        alt="Krom Kluster Keyboard"
-        className="img-fluid"
-      />
       <button
         type="button"
         onClick={() => {
