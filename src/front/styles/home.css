@@ -35,6 +35,12 @@ html {
     center center/cover no-repeat;
 }
 
+/* Fondo hero style del user header */
+.userheaderbg {
+  background: url("https://res.cloudinary.com/blacklionbox/image/upload/v1649261385/fondoheader2_sybjbj.jpg")
+    center center/cover no-repeat;
+}
+
 /* Configuración de las imágenes de Features */
 
 /* Container cards invertidas*/

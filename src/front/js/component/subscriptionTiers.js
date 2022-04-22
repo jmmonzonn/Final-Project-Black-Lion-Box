@@ -13,7 +13,7 @@ export const SubscriptionTiers = (props) => {
       <div className="grid grid-cols-4 gap-0">
         {/* Primer tier de suscripciones */}
 
-        <div className="p-4 max-w-sm bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto">
+        <div className="p-4 max-w-sm bg-L-Gray-light rounded-lg border shadow-md sm:p-8 dark:bg-D-Gray-dark dark:border-gray-700 mx-auto">
           <h5 className="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">
             {props.cards.name}
           </h5>

@@ -44,7 +44,10 @@ class User(db.Model):
             "info": self.info,
             "is_active": self.is_active,
             "role_id": self.role_id,
-            "role": self.role.name if self.role else None
+            "role": self.role.name if self.role else None,
+            "suscription_id": self.suscription_id,
+            "suscription": self.suscription.name if self.suscription else None,
+
         }
 
 class Weekdays(db.Model):

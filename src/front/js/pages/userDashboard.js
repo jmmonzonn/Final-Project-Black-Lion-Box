@@ -41,16 +41,16 @@ export const UserDashboard = () => {
   let history = useHistory();
 
   return (
-    <div className="container block items-center justify-center mx-auto">
-      <div className="container flex items-center justify-center mx-auto">
-        <div className="flex items-center">
+    <div className="container mx-auto">
+      <div className=" col-span-full mx-auto">
+        <div>
           {/* Carga el encabezado de la sección de usuario */}
 
           <UserHeader />
         </div>
       </div>
       <div className="container flex items-center justify-center mx-auto">
-        <div className="mb-4 border-b border-gray-200">
+        <div className="mb-4 border-b border-L-Gray-light dark:border-D-Gray-dark">
           <ul
             className="flex flex-wrap -mb-px text-sm font-medium text-center"
             id="myTab"
@@ -121,7 +121,7 @@ export const UserDashboard = () => {
         {/* Contenido de la sección de gestión de sesiones */}
 
         <div
-          className="p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
+          className="p-4 bg-L-Gray-light rounded-lg dark:bg-D-Gray-dark"
           id="users"
           role="tabpanel"
           aria-labelledby="users-tab"
@@ -132,7 +132,7 @@ export const UserDashboard = () => {
         {/* Contenido de la sección de administración de suscripciones */}
 
         <div
-          className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
+          className="p-4 bg-L-Gray-light rounded-lg dark:bg-D-Gray-dark"
           id="training"
           role="tabpanel"
           aria-labelledby="training-tab"
@@ -143,7 +143,7 @@ export const UserDashboard = () => {
         {/* Contenido de la sección de tarifas de suscripciones */}
 
         <div
-          className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
+          className="p-4 bg-L-Gray-light rounded-lg dark:bg-D-Gray-dark"
           id="subscription"
           role="tabpanel"
           aria-labelledby="subscription-tab"
