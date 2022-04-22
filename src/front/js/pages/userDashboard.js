@@ -7,6 +7,7 @@ import { ViewSessions } from "../component/userViewSessions";
 import { UserModifyProfile } from "../component/userModifyProfile";
 
 import "../../styles/home.css";
+import { ThisWeek } from "../component/thisWeek";
 export const UserDashboard = () => {
   // Funciones que se utilizan para definir el estilo de los botones de las tabs en el componente.
 
@@ -126,7 +127,7 @@ export const UserDashboard = () => {
           role="tabpanel"
           aria-labelledby="users-tab"
         >
-          <ViewSessions />
+          <ThisWeek />
         </div>
 
         {/* Contenido de la sección de administración de suscripciones */}
