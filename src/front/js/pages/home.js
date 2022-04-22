@@ -22,9 +22,7 @@ export const Home = () => {
     <div className="text-center">
       <MainHeader />
       {/* Enseña la sección de tipos de tarifa, que recoge de la tabla subscripcions y subscription_types*/}
-      {store.suscriptionList.map((value) => {
-        return <SubscriptionTiers key={value.id} cards={value} />;
-      })}
+      <SubscriptionTiers />
 
       <Features />
       <Maps />
