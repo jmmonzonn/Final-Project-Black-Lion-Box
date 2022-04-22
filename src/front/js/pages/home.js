@@ -10,6 +10,7 @@ import { HomeFeats } from "../component/homeFeats";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
+  /* Funcion para cargar getSuscriptions a la Home */
 
   useEffect(() => {
     actions.getSuscriptions();

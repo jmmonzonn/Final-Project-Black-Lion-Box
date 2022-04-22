@@ -7,6 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       suscriptionList: [],
     },
     actions: {
+      /* Funcion para pagos en Stripe */
       pay: (stripe_id) => {
         let stripe = Stripe(process.env.React_APP_STRIPE_KEY);
         stripe
@@ -25,7 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             }
           });
       },
-
+      /* Funcion para guardar la informacion de las subscripciones dentro del Store */
       getSuscriptions: () => {
         fetch(process.env.BACKEND_URL + "/api/get_suscriptions", {
           method: "GET",
