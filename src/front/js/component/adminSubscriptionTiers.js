@@ -50,6 +50,7 @@ export const SubscriptionTiers = () => {
               <div className="table-cell text-left ...">
                 Tipo de entrenamiento
               </div>
+              <div className="table-cell text-left ...">Eliminar</div>
             </div>
           </div>
           <div className="table-row-group">
@@ -61,6 +62,27 @@ export const SubscriptionTiers = () => {
                   <div className="table-cell ...">{value.price}</div>
                   <div className="table-cell ...">{value.tokens}</div>
                   <div className="table-cell ...">{value.suscription_type}</div>
+                  <button
+                    type="submit"
+                    className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                    onClick={() => {
+                      fetch(
+                        process.env.BACKEND_URL +
+                          "/api/delete_suscriptions/" +
+                          value.name,
+                        {
+                          method: "DELETE",
+                          headers: {
+                            "Content-Type": "application/json",
+                          },
+                        }
+                      )
+                        .then((resp) => resp.json())
+                        .then((data) => getSuscriptions());
+                    }}
+                  >
+                    Eliminar
+                  </button>
                 </div>
               );
             })}
