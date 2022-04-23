@@ -36,9 +36,18 @@ export const AdminCreateUser = () => {
       .then((data) => setRolesList(data));
   };
 
-  const createRole = (role) => {
-    setUser({ ...user, role: role });
+  const deleteUser = (id) => {
+    fetch(process.env.BACKEND_URL + "/api/delete_user/" + id, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((resp) => resp.json())
+      .then((data) => console.log(data.response));
   };
+
   return (
     <>
       <div className="container flex items-center justify-center mx-auto">
@@ -52,6 +61,8 @@ export const AdminCreateUser = () => {
               <div className="table-cell text-left ...">Teléfono</div>
               <div className="table-cell text-left ...">Dirección</div>
               <div className="table-cell text-left ...">Rol</div>
+              <div className="table-cell text-left ...">Id</div>
+              <div className="table-cell text-left ...">Editar</div>
             </div>
           </div>
           <div className="table-row-group">
@@ -65,6 +76,30 @@ export const AdminCreateUser = () => {
                   <div className="table-cell ...">{value.phone}</div>
                   <div className="table-cell ...">{value.adress}</div>
                   <div className="table-cell ...">{value.role}</div>
+                  <div className="table-cell ...">{value.id}</div>
+                  <div className="table-cell ...">
+                    <button
+                      type="submit"
+                      className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      onClick={() => {
+                        fetch(
+                          process.env.BACKEND_URL +
+                            "/api/delete_user/" +
+                            value.id,
+                          {
+                            method: "DELETE",
+                            headers: {
+                              "Content-Type": "application/json",
+                            },
+                          }
+                        )
+                          .then((resp) => resp.json())
+                          .then((data) => getUsers());
+                      }}
+                    >
+                      Eliminar
+                    </button>
+                  </div>
                 </div>
               );
             })}

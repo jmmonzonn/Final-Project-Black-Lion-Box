@@ -54,6 +54,18 @@ def create_user():
 
     return jsonify({"message" : "Usuario registrado", "token": token}),200
 
+@api.route("/delete_user/<id>", methods=["DELETE"])
+def delete_user(id):
+    try:
+        user = User.query.filter_by(id=id).first()
+        db.session.delete(user)
+        db.session.commit()
+
+    except:
+        return jsonify({"message": "Error"}), 400
+    
+    return jsonify({"message": "Usuario eliminado."})
+
 @api.route("/get_users", methods=["GET"])
 def get_users():
     return jsonify([user.serialize() for user in User.query.all()]), 200
