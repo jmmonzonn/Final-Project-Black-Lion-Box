@@ -37,6 +37,18 @@ export const SubscriptionTiers = () => {
       .then((data) => setSuscriptionTypeList(data));
   };
 
+  const deleteSuscription = (id) => {
+    fetch(process.env.BACKEND_URL + "/api/delete_suscription/" + id, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((resp) => resp.json())
+      .then((data) => console.log(data.response));
+  };
+
   return (
     <>
       <div>
@@ -50,7 +62,7 @@ export const SubscriptionTiers = () => {
               <div className="table-cell text-left ...">
                 Tipo de entrenamiento
               </div>
-              <div className="table-cell text-left ...">Eliminar</div>
+              <div className="table-cell text-left ...">Id</div>
             </div>
           </div>
           <div className="table-row-group">
@@ -62,13 +74,14 @@ export const SubscriptionTiers = () => {
                   <div className="table-cell ...">{value.price}</div>
                   <div className="table-cell ...">{value.tokens}</div>
                   <div className="table-cell ...">{value.suscription_type}</div>
+                  <div className="table-cell ...">{value.id}</div>
                   <button
                     type="submit"
                     className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
                     onClick={() => {
                       fetch(
                         process.env.BACKEND_URL +
-                          "/api/delete_suscriptions/" +
+                          "/api/delete_suscription/" +
                           value.name,
                         {
                           method: "DELETE",

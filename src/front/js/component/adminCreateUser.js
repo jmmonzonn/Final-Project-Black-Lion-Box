@@ -36,17 +36,17 @@ export const AdminCreateUser = () => {
       .then((data) => setRolesList(data));
   };
 
-  const deleteUser = (id) => {
-    fetch(process.env.BACKEND_URL + "/api/delete_user/" + id, {
-      method: "DELETE",
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((resp) => resp.json())
-      .then((data) => console.log(data.response));
-  };
+  // const deleteUser = (id) => {
+  //   fetch(process.env.BACKEND_URL + "/api/delete_user/" + id, {
+  //     method: "DELETE",
+  //     headers: {
+  //       "Content-type": "application/json; charset=UTF-8",
+  //       Authorization: "Bearer " + localStorage.getItem("token"),
+  //     },
+  //   })
+  //     .then((resp) => resp.json())
+  //     .then((data) => console.log(data.response));
+  // };
 
   return (
     <>
