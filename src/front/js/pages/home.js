@@ -6,8 +6,8 @@ import { Maps } from "../component/maps";
 import { Contact } from "../component/contact";
 import { Features } from "../component/features";
 import { SubscriptionTiers } from "../component/subscriptionTiers";
-import { HomeFeats } from "../component/homeFeats";
-
+import { HomeFeat1 } from "../component/homeFeat1";
+import { HomeFeat2 } from "../component/homeFeat2";
 export const Home = () => {
   const { store, actions } = useContext(Context);
   /* Funcion para cargar getSuscriptions a la Home */
@@ -19,12 +19,12 @@ export const Home = () => {
   // Componentes del home
 
   return (
-    <div className="text-center">
+    <div>
       <MainHeader />
-      {/* Enseña la sección de tipos de tarifa, que recoge de la tabla subscripcions y subscription_types*/}
+      <HomeFeat1 />
+      <HomeFeat2 />
       <SubscriptionTiers />
-
-      <Features />
+      {/* <Features /> */}
       <Maps />
       <Contact />
     </div>

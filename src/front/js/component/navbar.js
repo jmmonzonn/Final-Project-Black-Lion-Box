@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Link, useHistory, useNavigate } from "react-router-dom";
-import isolight from "../../img/black-lion-box_large.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Navbar = () => {
@@ -61,12 +60,8 @@ export const Navbar = () => {
   return (
     <nav className="bg-L-Gray-light dark:bg-D-Gray-dark dark:border-D-Gray-med mx-auto">
       {/* Logo principal Header */}
-
+      <div href="/" className="navLogo dark:navLogoD" alt="Big Lion Box"></div>
       <div className="container flex items-center justify-center px-6 py-3 mx-auto text-L-Gray-dark dark:text-D-Gray-light capitalize">
-        <a href="/" alt="Big Lion Box">
-          <img src={isolight} className="mr-3 h-16 sm:h-9" />
-        </a>
-
         {/* Inicio de botones de navegación interna del home */}
 
         <a
