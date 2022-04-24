@@ -9,6 +9,16 @@ import { UserModifyProfile } from "../component/userModifyProfile";
 import "../../styles/home.css";
 import { ThisWeek } from "../component/thisWeek";
 export const UserDashboard = () => {
+  // Fix para que Flowbite reinicie los eventos al cargar la página. Sin esto, no funcionan los modals, toggles y botones no funcionan.
+  useEffect(() => {
+    window.document.dispatchEvent(
+      new Event("DOMContentLoaded", {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
+  });
+
   // Funciones que se utilizan para definir el estilo de los botones de las tabs en el componente.
 
   const active_class =

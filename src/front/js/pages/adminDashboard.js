@@ -10,9 +10,18 @@ import { AdminSessionType } from "../component/adminSessionType";
 import { AdminUserSessions } from "../component/adminUserSession";
 import { ThisWeek } from "../component/thisWeek";
 import "../../styles/home.css";
-import { unmountComponentAtNode } from "react-dom";
 
 export const AdminDashboard = () => {
+  // Fix para que Flowbite reinicie los eventos al cargar la página. Sin esto, no funcionan los modals, toggles y botones no funcionan.
+
+  useEffect(() => {
+    window.document.dispatchEvent(
+      new Event("DOMContentLoaded", {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
+  });
   // Funciones que se utilizan para definir el estilo de los botones de las tabs en el componente.
 
   const active_class =

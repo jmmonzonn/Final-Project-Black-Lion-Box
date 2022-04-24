@@ -65,7 +65,7 @@ export const Navbar = () => {
         {/* Inicio de botones de navegación interna del home */}
         <a href="/" className="flex items-center">
           <img
-            className="navLogo dark:navLogoD mr-3 w-full sm:h-full"
+            className="bg-navLogo dark:bg-navLogoD mr-3 "
             alt="Black Lion Box"
           />
         </a>
