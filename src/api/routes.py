@@ -160,7 +160,8 @@ def get_user_sessions():
 @api.route("/user_sessions/<user_id>", methods=["GET"])
 #@jwt_required()
 def user_sessions(user_id):
-
+    currentMonth = datetime.now().month
+    currentYear = datetime.now().year
     results = User_sessions.query.filter_by(user_id=user_id).filter(extract('month', User_sessions.date)==currentMonth).filter(extract('year', User_sessions.date)==currentYear).all()
     return jsonify([user_sessions.serialize() for user_sessions in results]), 200
 
@@ -295,22 +296,47 @@ def handle_validate():
 @api.route("/thisweek", methods=["GET"])
 # @jwt_required()
 def weeklysessions():
+    # user = get_jwt_identity()
+    user = 1
     today = date.today()
     data_response = []
     for i in range(7):
         endDate = date.today() + timedelta(days=i)
         whichDay = format_date(endDate, format='EEEE', locale='es').capitalize()
+        labelDate = format_date(endDate, format='EEEE d', locale='es').capitalize()
         dsessions = Sessions.query.filter(Sessions.weekdays.has(name=whichDay)).order_by(Sessions.start_time).all()
         for n in dsessions:
-            userspersession = User_sessions.query.filter_by(sessions_id=n.id).count()
-            n.users_per_session = userspersession
+            userspersession = User_sessions.query.filter_by(sessions_id=n.id)
+            n.users_per_session = userspersession.count()
+            isuserinsession = User_sessions.query.filter_by(sessions_id=n.id,user_id=user).first()
+            if isuserinsession:
+                n.user_logged = True
         data_response.append({
             "label": whichDay,
             "sessions": [dailysessions.serialize() for dailysessions in dsessions],
-            "date": endDate,
+            "date": endDate.strftime("%Y/%m/%d"),
+            "labelDate":labelDate
         })
 
     return jsonify(data_response),200
+
+
+
+@api.route("/joinsession", methods=["POST"])
+# @jwt_required()
+def joinsession():
+    date = request.json.get("date", None)
+    sessions_id = request.json.get("sessions_id", None)
+    # user = get_jwt_identity()
+    user = 1
+
+    usersession = User_sessions(user_id = user, date = date, sessions_id = sessions_id)
+    db.session.add(usersession)
+    db.session.commit()
+
+    return jsonify(usersession.serialize()),200
+
+
 
     # This is your Stripe CLI webhook secret for testing your endpoint locally.
 endpoint_secret = os.getenv("endpoint_secret")
