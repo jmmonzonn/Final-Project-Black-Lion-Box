@@ -104,9 +104,10 @@ class Sessions(db.Model):
     weekdays = db.relationship('Weekdays', backref='sessions', lazy=True)
     session_users = db.relationship("User_sessions", back_populates="sessions")
     users_per_session = 0
+    user_logged = False
 
     def __repr__(self):
-        return '<Sessions %r>' % self.name
+        return f"{self.name} -id:{self.id}"
 
     def serialize(self):
         return {
@@ -120,6 +121,7 @@ class Sessions(db.Model):
             "session_type": self.session_type.name if self.session_type else None,
             "weekdays": self.weekdays.name if self.weekdays else None,
             "users_per_sessions": self.users_per_session,
+            "user_logged": self.user_logged
         }
         
 class Payments(db.Model):
