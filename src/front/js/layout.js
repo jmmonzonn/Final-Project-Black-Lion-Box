@@ -26,7 +26,7 @@ const Layout = () => {
   const basename = process.env.BASENAME || "";
 
   return (
-    <div className=" bg-L-Gray-light dark:bg-D-Gray-dark dark:border-D-Gray-med h-full d-flex flex-column min-vh-100">
+    <div className=" bg-L-Gray-light dark:bg-D-Gray-dark min-h-full">
       <BrowserRouter basename={basename}>
         <ScrollToTop>
           <Switch>

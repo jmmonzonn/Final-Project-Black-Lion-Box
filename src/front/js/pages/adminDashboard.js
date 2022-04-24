@@ -10,9 +10,18 @@ import { AdminSessionType } from "../component/adminSessionType";
 import { AdminUserSessions } from "../component/adminUserSession";
 import { ThisWeek } from "../component/thisWeek";
 import "../../styles/home.css";
-import { unmountComponentAtNode } from "react-dom";
 
 export const AdminDashboard = () => {
+  // Fix para que Flowbite reinicie los eventos al cargar la página. Sin esto, no funcionan los modals, toggles y botones no funcionan.
+
+  useEffect(() => {
+    window.document.dispatchEvent(
+      new Event("DOMContentLoaded", {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
+  });
   // Funciones que se utilizan para definir el estilo de los botones de las tabs en el componente.
 
   const active_class =
@@ -46,9 +55,9 @@ export const AdminDashboard = () => {
   let history = useHistory();
 
   return (
-    <div className="container block items-center justify-center mx-auto">
-      <div className="container flex items-center justify-center mx-auto">
-        <div className="flex items-center">
+    <div className="container mx-auto bg-L-Gray-light dark:bg-D-Gray-dark h-screen">
+      <div className=" flex items-center justify-center ">
+        <div className="my-8 py-8">
           {/* Carga el encabezado de la sección de administración */}
 
           <AdminHeader />
@@ -182,7 +191,7 @@ export const AdminDashboard = () => {
         {/* Contenido de la sección de gestión de usuarios */}
 
         <div
-          className="p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
+          className="p-4 rounded-lg bg-L-Gray-light dark:bg-gray-800 border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
           id="users"
           role="tabpanel"
           aria-labelledby="users-tab"
@@ -193,7 +202,7 @@ export const AdminDashboard = () => {
         {/* Contenido de la sección de administración de suscripciones */}
 
         <div
-          className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
+          className="hidden p-4 bg-L-Gray-light rounded-lg dark:bg-gray-800 border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
           id="training"
           role="tabpanel"
           aria-labelledby="training-tab"
@@ -204,7 +213,7 @@ export const AdminDashboard = () => {
         {/* Contenido de la sección de tarifas de suscripciones */}
 
         <div
-          className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
+          className="hidden p-4 rounded-lg bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
           id="subscription"
           role="tabpanel"
           aria-labelledby="subscription-tab"
@@ -215,7 +224,7 @@ export const AdminDashboard = () => {
         {/* Contenido de la sección de gestión de sesiones */}
 
         <div
-          className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
+          className="hidden p-4 rounded-lg bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
           id="sessions"
           role="tabpanel"
           aria-labelledby="sessions-tab"
@@ -226,7 +235,7 @@ export const AdminDashboard = () => {
         {/* Contenido de la sección de gestión de los tipos de sesión */}
 
         <div
-          className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
+          className="hidden p-4 rounded-lg bg-L-Gray-light dark:bg-D-Gray-dark border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
           id="session_type"
           role="tabpanel"
           aria-labelledby="session_type-tab"
@@ -237,7 +246,7 @@ export const AdminDashboard = () => {
         {/* Contenido de la sección de gestión de las sesiones por usuario (temp) */}
 
         <div
-          className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
+          className="hidden p-4 rounded-lg bg-L-Gray-light dark:bg-D-Gray-dark border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
           id="user_sessions"
           role="tabpanel"
           aria-labelledby="user_sessions-tab"

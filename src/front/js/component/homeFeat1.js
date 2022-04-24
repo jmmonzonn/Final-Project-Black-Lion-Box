@@ -3,8 +3,11 @@ import React from "react";
 export const HomeFeat1 = () => {
   (function () {
     // Add event listener
-    document.addEventListener("mousemove", parallax);
-    const elem = document.querySelector("#newfeats1");
+    // document.addEventListener("mousemove", parallax);
+    const elem = document.querySelectorAll("#newfeats1, #newfeats2");
+    elem.forEach((item) => {
+      item.addEventListener("mousemove", parallax);
+    });
     // Magic happens here
     function parallax(e) {
       let _w = window.innerWidth / 2;
@@ -21,7 +24,7 @@ export const HomeFeat1 = () => {
         50 - (_mouseY - _h) * 0.006
       }%`;
       let x = `${_depth3}, ${_depth2}, ${_depth1}`;
-      elem.style.backgroundPosition = x;
+      e.target.style.backgroundPosition = x;
     }
   })();
 
@@ -44,6 +47,25 @@ export const HomeFeat1 = () => {
             NOTARÁS LOS CAMBIOS PROGRESIVAMENTE DESDE EL PRIMER MES DE
             ENTRENAMIENTO
           </p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4 items-center">
+        <div>
+          <h4
+            className="hero glitch layers font-bellfort"
+            data-text="ENTRENAMIENTO FUNCIONAL"
+          >
+            <span className=" text-L-Gray-dark dark:text-D-Gray-light">
+              ENTRENADORES PERSONALIZADOS
+            </span>
+          </h4>
+          <h6 className="font-bellfort pt-8 text-3xl text-L-Gray-med dark:text-D-Gray-med">
+            TODAS LAS SESIONES SON DIRIGIDAS POR NUESTROS ENTRENADORES
+          </h6>
+        </div>
+        <div id="newfeats2">
+          <div className="newfeatstext"></div>
         </div>
       </div>
     </div>
