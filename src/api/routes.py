@@ -121,17 +121,20 @@ def get_suscriptions():
     return jsonify([suscription.serialize() for suscription in Suscription.query.all()]), 200
 
 
-@api.route("/delete_suscriptions/<id>", methods=["DELETE"])
+@api.route("/delete_suscriptions/<int:id>", methods=["DELETE"])
+@jwt_required()
 def delete_suscriptions(id):
+
     try:
-        user = User.query.filter_by(id=id).first()
-        db.session.delete(suscriptions)
+        suscription = Suscription.query.get(id)
+        db.session.delete(suscription)
         db.session.commit()
 
-    except:
+    except Exception as e: 
+        print(e) 
         return jsonify({"message": "Error"}), 400
     
-    return jsonify({"message": "Usuario eliminado."})
+    return jsonify({"message": "suscription eliminada."}), 200
 
 
 @api.route('/sessions', methods=["POST"])
