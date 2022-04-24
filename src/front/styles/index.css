@@ -1183,12 +1183,12 @@ select{
   margin-top: 8rem;
 }
 
-.mr-5{
-  margin-right: 1.25rem;
-}
-
 .mr-3{
   margin-right: 0.75rem;
+}
+
+.mr-5{
+  margin-right: 1.25rem;
 }
 
 .ml-3{
@@ -1267,10 +1267,6 @@ select{
   display: none;
 }
 
-.h-full{
-  height: 100%;
-}
-
 .h-screen{
   height: 100vh;
 }
@@ -1279,12 +1275,20 @@ select{
   height: calc(100% - 2rem);
 }
 
+.h-full{
+  height: 100%;
+}
+
 .h-5{
   height: 1.25rem;
 }
 
 .h-\[100vh\]{
   height: 100vh;
+}
+
+.h-14{
+  height: 3.5rem;
 }
 
 .h-16{
@@ -1309,6 +1313,10 @@ select{
 
 .h-9{
   height: 2.25rem;
+}
+
+.min-h-full{
+  min-height: 100%;
 }
 
 .w-full{
@@ -2111,18 +2119,11 @@ html {
 /* Configuración del Navbar */
 
 .navLogo {
-  position: relative;
-  width: 100%;
-  background-image: url("https://res.cloudinary.com/blacklionbox/image/upload/v1650757336/white-black-lion-box_large_oenn7r.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-position: 50% 50%;
+  background: url("https://res.cloudinary.com/blacklionbox/image/upload/v1650757336/white-black-lion-box_large_oenn7r.png");
 }
 
 .dark .dark\:navLogoD {
-  background-color: #1bc7fb;
-  background-image: url("https://res.cloudinary.com/blacklionbox/image/upload/v1650757336/black-lion-box_large_fl9ua6.png")
-    center center/cover no-repeat;
+  background: url("https://res.cloudinary.com/blacklionbox/image/upload/v1650757336/black-lion-box_large_fl9ua6.png");
 }
 
 /* Configuración del header  */
@@ -4047,6 +4048,10 @@ html {
 
   .sm\:mt-0{
     margin-top: 0px;
+  }
+
+  .sm\:h-full{
+    height: 100%;
   }
 
   .sm\:h-9{

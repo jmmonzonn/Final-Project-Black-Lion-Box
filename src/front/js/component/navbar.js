@@ -58,11 +58,17 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-L-Gray-light dark:bg-D-Gray-dark dark:border-D-Gray-med mx-auto">
+    <nav className="bg-L-Gray-light dark:bg-D-Gray-dark dark:border-D-Gray-med h-14 mx-auto">
       {/* Logo principal Header */}
-      <div href="/" className="navLogo dark:navLogoD" alt="Big Lion Box"></div>
-      <div className="container flex items-center justify-center px-6 py-3 mx-auto text-L-Gray-dark dark:text-D-Gray-light capitalize">
+
+      <div className="container flex flex-wrap justify-between items-center mx-auto">
         {/* Inicio de botones de navegación interna del home */}
+        <a href="/" className="flex items-center">
+          <img
+            className="navLogo dark:navLogoD mr-3 w-full sm:h-full"
+            alt="Black Lion Box"
+          />
+        </a>
 
         <a
           href="#Elgimnasio"

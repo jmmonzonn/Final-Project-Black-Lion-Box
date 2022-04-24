@@ -50,7 +50,7 @@ export const AdminCreateUser = () => {
 
   return (
     <>
-      <div className="container flex items-center justify-center mx-auto">
+      <div className="container flex items-center justify-center mx-auto ">
         <div className="table w-full ...">
           <div className="table-header-group ...">
             <div className="table-row">
