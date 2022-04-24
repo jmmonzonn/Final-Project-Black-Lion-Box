@@ -1219,6 +1219,10 @@ select{
   margin-bottom: 0.25rem;
 }
 
+.mb-5{
+  margin-bottom: 1.25rem;
+}
+
 .block{
   display: block;
 }
@@ -1353,6 +1357,10 @@ select{
 
 .w-1\/2{
   width: 50%;
+}
+
+.w-14{
+  width: 3.5rem;
 }
 
 .max-w-md{
@@ -1685,6 +1693,11 @@ select{
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 
+.bg-red-600{
+  --tw-bg-opacity: 1;
+  background-color: rgb(224 36 36 / var(--tw-bg-opacity));
+}
+
 .bg-opacity-50{
   --tw-bg-opacity: 0.5;
 }
@@ -1707,6 +1720,10 @@ select{
 
 .p-2\.5{
   padding: 0.625rem;
+}
+
+.p-6{
+  padding: 1.5rem;
 }
 
 .px-2{
@@ -1835,6 +1852,10 @@ select{
 
 .pt-2{
   padding-top: 0.5rem;
+}
+
+.pt-0{
+  padding-top: 0px;
 }
 
 .text-left{
@@ -3628,6 +3649,11 @@ html {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-red-800:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(155 28 28 / var(--tw-bg-opacity));
+}
+
 .hover\:text-gray-900:hover{
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
@@ -3729,6 +3755,11 @@ html {
 .focus\:ring-yellow-300:focus{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(250 202 21 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-red-300:focus{
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(248 180 180 / var(--tw-ring-opacity));
 }
 
 .active\:text-orange-500:active{
@@ -3926,6 +3957,11 @@ html {
   color: rgb(63 131 248 / var(--tw-text-opacity));
 }
 
+.dark .dark\:text-gray-200{
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity));
+}
+
 .dark .dark\:placeholder-gray-400::-moz-placeholder{
   --tw-placeholder-opacity: 1;
   color: rgb(156 163 175 / var(--tw-placeholder-opacity));
@@ -4028,6 +4064,16 @@ html {
 .dark .dark\:focus\:ring-blue-600:focus{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(28 100 242 / var(--tw-ring-opacity));
+}
+
+.dark .dark\:focus\:ring-red-800:focus{
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(155 28 28 / var(--tw-ring-opacity));
+}
+
+.dark .dark\:focus\:ring-gray-600:focus{
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(75 85 99 / var(--tw-ring-opacity));
 }
 
 .peer:focus ~ .dark .peer-focus\:dark\:text-M-Lime{
