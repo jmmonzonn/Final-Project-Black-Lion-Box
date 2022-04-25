@@ -44,6 +44,18 @@ export const AdminCreateUser = () => {
       .then((data) => setRolesList(data));
   };
 
+  // const deleteUser = (id) => {
+  //   fetch(process.env.BACKEND_URL + "/api/delete_user/" + id, {
+  //     method: "DELETE",
+  //     headers: {
+  //       "Content-type": "application/json; charset=UTF-8",
+  //       Authorization: "Bearer " + localStorage.getItem("token"),
+  //     },
+  //   })
+  //     .then((resp) => resp.json())
+  //     .then((data) => console.log(data.response));
+  // };
+
   return (
     <>
       <div className="container flex items-center justify-center mx-auto ">
@@ -58,7 +70,6 @@ export const AdminCreateUser = () => {
               <div className="table-cell text-left ...">Dirección</div>
               <div className="table-cell text-left ...">Rol</div>
               <div className="table-cell text-left ...">Id</div>
-              <div className="table-cell text-left ...">Editar</div>
             </div>
           </div>
           <div className="table-row-group">
