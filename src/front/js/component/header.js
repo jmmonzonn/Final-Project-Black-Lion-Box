@@ -3,7 +3,7 @@ import React from "react";
 export const MainHeader = () => {
   return (
     <div>
-      <div className="headerbg mb-12 w-full h-screen">
+      <div className="bg-headerbg text-center dark:bg-headerbgD mb-12 w-full h-screen">
         <div className="col-auto">
           <video
             className="logoheader sm:w-2/5 w-3/4 mx-auto pt-12 max-h-60screen"
@@ -30,9 +30,11 @@ export const MainHeader = () => {
             </p>
           </div>
           <div>
-            <button className="mt-5 text-L-Gray-dark bg-gradient-to-r from-M-Lime via-red-300 to-M-Lime hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-heading font-medium rounded-lg text-2xl px-6 py-3.5 text-center">
-              APÚNTATE AHORA!
-            </button>
+            <a href="#Suscripciones">
+              <button className="mt-5 text-L-Gray-dark focus:ring-4 focus:outline-none rounded-lg text-4xl px-6 py-3.5 text-center font-bellfort bg-M-Lime">
+                APÚNTATE AHORA!
+              </button>
+            </a>
           </div>
         </div>
         <div />
@@ -40,3 +42,5 @@ export const MainHeader = () => {
     </div>
   );
 };
+
+// py-2.5 px-5 mr-2 mb-2  border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700
