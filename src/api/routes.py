@@ -68,7 +68,7 @@ def delete_user(id):
     
     return jsonify({"message": "Usuario eliminado."})
 
-# Modificar usuarios
+# Modificar usuarios desde el administrador
 @api.route("/edit_user/<id>", methods=["PUT"])
 def edit_user(id):
     try:
@@ -167,6 +167,33 @@ def delete_suscriptions(id):
         return jsonify({"message": "Error"}), 400
     
     return jsonify({"message": "suscription eliminada."}), 200
+
+
+# Modificar subscripciones desde el administrador
+@api.route("/edit_suscriptions/<int:id>", methods=["PUT"])
+# @jwt_required()
+def edit_suscriptions(id):
+    try:
+        suscription = Suscription.query.get(id)
+    except:
+        return jsonify({"message": "Error"}), 400
+
+    new_name = request.json.get("name", None)
+    new_description = request.json.get("description", None)
+    new_price = request.json.get("price", None)
+    new_tokens = request.json.get("tokens", None)
+    new_suscription_type_id = request.json.get("suscription_type_id", None)
+   
+
+    setattr(suscription, "name", new_name)
+    setattr(suscription, "description", new_description)
+    setattr(suscription, "price", new_price)
+    setattr(suscription, "tokens", new_tokens)
+    setattr(suscription, "suscription_type_id", new_suscription_type_id)
+    
+    db.session.commit()
+       
+    return jsonify(suscription.serialize()), 200
 
 
 @api.route('/sessions', methods=["POST"])
