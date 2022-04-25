@@ -11,6 +11,7 @@ from datetime import date, timedelta, datetime
 import calendar
 from sqlalchemy import extract  
 import os
+import stripe
 
 
 from babel.dates import format_date
@@ -54,6 +55,7 @@ def create_user():
 
     return jsonify({"message" : "Usuario registrado", "token": token}),200
 
+# Eliminar usuarios
 @api.route("/delete_user/<id>", methods=["DELETE"])
 def delete_user(id):
     try:
@@ -65,6 +67,36 @@ def delete_user(id):
         return jsonify({"message": "Error"}), 400
     
     return jsonify({"message": "Usuario eliminado."})
+
+# Modificar usuarios
+@api.route("/edit_user/<id>", methods=["PUT"])
+def edit_user(id):
+    try:
+        user = User.query.filter_by(id=id).first()
+    except:
+        return jsonify({"message": "usuario no existe"}), 400
+
+    new_username = request.json.get("username", None)
+    new_email = request.json.get("email", None)
+    new_phone = request.json.get("phone", None)
+    new_first_name = request.json.get("first_name", None)
+    new_last_name = request.json.get("last_name", None)
+    new_adress = request.json.get("adress", None)
+
+    setattr(user, "username", new_username)
+    setattr(user, "email", new_email)
+    setattr(user, "phone", new_phone)
+    setattr(user, "first_name", new_first_name)
+    setattr(user, "last_name", new_last_name)
+    setattr(user, "adress", new_adress)
+    db.session.commit()
+       
+    return jsonify(user.serialize()), 200
+    
+    
+
+
+
 
 @api.route("/get_users", methods=["GET"])
 def get_users():
@@ -119,6 +151,22 @@ def create_suscription():
 #@jwt_required()
 def get_suscriptions():
     return jsonify([suscription.serialize() for suscription in Suscription.query.all()]), 200
+
+
+@api.route("/delete_suscriptions/<int:id>", methods=["DELETE"])
+@jwt_required()
+def delete_suscriptions(id):
+
+    try:
+        suscription = Suscription.query.get(id)
+        db.session.delete(suscription)
+        db.session.commit()
+
+    except Exception as e: 
+        print(e) 
+        return jsonify({"message": "Error"}), 400
+    
+    return jsonify({"message": "suscription eliminada."}), 200
 
 
 @api.route('/sessions', methods=["POST"])
