@@ -22,7 +22,15 @@ export const AdminCreateUser = () => {
       },
     })
       .then((resp) => resp.json())
-      .then((data) => setUsersList(data));
+      .then((data) => {
+        setUsersList(data);
+        window.document.dispatchEvent(
+          new Event("DOMContentLoaded", {
+            bubbles: true,
+            cancelable: true,
+          })
+        );
+      });
   };
 
   const getRoles = () => {
@@ -34,18 +42,6 @@ export const AdminCreateUser = () => {
     })
       .then((resp) => resp.json())
       .then((data) => setRolesList(data));
-  };
-
-  const deleteUser = (id) => {
-    fetch(process.env.BACKEND_URL + "/api/delete_user/" + id, {
-      method: "DELETE",
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((resp) => resp.json())
-      .then((data) => console.log(data.response));
   };
 
   return (
@@ -98,6 +94,13 @@ export const AdminCreateUser = () => {
                       }}
                     >
                       Eliminar
+                    </button>
+                    <button
+                      className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      type="button"
+                      data-modal-toggle="authentication-modal"
+                    >
+                      Añadir nuevo usuario
                     </button>
                   </div>
                 </div>
@@ -337,14 +340,6 @@ export const AdminCreateUser = () => {
             </div>
           </div>
         </div>
-
-        <button
-          class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          type="button"
-          data-modal-toggle="popup-modal"
-        >
-          Toggle modal
-        </button>
 
         <div
           id="popup-modal"

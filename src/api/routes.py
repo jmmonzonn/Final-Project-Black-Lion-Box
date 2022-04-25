@@ -152,7 +152,7 @@ def create_sessions():
 def get_sessions():
     return jsonify([sessions.serialize() for sessions in Sessions.query.all()]), 200
 
-@api.route("/get_user_sessions", methods=["GET"])
+@api.route("/user_sessions", methods=["GET"])
 #@jwt_required()
 def get_user_sessions():
     return jsonify([user_sessions.serialize() for user_sessions in User_sessions.query.all()]), 200
