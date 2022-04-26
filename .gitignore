@@ -75,3 +75,6 @@ diagram.png
 __pycache__/
 
 migrations/
+
+# to avoid TailwindCSS headaches
+index.css
