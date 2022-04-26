@@ -19,19 +19,23 @@ export const UserHeader = () => {
     <div>
       {user.map((value, index) => {
         return (
-          <div className="container my-8" key={index}>
-            <p className="text-2xl text-L-Gray-med dark:text-D-Gray-med pt-3 px-3">
-              Hola,{" "}
-              <span className="text-L-Gray-dark dark:text-D-Gray-light">
-                {value.first_name}
-              </span>
-            </p>
-            <p className="text-m text-L-Gray-dark dark:text-D-Gray-light px-5 pb-3">
-              Actualmente estas suscrito al plan{" "}
-              <span>{user.suscription_id}</span> y tu próxima renovación será el{" "}
-              {value.username}
-            </p>
-            <div className="userheaderbg w-full h-2"></div>
+          <div className="container">
+            <div
+              className="w-2/3 mx-auto rounded-xl text-center bg-L-Gray-light border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10 dark:bg-D-Gray-dark"
+              key={index}
+            >
+              <p className="text-2xl text-L-Gray-med dark:text-D-Gray-med pt-3 px-3">
+                Hola,{" "}
+                <span className="text-L-Gray-dark dark:text-D-Gray-light">
+                  {value.first_name}
+                </span>
+              </p>
+              <p className="text-m text-L-Gray-dark dark:text-D-Gray-light px-5 pb-3">
+                Actualmente estas suscrito al plan{" "}
+                <span>{user.suscription_id}</span> y tu próxima renovación será
+                el {value.username}
+              </p>
+            </div>
           </div>
         );
       })}

@@ -52,7 +52,7 @@ export const UserDashboard = () => {
   let history = useHistory();
 
   return (
-    <div className="patternBg dark:patternBgD w-full h-screen bg-center py-44">
+    <div className="patternBg dark:patternBgD w-full h-screen bg-center">
       <div className="container mx-auto">
         <div className=" col-span-full mx-auto">
           <div>

@@ -56,9 +56,9 @@ export const AdminDashboard = () => {
 
   return (
     <div className="patternBg dark:patternBgD w-full h-screen bg-center py-44">
-      <div className="container mx-auto bg-L-Gray-light dark:bg-D-Gray-dark h-screen">
-        <div className=" flex items-center justify-center ">
-          <div className="my-8 py-8">
+      <div className="container mx-auto">
+        <div className="col-span-full mx-auto">
+          <div>
             {/* Carga el encabezado de la sección de administración */}
 
             <AdminHeader />
@@ -67,7 +67,7 @@ export const AdminDashboard = () => {
         <div className="container flex items-center justify-center mx-auto">
           <div className="mb-4 border-b border-gray-200">
             <ul
-              className="flex flex-wrap -mb-px text-sm font-medium text-center"
+              className="flex flex-wrap -mb-px text-sm font-bellfort text-xl text-center"
               id="myTab"
               data-tabs-toggle="#myTabContent"
               role="tablist"
