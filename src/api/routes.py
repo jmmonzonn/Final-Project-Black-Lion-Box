@@ -223,7 +223,8 @@ def user_info(id):
 def create_user_sessions():
      user_id = request.json.get("user_id", None)
      sessions_id = request.json.get("sessions_id", None)
-     
+     date = request.json.get("date", None)
+
     #  not_unique_name = Sessions.query.filter_by(name = name).first()  
     #  if not_unique_name != None:
     #     return jsonify({"message": "Este nombre ya existe, prueba con otro."}),401
@@ -231,7 +232,7 @@ def create_user_sessions():
     #  if name == '' or name == None or description == '' or description == None or regular == '' or regular == None or days == '' or days == None or start_time == '' or start_time == None or duration == '' or duration == None or max_users == '' or max_users == None or sessions_type_id == '' or sessions_type_id == None:
     #     return jsonify({"message": "Rellena todos los campos obligatorios"}), 401
 
-     new_user_sessions = User_sessions(user_id = user_id, sessions_id = sessions_id)
+     new_user_sessions = User_sessions(user_id = user_id, sessions_id = sessions_id, date = date)
      db.session.add(new_user_sessions)
      db.session.commit()
  
@@ -342,10 +343,9 @@ def handle_validate():
         return jsonify({"validate": False}), 400
 
 @api.route("/thisweek", methods=["GET"])
-# @jwt_required()
+@jwt_required()
 def weeklysessions():
-    # user = get_jwt_identity()
-    user = 1
+    user = get_jwt_identity()
     today = date.today()
     data_response = []
     for i in range(7):
@@ -371,12 +371,11 @@ def weeklysessions():
 
 
 @api.route("/joinsession", methods=["POST"])
-# @jwt_required()
+@jwt_required()
 def joinsession():
     date = request.json.get("date", None)
     sessions_id = request.json.get("sessions_id", None)
-    # user = get_jwt_identity()
-    user = 1
+    user = get_jwt_identity()
 
     usersession = User_sessions(user_id = user, date = date, sessions_id = sessions_id)
     db.session.add(usersession)
