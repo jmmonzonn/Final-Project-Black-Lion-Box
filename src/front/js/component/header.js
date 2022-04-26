@@ -1,4 +1,5 @@
 import React from "react";
+import { Alert } from "../component/alert";
 
 export const MainHeader = () => {
   return (
@@ -35,6 +36,7 @@ export const MainHeader = () => {
                 APÚNTATE AHORA!
               </button>
             </a>
+            <Alert content="Test" style="bg-M-Lime text-L-Gray-light" />
           </div>
         </div>
         <div />

@@ -44,16 +44,16 @@ def create_user():
                         marketing_comunication = marketing_comunication, info = info, is_active = False, role = role)
         db.session.add(new_user)
         db.session.commit()
-        token = create_access_token(identity=new_user.username)
+        data_response = create_token(new_user)
     except IntegrityError as ex:
         print(ex)
         if isinstance(ex.orig, NotNullViolation):
             return jsonify({"message" : "Los campos son obligatorios no pueden quedar como null."}),400
         elif isinstance(ex.orig, UniqueViolation):
-            return jsonify({"message" : "Ya se encuentra un usuario regisgtrado con estos datos"}),400
+            return jsonify({"message" : "Ya se encuentra un usuario registrado con estos datos"}),400
         return jsonify({"message" : ex.orig}),400 
 
-    return jsonify({"message" : "Usuario registrado", "token": token}),200
+    return jsonify({"message" : "Usuario registrado", "response": data_response}),200
 
 # Eliminar usuarios
 @api.route("/delete_user/<id>", methods=["DELETE"])
@@ -93,10 +93,16 @@ def edit_user(id):
        
     return jsonify(user.serialize()), 200
     
-    
+def create_token(user): 
+    token = create_access_token(identity=user.id)
 
-
-
+    return {
+        "token": token,
+        "username": user.username,
+        "id": user.id,
+        "role": user.role.name, 
+        "email": user.email
+    }
 
 @api.route("/get_users", methods=["GET"])
 def get_users():
@@ -113,12 +119,8 @@ def login():
 
     token = create_access_token(identity=user.id)
 
-    data_response = {
-        "token": token,
-        "username": user.username,
-        "id": user.id,
-        "role": user.role.name
-    }
+    data_response = create_token(user)
+
     return jsonify(data_response), 200
 
 @api.route('/suscription', methods=["POST"])

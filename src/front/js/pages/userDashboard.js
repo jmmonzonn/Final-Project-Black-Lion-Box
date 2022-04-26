@@ -9,14 +9,27 @@ import { UserModifyProfile } from "../component/userModifyProfile";
 import "../../styles/home.css";
 import { UserThisWeek } from "../component/userThisWeek";
 export const UserDashboard = () => {
-  // Fix para que Flowbite reinicie los eventos al cargar la página. Sin esto, no funcionan los modals, toggles y botones no funcionan.
   useEffect(() => {
+    // Fix para que Flowbite reinicie los eventos al cargar la página. Sin esto, no funcionan los modals, toggles y botones no funcionan.
+
     window.document.dispatchEvent(
       new Event("DOMContentLoaded", {
         bubbles: true,
         cancelable: true,
       })
     );
+
+    if (
+      localStorage.getItem("token") &&
+      localStorage.getItem("role") == "admin"
+    ) {
+      history.push("/admin/dashboard");
+    } else if (
+      localStorage.getItem("token") &&
+      localStorage.getItem("role") == "user"
+    ) {
+      history.push("/user/dashboard");
+    }
   });
 
   // Funciones que se utilizan para definir el estilo de los botones de las tabs en el componente.

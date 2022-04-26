@@ -13,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         stripe
           .redirectToCheckout({
             lineItems: [{ price: stripe_id, quantity: 1 }],
+            customerEmail: localStorage.getItem("email"),
             mode: "subscription",
             successUrl:
               "https://3000-jmmonzonn-finalprojectbl-zeavhkau3qo.ws-eu39b.gitpod.io/success",

@@ -20,6 +20,7 @@ import { Cancel } from "./component/cancel";
 import { Payment } from "./component/payment";
 import { NotFound } from "./component/404.js";
 import { TermsAndConditions } from "./component/userTerms";
+import { FirstSubscription } from "./pages/subscriptions";
 
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -74,6 +75,9 @@ const Layout = () => {
             </Route>
             <Route exact path="/userterms">
               <TermsAndConditions />
+            </Route>
+            <Route exact path="/addsubscription">
+              <FirstSubscription />
             </Route>
             <Route>
               <Navbar />

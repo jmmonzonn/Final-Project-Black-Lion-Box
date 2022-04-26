@@ -13,7 +13,6 @@ import "../../styles/home.css";
 
 export const AdminDashboard = () => {
   // Fix para que Flowbite reinicie los eventos al cargar la página. Sin esto, no funcionan los modals, toggles y botones no funcionan.
-
   useEffect(() => {
     window.document.dispatchEvent(
       new Event("DOMContentLoaded", {
@@ -21,6 +20,18 @@ export const AdminDashboard = () => {
         cancelable: true,
       })
     );
+
+    if (
+      localStorage.getItem("token") &&
+      localStorage.getItem("role") == "admin"
+    ) {
+      history.push("/admin/dashboard");
+    } else if (
+      localStorage.getItem("token") &&
+      localStorage.getItem("role") == "user"
+    ) {
+      history.push("/user/dashboard");
+    }
   });
   // Funciones que se utilizan para definir el estilo de los botones de las tabs en el componente.
 
