@@ -1,7 +1,6 @@
 import React from "react";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./pages/home";
 import { AdminDashboard } from "./pages/adminDashboard";
 import injectContext from "./store/appContext";
@@ -30,62 +29,63 @@ const Layout = () => {
   return (
     <div className=" bg-L-Gray-light dark:bg-D-Gray-dark min-h-full">
       <BrowserRouter basename={basename}>
-        <ScrollToTop>
-          <Switch>
-            <Route exact path="/">
-              <Navbar />
-              <Home />
-            </Route>
-            <Route exact path="/user/dashboard">
-              <Navbar />
-              <UserDashboard />
-            </Route>
-            <Route exact path="/admin/dashboard">
-              <Navbar />
-              <AdminDashboard />
-            </Route>
-            <Route exact path="/register">
-              <Navbar />
-              <Register />
-            </Route>
-            <Route exact path="/login">
-              <Navbar />
-              <Login />
-            </Route>
-            <Route exact path="/contact">
-              <Contact />
-            </Route>
-            <Route exact path="/maps">
-              <Maps />
-            </Route>
-            <Route exact path="/features">
-              <Features />
-            </Route>
-            <Route exact path="/payment">
-              <Payment />
-            </Route>
-            <Route exact path="/success">
-              <Success />
-            </Route>
-            <Route exact path="/cancel">
-              <Cancel />
-            </Route>
-            <Route exact path="/subscriptions">
-              <SubscriptionTiers />
-            </Route>
-            <Route exact path="/userterms">
-              <TermsAndConditions />
-            </Route>
-            <Route exact path="/addsubscription">
-              <FirstSubscription />
-            </Route>
-            <Route>
-              <Navbar />
-              <NotFound />
-            </Route>
-          </Switch>
-          <Footer />
-        </ScrollToTop>
+        <Switch>
+          <Route exact path="/">
+            <Navbar />
+            <Home />
+          </Route>
+          <Route exact path="/user/dashboard">
+            <Navbar />
+            <UserDashboard />
+          </Route>
+          <Route exact path="/admin/dashboard">
+            <Navbar />
+            <AdminDashboard />
+          </Route>
+          <Route exact path="/register">
+            <Navbar />
+            <Register />
+          </Route>
+          <Route exact path="/login">
+            <Navbar />
+            <Login />
+          </Route>
+          <Route exact path="/contact">
+            <Contact />
+          </Route>
+          <Route exact path="/maps">
+            <Maps />
+          </Route>
+          <Route exact path="/features">
+            <Features />
+          </Route>
+          <Route exact path="/payment">
+            <Payment />
+          </Route>
+          <Route exact path="/success">
+            <Success />
+          </Route>
+          <Route exact path="/cancel">
+            <Cancel />
+          </Route>
+          <Route exact path="/subscriptions">
+            <SubscriptionTiers />
+          </Route>
+          <Route exact path="/userterms">
+            <TermsAndConditions />
+          </Route>
+          <Route exact path="/addsubscription">
+            <FirstSubscription />
+          </Route>
+          <Route exact path="/cancel">
+            <Cancel />
+          </Route>
+          <Route>
+            <Navbar />
+            <NotFound />
+          </Route>
+        </Switch>
+        <Footer />
       </BrowserRouter>
     </div>
   );

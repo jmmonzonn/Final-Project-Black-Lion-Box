@@ -1,17 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { UserHeader } from "../component/userHeader";
 import { SubscriptionTiers } from "../component/adminSubscriptionTiers";
-import { ViewSessions } from "../component/userViewSessions";
 import { UserModifyProfile } from "../component/userModifyProfile";
 
 import "../../styles/home.css";
 import { UserThisWeek } from "../component/userThisWeek";
 export const UserDashboard = () => {
-  useEffect(() => {
-    // Fix para que Flowbite reinicie los eventos al cargar la página. Sin esto, no funcionan los modals, toggles y botones no funcionan.
+  // Fix para que Flowbite reinicie los eventos al cargar la página. Sin esto, no funcionan los modals, toggles y botones no funcionan.
 
+  useEffect(() => {
     window.document.dispatchEvent(
       new Event("DOMContentLoaded", {
         bubbles: true,
@@ -35,9 +34,9 @@ export const UserDashboard = () => {
   // Funciones que se utilizan para definir el estilo de los botones de las tabs en el componente.
 
   const active_class =
-    "tab inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-400 border-blue-600 dark:border-blue-500";
+    "tab inline-block p-4 rounded-t-lg border-b-2 text-L-Gray-dark hover:text-A-Magenta dark:text-D-Gray-light dark:hover:text-M-Lime border-A-Magenta dark:border-M-Lime";
   const deactive_class =
-    "tab inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-gray-500 dark:text-gray-400 border-gray-100 dark:border-gray-700";
+    "tab inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-A-Magenta hover:border-gray-300 dark:hover:text-M-Lime text-L-Gray-dark dark:text-D-Gray-light";
 
   // Función que modifica las etiquetas de css de la navegación de tabs para activar y desactivar la pestaña activa.
 
@@ -65,7 +64,7 @@ export const UserDashboard = () => {
   let history = useHistory();
 
   return (
-    <div className="patternBg dark:patternBgD w-full h-screen bg-center">
+    <div className="patternBg dark:patternBgD w-full h-fit min-h-screen bg-center py-10">
       <div className="container mx-auto">
         <div className=" col-span-full mx-auto">
           <div>
@@ -74,10 +73,10 @@ export const UserDashboard = () => {
             <UserHeader />
           </div>
         </div>
-        <div className="container flex items-center justify-center mx-auto">
-          <div className="mb-4 border-b border-L-Gray-light dark:border-D-Gray-dark">
+        <div className="flex justify-center">
+          <div className="mb-4 border-b">
             <ul
-              className="flex flex-wrap -mb-px text-sm font-medium text-center"
+              className="flex flex-wrap -mb-px font-bellfort text-xl text-center"
               id="myTab"
               data-tabs-toggle="#myTabContent"
               role="tablist"
@@ -146,7 +145,7 @@ export const UserDashboard = () => {
           {/* Contenido de la sección de gestión de sesiones */}
 
           <div
-            className="p-4 bg-L-Gray-light rounded-lg dark:bg-D-Gray-dark"
+            className="p-4 bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
             id="users"
             role="tabpanel"
             aria-labelledby="users-tab"
@@ -157,7 +156,7 @@ export const UserDashboard = () => {
           {/* Contenido de la sección de administración de suscripciones */}
 
           <div
-            className="p-4 bg-L-Gray-light rounded-lg dark:bg-D-Gray-dark"
+            className="hidden p-4 bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
             id="training"
             role="tabpanel"
             aria-labelledby="training-tab"
@@ -168,7 +167,7 @@ export const UserDashboard = () => {
           {/* Contenido de la sección de tarifas de suscripciones */}
 
           <div
-            className="p-4 bg-L-Gray-light rounded-lg dark:bg-D-Gray-dark"
+            className="hidden p-4 bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
             id="subscription"
             role="tabpanel"
             aria-labelledby="subscription-tab"

@@ -249,6 +249,7 @@ export const Register = () => {
                     localStorage.setItem("token", data.response.token);
                     localStorage.setItem("username", data.response.username);
                     localStorage.setItem("id", data.response.id);
+                    localStorage.setItem("email", data.response.email);
                     history.push("/addsubscription");
                   }
                 });

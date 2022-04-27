@@ -1,9 +1,36 @@
 import React, { useEffect } from "react";
 import { Link, useHistory, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Login } from "./login";
 
 export const Navbar = () => {
   let history = useHistory();
+  const logout = () => {
+    return (
+      <button
+        type="button"
+        className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+        onClick={() => {
+          localStorage.removeItem("token");
+          history.push("/");
+        }}
+      >
+        Desconectarse
+      </button>
+    );
+  };
+
+  const login = () => {
+    return (
+      <button
+        type="button"
+        className="py-2 px-6 text-sm font-medium text-L-Gray-dark focus:outline-none bg-M-Lime rounded-lg border border-gray-200 hover:bg-A-Magenta hover:text-L-Gray-light focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+        onClick={() => history.push("/login")}
+      >
+        Entrar
+      </button>
+    );
+  };
 
   // CONFIGURACIÓN NECESARIA DEL TEMA OSCURO
 
@@ -162,39 +189,7 @@ export const Navbar = () => {
                 ></path>
               </svg>
             </button>
-
-            {/* Botón de registro */}
-
-            {/* <button
-            type="button"
-            className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-            onClick={() => history.push("/register")}
-          >
-            Registro
-          </button> */}
-
-            {/* Botón de login */}
-
-            <button
-              type="button"
-              className="py-2 px-6 text-sm font-medium text-L-Gray-dark focus:outline-none bg-M-Lime rounded-lg border border-gray-200 hover:bg-A-Magenta hover:text-L-Gray-light focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              onClick={() => history.push("/login")}
-            >
-              Entrar
-            </button>
-
-            {/* Boton de logout */}
-
-            {/* <button
-            type="button"
-            className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-            onClick={() => {
-              localStorage.removeItem("token");
-              history.push("/");
-            }}
-          >
-            Desconectarse
-          </button> */}
+            {localStorage.getItem("token") ? logout() : login()}
 
             {/* Botón de menu en vista móvil */}
 
