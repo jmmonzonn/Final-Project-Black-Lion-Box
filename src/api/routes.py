@@ -44,16 +44,16 @@ def create_user():
                         marketing_comunication = marketing_comunication, info = info, is_active = False, role = role)
         db.session.add(new_user)
         db.session.commit()
-        token = create_access_token(identity=new_user.username)
+        data_response = create_token(new_user)
     except IntegrityError as ex:
         print(ex)
         if isinstance(ex.orig, NotNullViolation):
             return jsonify({"message" : "Los campos son obligatorios no pueden quedar como null."}),400
         elif isinstance(ex.orig, UniqueViolation):
-            return jsonify({"message" : "Ya se encuentra un usuario regisgtrado con estos datos"}),400
+            return jsonify({"message" : "Ya se encuentra un usuario registrado con estos datos"}),400
         return jsonify({"message" : ex.orig}),400 
 
-    return jsonify({"message" : "Usuario registrado", "token": token}),200
+    return jsonify({"message" : "Usuario registrado", "response": data_response}),200
 
 # Eliminar usuarios
 @api.route("/delete_user/<id>", methods=["DELETE"])
@@ -93,10 +93,16 @@ def edit_user(id):
        
     return jsonify(user.serialize()), 200
     
-    
+def create_token(user): 
+    token = create_access_token(identity=user.id)
 
-
-
+    return {
+        "token": token,
+        "username": user.username,
+        "id": user.id,
+        "role": user.role.name, 
+        "email": user.email
+    }
 
 @api.route("/get_users", methods=["GET"])
 def get_users():
@@ -113,12 +119,8 @@ def login():
 
     token = create_access_token(identity=user.id)
 
-    data_response = {
-        "token": token,
-        "username": user.username,
-        "id": user.id,
-        "role": user.role.name
-    }
+    data_response = create_token(user)
+
     return jsonify(data_response), 200
 
 @api.route('/suscription', methods=["POST"])
@@ -227,7 +229,7 @@ def create_sessions():
 def get_sessions():
     return jsonify([sessions.serialize() for sessions in Sessions.query.all()]), 200
 
-@api.route("/get_user_sessions", methods=["GET"])
+@api.route("/user_sessions", methods=["GET"])
 #@jwt_required()
 def get_user_sessions():
     return jsonify([user_sessions.serialize() for user_sessions in User_sessions.query.all()]), 200
@@ -250,7 +252,8 @@ def user_info(id):
 def create_user_sessions():
      user_id = request.json.get("user_id", None)
      sessions_id = request.json.get("sessions_id", None)
-     
+     date = request.json.get("date", None)
+
     #  not_unique_name = Sessions.query.filter_by(name = name).first()  
     #  if not_unique_name != None:
     #     return jsonify({"message": "Este nombre ya existe, prueba con otro."}),401
@@ -258,7 +261,7 @@ def create_user_sessions():
     #  if name == '' or name == None or description == '' or description == None or regular == '' or regular == None or days == '' or days == None or start_time == '' or start_time == None or duration == '' or duration == None or max_users == '' or max_users == None or sessions_type_id == '' or sessions_type_id == None:
     #     return jsonify({"message": "Rellena todos los campos obligatorios"}), 401
 
-     new_user_sessions = User_sessions(user_id = user_id, sessions_id = sessions_id)
+     new_user_sessions = User_sessions(user_id = user_id, sessions_id = sessions_id, date = date)
      db.session.add(new_user_sessions)
      db.session.commit()
  
@@ -369,10 +372,9 @@ def handle_validate():
         return jsonify({"validate": False}), 400
 
 @api.route("/thisweek", methods=["GET"])
-# @jwt_required()
+@jwt_required()
 def weeklysessions():
-    # user = get_jwt_identity()
-    user = 1
+    user = get_jwt_identity()
     today = date.today()
     data_response = []
     for i in range(7):
@@ -398,12 +400,11 @@ def weeklysessions():
 
 
 @api.route("/joinsession", methods=["POST"])
-# @jwt_required()
+@jwt_required()
 def joinsession():
     date = request.json.get("date", None)
     sessions_id = request.json.get("sessions_id", None)
-    # user = get_jwt_identity()
-    user = 1
+    user = get_jwt_identity()
 
     usersession = User_sessions(user_id = user, date = date, sessions_id = sessions_id)
     db.session.add(usersession)

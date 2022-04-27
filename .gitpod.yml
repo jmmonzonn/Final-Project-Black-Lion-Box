@@ -25,6 +25,8 @@ tasks:
       python docs/assets/greeting.py front
     openMode: split-right
   - command: >
+      rm ./src/front/styles/index.css
+      touch ./src/front/styles/index.css
       npx tailwindcss -i ./src/front/styles/home.css -o ./src/front/styles/index.css --watch
     openMode: split-right
 
