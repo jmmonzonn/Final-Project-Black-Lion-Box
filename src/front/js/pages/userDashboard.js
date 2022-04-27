@@ -9,14 +9,27 @@ import { UserModifyProfile } from "../component/userModifyProfile";
 import "../../styles/home.css";
 import { UserThisWeek } from "../component/userThisWeek";
 export const UserDashboard = () => {
-  // Fix para que Flowbite reinicie los eventos al cargar la página. Sin esto, no funcionan los modals, toggles y botones no funcionan.
   useEffect(() => {
+    // Fix para que Flowbite reinicie los eventos al cargar la página. Sin esto, no funcionan los modals, toggles y botones no funcionan.
+
     window.document.dispatchEvent(
       new Event("DOMContentLoaded", {
         bubbles: true,
         cancelable: true,
       })
     );
+
+    if (
+      localStorage.getItem("token") &&
+      localStorage.getItem("role") == "admin"
+    ) {
+      history.push("/admin/dashboard");
+    } else if (
+      localStorage.getItem("token") &&
+      localStorage.getItem("role") == "user"
+    ) {
+      history.push("/user/dashboard");
+    }
   });
 
   // Funciones que se utilizan para definir el estilo de los botones de las tabs en el componente.
@@ -52,114 +65,116 @@ export const UserDashboard = () => {
   let history = useHistory();
 
   return (
-    <div className="container mx-auto">
-      <div className=" col-span-full mx-auto">
-        <div>
-          {/* Carga el encabezado de la sección de usuario */}
+    <div className="patternBg dark:patternBgD w-full h-screen bg-center">
+      <div className="container mx-auto">
+        <div className=" col-span-full mx-auto">
+          <div>
+            {/* Carga el encabezado de la sección de usuario */}
 
-          <UserHeader />
+            <UserHeader />
+          </div>
         </div>
-      </div>
-      <div className="container flex items-center justify-center mx-auto">
-        <div className="mb-4 border-b border-L-Gray-light dark:border-D-Gray-dark">
-          <ul
-            className="flex flex-wrap -mb-px text-sm font-medium text-center"
-            id="myTab"
-            data-tabs-toggle="#myTabContent"
-            role="tablist"
+        <div className="container flex items-center justify-center mx-auto">
+          <div className="mb-4 border-b border-L-Gray-light dark:border-D-Gray-dark">
+            <ul
+              className="flex flex-wrap -mb-px text-sm font-medium text-center"
+              id="myTab"
+              data-tabs-toggle="#myTabContent"
+              role="tablist"
+            >
+              {/* Tab de la sección de sesiones */}
+
+              <li className="mr-2" role="presentation">
+                <button
+                  className={active_class}
+                  id="users-tab"
+                  data-tabs-target="#users"
+                  type="button"
+                  role="tab"
+                  aria-controls="users"
+                  aria-selected="true"
+                  onClick={(e) => {
+                    changeTab(e);
+                  }}
+                >
+                  Sesiones
+                </button>
+              </li>
+
+              {/* Tab de la sección de tipos de editar suscripción */}
+
+              <li className="mr-2" role="presentation">
+                <button
+                  className={deactive_class}
+                  id="training-tab"
+                  data-tabs-target="#training"
+                  type="button"
+                  role="tab"
+                  aria-controls="training"
+                  aria-selected="false"
+                  onClick={(e) => {
+                    changeTab(e);
+                  }}
+                >
+                  Suscripción
+                </button>
+              </li>
+
+              {/* Tab de la sección de editar los datos del usuario */}
+
+              <li className="mr-2" role="presentation">
+                <button
+                  className={deactive_class}
+                  id="subscription-tab"
+                  data-tabs-target="#subscription"
+                  type="button"
+                  role="tab"
+                  aria-controls="subscription"
+                  aria-selected="false"
+                  onClick={(e) => {
+                    changeTab(e);
+                  }}
+                >
+                  Editar perfil
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="myTabContent">
+          {/* Contenido de la sección de gestión de sesiones */}
+
+          <div
+            className="p-4 bg-L-Gray-light rounded-lg dark:bg-D-Gray-dark"
+            id="users"
+            role="tabpanel"
+            aria-labelledby="users-tab"
           >
-            {/* Tab de la sección de sesiones */}
+            <UserThisWeek />
+          </div>
 
-            <li className="mr-2" role="presentation">
-              <button
-                className={active_class}
-                id="users-tab"
-                data-tabs-target="#users"
-                type="button"
-                role="tab"
-                aria-controls="users"
-                aria-selected="true"
-                onClick={(e) => {
-                  changeTab(e);
-                }}
-              >
-                Sesiones
-              </button>
-            </li>
+          {/* Contenido de la sección de administración de suscripciones */}
 
-            {/* Tab de la sección de tipos de editar suscripción */}
+          <div
+            className="p-4 bg-L-Gray-light rounded-lg dark:bg-D-Gray-dark"
+            id="training"
+            role="tabpanel"
+            aria-labelledby="training-tab"
+          >
+            <SubscriptionTiers />
+          </div>
 
-            <li className="mr-2" role="presentation">
-              <button
-                className={deactive_class}
-                id="training-tab"
-                data-tabs-target="#training"
-                type="button"
-                role="tab"
-                aria-controls="training"
-                aria-selected="false"
-                onClick={(e) => {
-                  changeTab(e);
-                }}
-              >
-                Suscripción
-              </button>
-            </li>
+          {/* Contenido de la sección de tarifas de suscripciones */}
 
-            {/* Tab de la sección de editar los datos del usuario */}
-
-            <li className="mr-2" role="presentation">
-              <button
-                className={deactive_class}
-                id="subscription-tab"
-                data-tabs-target="#subscription"
-                type="button"
-                role="tab"
-                aria-controls="subscription"
-                aria-selected="false"
-                onClick={(e) => {
-                  changeTab(e);
-                }}
-              >
-                Editar perfil
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div id="myTabContent">
-        {/* Contenido de la sección de gestión de sesiones */}
-
-        <div
-          className="p-4 bg-L-Gray-light rounded-lg dark:bg-D-Gray-dark"
-          id="users"
-          role="tabpanel"
-          aria-labelledby="users-tab"
-        >
-          <UserThisWeek />
-        </div>
-
-        {/* Contenido de la sección de administración de suscripciones */}
-
-        <div
-          className="p-4 bg-L-Gray-light rounded-lg dark:bg-D-Gray-dark"
-          id="training"
-          role="tabpanel"
-          aria-labelledby="training-tab"
-        >
-          <SubscriptionTiers />
-        </div>
-
-        {/* Contenido de la sección de tarifas de suscripciones */}
-
-        <div
-          className="p-4 bg-L-Gray-light rounded-lg dark:bg-D-Gray-dark"
-          id="subscription"
-          role="tabpanel"
-          aria-labelledby="subscription-tab"
-        >
-          <UserModifyProfile />
+          <div
+            className="p-4 bg-L-Gray-light rounded-lg dark:bg-D-Gray-dark"
+            id="subscription"
+            role="tabpanel"
+            aria-labelledby="subscription-tab"
+          >
+            <UserModifyProfile />
+          </div>
         </div>
       </div>
     </div>

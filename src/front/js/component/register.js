@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 
 export const Register = () => {
   const [user, setUser] = useState({});
+  const history = useHistory();
 
   return (
     // Determina el fondo y establece el tamaño completo de la página.
@@ -243,7 +244,14 @@ export const Register = () => {
                 body: JSON.stringify(user),
               })
                 .then((resp) => resp.json())
-                .then((data) => console.log(data));
+                .then((data) => {
+                  if (data.response.token) {
+                    localStorage.setItem("token", data.response.token);
+                    localStorage.setItem("username", data.response.username);
+                    localStorage.setItem("id", data.response.id);
+                    history.push("/addsubscription");
+                  }
+                });
             }}
             className="py-2.5 px-8 mr-2 mb-2 text-m font-medium text-gray-900 focus:outline-none bg-M-Lime rounded-lg border border-gray-200 hover:bg-A-Magenta hover:text-M-Lime focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
           >

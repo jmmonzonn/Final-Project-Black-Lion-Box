@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext.js";
+import { useHistory } from "react-router-dom";
 
 export const SubscriptionTiers = (props) => {
   const { store, actions } = useContext(Context);
+  let history = useHistory();
 
   return (
     <div
@@ -49,6 +51,12 @@ export const SubscriptionTiers = (props) => {
                     type="button"
                     className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                     onClick={() => {
+                      if (
+                        !localStorage.getItem("email") &&
+                        !localStorage.getItem("token")
+                      ) {
+                        history.push("/register");
+                      }
                       actions.pay(value.stripe_id);
                     }}
                   >

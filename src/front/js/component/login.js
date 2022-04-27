@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { useHistory } from "react-router-dom";
@@ -7,6 +7,20 @@ export const Login = () => {
   const { store, actions } = useContext(Context);
   const [user, setUser] = useState({});
   let history = useHistory();
+  useEffect(() => {
+    if (
+      localStorage.getItem("token") &&
+      localStorage.getItem("role") == "admin"
+    ) {
+      history.push("/admin/dashboard");
+    } else if (
+      localStorage.getItem("token") &&
+      localStorage.getItem("role") == "user"
+    ) {
+      history.push("/user/dashboard");
+    }
+  }, []);
+
   let login = () => {
     fetch(process.env.BACKEND_URL + "/api/login", {
       method: "POST",
@@ -21,6 +35,8 @@ export const Login = () => {
           localStorage.setItem("token", data.token);
           localStorage.setItem("username", data.username);
           localStorage.setItem("id", data.id);
+          localStorage.setItem("email", data.email);
+          localStorage.setItem("role", data.role);
           if (data.role == "admin") {
             history.push("/admin/dashboard");
           } else {

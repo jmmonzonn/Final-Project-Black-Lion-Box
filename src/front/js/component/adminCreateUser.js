@@ -70,6 +70,8 @@ export const AdminCreateUser = () => {
               <div className="table-cell text-left ...">Dirección</div>
               <div className="table-cell text-left ...">Rol</div>
               <div className="table-cell text-left ...">Id</div>
+              <div className="table-cell text-left ...">Modificar</div>
+              <div className="table-cell text-left ...">Eliminar</div>
             </div>
           </div>
           <div className="table-row-group">
@@ -86,8 +88,15 @@ export const AdminCreateUser = () => {
                   <div className="table-cell ...">{value.id}</div>
                   <div className="table-cell ...">
                     <button
+                      className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
                       type="button"
-                      className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      data-modal-toggle="authentication-modal"
+                    >
+                      📝
+                    </button>
+                    <button
+                      type="button"
+                      className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
                       onClick={() => {
                         fetch(
                           process.env.BACKEND_URL +
@@ -104,14 +113,7 @@ export const AdminCreateUser = () => {
                           .then((data) => getUsers());
                       }}
                     >
-                      Eliminar
-                    </button>
-                    <button
-                      className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                      type="button"
-                      data-modal-toggle="authentication-modal"
-                    >
-                      Añadir nuevo usuario
+                      ❌
                     </button>
                   </div>
                 </div>
