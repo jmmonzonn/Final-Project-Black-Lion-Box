@@ -7,7 +7,7 @@ export const MainHeader = () => {
       <div className="bg-headerbg text-center dark:bg-headerbgD mb-12 w-full h-screen">
         <div className="col-auto">
           <video
-            className="logoheader sm:w-2/5 w-3/4 mx-auto pt-12 max-h-60screen"
+            className="logoheader sm:w-2/5 w-3/4 mx-auto pt-12 max-h-120"
             src="https://res.cloudinary.com/blacklionbox/video/upload/v1650464596/hola_VP9_1_rmst1a.webm"
             autoPlay
             loop
@@ -15,14 +15,14 @@ export const MainHeader = () => {
           />
         </div>
         <div className="col-auto">
-          <div className=" pt-14">
+          {/* <div className=" pt-14">
             <h2
               className="hero glitch layers font-bellfort"
               data-text="NO PAIN, NO GAIN"
             >
               <span>NO PAIN, NO GAIN</span>
             </h2>
-          </div>
+          </div> */}
           <div className="pt-4">
             <p className="sm:w-1/4 w-4/5 display-5 text-L-Gray-light text-2xl font-medium opacity-75 mx-auto">
               REGÍSTRATE ANTES DEL 31/05 Y DISFRUTA DEL PRIMER MES CON UN
@@ -36,7 +36,7 @@ export const MainHeader = () => {
                 APÚNTATE AHORA!
               </button>
             </a>
-            <Alert content="Test" style="bg-M-Lime text-L-Gray-light" />
+            {/* <Alert content="Test" style="bg-M-Lime text-L-Gray-light" /> */}
           </div>
         </div>
         <div />

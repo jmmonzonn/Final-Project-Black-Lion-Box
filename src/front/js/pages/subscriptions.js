@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { SubscriptionTiers } from "../component/subscriptionTiers";
+import { useHistory } from "react-router-dom";
 
 export const FirstSubscription = () => {
   const history = useHistory();
