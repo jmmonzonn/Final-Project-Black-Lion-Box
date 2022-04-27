@@ -52,33 +52,65 @@ export const AdminSessions = () => {
   return (
     <>
       <div className="container flex items-center justify-center mx-auto">
-        <div className="table w-full ...">
-          <div className="table-header-group ...">
+        <div className="table w-full">
+          <div className="table-header-group">
             <div className="table-row">
-              <div className="table-cell text-left ...">Nombre</div>
-              <div className="table-cell text-left ...">Descripción</div>
-              <div className="table-cell text-left ...">Regular</div>
-              <div className="table-cell text-left ...">Hora de inicio</div>
-              <div className="table-cell text-left ...">Duración</div>
-              <div className="table-cell text-left ...">
-                Máximos participantes
-              </div>
-              <div className="table-cell text-left ...">Tipo de sesión</div>
-              <div className="table-cell text-left ...">Días de la semana</div>
+              <div className="table-cell text-left">Nombre</div>
+              <div className="table-cell text-left">Descripción</div>
+              <div className="table-cell text-left">Regular</div>
+              <div className="table-cell text-left">Hora de inicio</div>
+              <div className="table-cell text-left">Duración</div>
+              <div className="table-cell text-left">Máximos participantes</div>
+              <div className="table-cell text-left">Tipo de sesión</div>
+              <div className="table-cell text-left">Días de la semana</div>
+              <div className="table-cell text-left">Modificar</div>
+              <div className="table-cell text-left">Eliminar</div>
             </div>
           </div>
           <div className="table-row-group">
             {sessionsList.map((value, index) => {
               return (
                 <div className="table-row" key={index}>
-                  <div className="table-cell ...">{value.name}</div>
-                  <div className="table-cell ...">{value.description}</div>
-                  <div className="table-cell ...">{value.regular}</div>
-                  <div className="table-cell ...">{value.start_time}</div>
-                  <div className="table-cell ...">{value.duration}</div>
-                  <div className="table-cell ...">{value.max_users}</div>
-                  <div className="table-cell ...">{value.session_type}</div>
-                  <div className="table-cell ...">{value.weekdays}</div>
+                  <div className="table-cell">{value.name}</div>
+                  <div className="table-cell">{value.description}</div>
+                  <div className="table-cell">{value.regular}</div>
+                  <div className="table-cell">{value.start_time}</div>
+                  <div className="table-cell">{value.duration}</div>
+                  <div className="table-cell">{value.max_users}</div>
+                  <div className="table-cell">{value.session_type}</div>
+                  <div className="table-cell">{value.weekdays}</div>
+                  <div className="table-cell">
+                    <button
+                      className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
+                      type="button"
+                      data-modal-toggle="authentication-modal"
+                    >
+                      📝
+                    </button>
+                  </div>
+                  <div className="table-cell ...">
+                    <button
+                      type="button"
+                      className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
+                      // onClick={() => {
+                      //   fetch(
+                      //     process.env.BACKEND_URL +
+                      //       "/api/delete_user/" +
+                      //       value.id,
+                      //     {
+                      //       method: "DELETE",
+                      //       headers: {
+                      //         "Content-Type": "application/json",
+                      //       },
+                      //     }
+                      //   )
+                      //     .then((resp) => resp.json())
+                      //     .then((data) => getUsers());
+                      // }}
+                    >
+                      ❌
+                    </button>
+                  </div>
                 </div>
               );
             })}

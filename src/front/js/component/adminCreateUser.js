@@ -44,49 +44,37 @@ export const AdminCreateUser = () => {
       .then((data) => setRolesList(data));
   };
 
-  // const deleteUser = (id) => {
-  //   fetch(process.env.BACKEND_URL + "/api/delete_user/" + id, {
-  //     method: "DELETE",
-  //     headers: {
-  //       "Content-type": "application/json; charset=UTF-8",
-  //       Authorization: "Bearer " + localStorage.getItem("token"),
-  //     },
-  //   })
-  //     .then((resp) => resp.json())
-  //     .then((data) => console.log(data.response));
-  // };
-
   return (
     <>
-      <div className="container flex items-center justify-center mx-auto ">
+      <div className="container flex items-center justify-center mx-auto">
         <div className="table w-full ...">
-          <div className="table-header-group ...">
+          <div className="table-header-group">
             <div className="table-row">
-              <div className="table-cell text-left ...">Nombre</div>
-              <div className="table-cell text-left ...">Apellidos</div>
-              <div className="table-cell text-left ...">Nombre de usuario</div>
-              <div className="table-cell text-left ...">Email</div>
-              <div className="table-cell text-left ...">Teléfono</div>
-              <div className="table-cell text-left ...">Dirección</div>
-              <div className="table-cell text-left ...">Rol</div>
-              <div className="table-cell text-left ...">Id</div>
-              <div className="table-cell text-left ...">Modificar</div>
-              <div className="table-cell text-left ...">Eliminar</div>
+              <div className="table-cell text-left">Nombre</div>
+              <div className="table-cell text-left">Apellidos</div>
+              <div className="table-cell text-left">Nombre de usuario</div>
+              <div className="table-cell text-left">Email</div>
+              <div className="table-cell text-left">Teléfono</div>
+              <div className="table-cell text-left">Dirección</div>
+              <div className="table-cell text-left">Rol</div>
+              <div className="table-cell text-left">Id</div>
+              <div className="table-cell text-left">Modificar</div>
+              <div className="table-cell text-left">Eliminar</div>
             </div>
           </div>
           <div className="table-row-group">
             {usersList.map((value, index) => {
               return (
                 <div className="table-row" key={index}>
-                  <div className="table-cell ...">{value.first_name}</div>
-                  <div className="table-cell ...">{value.last_name}</div>
-                  <div className="table-cell ...">{value.username}</div>
-                  <div className="table-cell ...">{value.email}</div>
-                  <div className="table-cell ...">{value.phone}</div>
-                  <div className="table-cell ...">{value.adress}</div>
-                  <div className="table-cell ...">{value.role}</div>
-                  <div className="table-cell ...">{value.id}</div>
-                  <div className="table-cell ...">
+                  <div className="table-cell">{value.first_name}</div>
+                  <div className="table-cell">{value.last_name}</div>
+                  <div className="table-cell">{value.username}</div>
+                  <div className="table-cell">{value.email}</div>
+                  <div className="table-cell">{value.phone}</div>
+                  <div className="table-cell">{value.adress}</div>
+                  <div className="table-cell">{value.role}</div>
+                  <div className="table-cell">{value.id}</div>
+                  <div className="table-cell">
                     <button
                       className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
                       type="button"
@@ -94,6 +82,8 @@ export const AdminCreateUser = () => {
                     >
                       📝
                     </button>
+                  </div>
+                  <div className="table-cell ...">
                     <button
                       type="button"
                       className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
