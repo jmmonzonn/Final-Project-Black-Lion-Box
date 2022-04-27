@@ -51,53 +51,85 @@ export const SubscriptionTiers = () => {
 
   return (
     <>
-      <div>
-        <div className="table w-full ...">
-          <div className="table-header-group ...">
+      <div className="container px-10 py-4">
+        <div className="table w-full">
+          <div className="table-header-group">
             <div className="table-row">
-              <div className="table-cell text-left ...">Nombre</div>
-              <div className="table-cell text-left ...">Descripción</div>
-              <div className="table-cell text-left ...">Precio</div>
-              <div className="table-cell text-left ...">Sesiones</div>
-              <div className="table-cell text-left ...">
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
+                Nombre
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
+                Descripción
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
+                Precio
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
+                Sesiones
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
                 Tipo de entrenamiento
               </div>
-              <div className="table-cell text-left ...">Id</div>
+              {/* <div className="table-cell font-bellfort text-left font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
+                Id
+              </div> */}
+              <div className="table-cell font-bellfort text-left font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
+                Modificar
+              </div>
+              <div className="table-cell font-bellfort text-left font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
+                Eliminar
+              </div>
             </div>
           </div>
           <div className="table-row-group">
             {suscriptionList.map((value, index) => {
               return (
                 <div className="table-row" key={index}>
-                  <div className="table-cell ...">{value.name}</div>
-                  <div className="table-cell ...">{value.description}</div>
-                  <div className="table-cell ...">{value.price}</div>
-                  <div className="table-cell ...">{value.tokens}</div>
-                  <div className="table-cell ...">{value.suscription_type}</div>
-                  <div className="table-cell ...">{value.id}</div>
-                  <button
-                    type="submit"
-                    className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                    onClick={() => {
-                      deleteSuscription(value.id);
-                    }}
-                  >
-                    Eliminar
-                  </button>
-                  <button
-                    type="submit"
-                    className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                  >
-                    Modificar
-                  </button>
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.name}
+                  </div>
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.description}
+                  </div>
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.price}
+                  </div>
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.tokens}
+                  </div>
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.suscription_type}
+                  </div>
+                  {/* <div className="table-cell">{value.id}</div> */}
+                  <div className="table-cell">
+                    <button
+                      type="submit"
+                      className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
+                    >
+                      📝
+                    </button>
+                  </div>
+                  <div className="table-cell ...">
+                    <button
+                      type="submit"
+                      className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
+                      onClick={() => {
+                        deleteSuscription(value.id);
+                      }}
+                    >
+                      ❌
+                    </button>
+                  </div>
                 </div>
               );
             })}
           </div>
         </div>
+      </div>
+      <div>
         <div className="container flex items-center justify-center mx-auto my-8">
           <button
-            className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="py-2 px-6 text-sm font-medium text-L-Gray-dark focus:outline-none bg-M-Lime rounded-lg border border-gray-200 hover:bg-A-Magenta hover:text-L-Gray-light focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             type="button"
             data-modal-toggle="subscription-modal"
           >
@@ -111,7 +143,7 @@ export const SubscriptionTiers = () => {
             className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center"
           >
             <div className="relative p-4 w-full max-w-md h-full md:h-auto">
-              <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+              <div className="relative bg-L-Gray-light rounded-lg shadow dark:bg-D-Gray-dark">
                 <div className="flex justify-end p-2">
                   <button
                     type="button"
@@ -227,7 +259,7 @@ export const SubscriptionTiers = () => {
                   </div>
                   <button
                     type="submit"
-                    className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className="py-2 px-6 text-sm font-medium text-L-Gray-dark focus:outline-none bg-M-Lime rounded-lg border border-gray-200 hover:bg-A-Magenta hover:text-L-Gray-light focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                     onClick={() => {
                       fetch(process.env.BACKEND_URL + "/api/suscription", {
                         method: "POST",
@@ -253,48 +285,3 @@ export const SubscriptionTiers = () => {
     </>
   );
 };
-
-{
-  /* <div>
-<p>Agregar suscripciones:</p>
-<div className="input-group mb-3">
-  <span className="input-group-text" id="basic-addon1">
-    Nombre
-  </span>
-  <input
-    type="text"
-    className="form-control"
-    placeholder="Username"
-    aria-label="Username"
-    aria-describedby="basic-addon1"
-  />
-</div>
-<div className="input-group mb-3">
-  <span className="input-group-text" id="basic-addon1">
-    Precio
-  </span>
-  <input
-    type="number"
-    className="form-control"
-    placeholder="Username"
-    aria-label="Username"
-    aria-describedby="basic-addon1"
-  />
-</div>
-<div className="input-group mb-3">
-  <span className="input-group-text" id="basic-addon1">
-    Beneficios:
-  </span>
-  <input
-    type="number"
-    className="form-control"
-    placeholder="Username"
-    aria-label="Username"
-    aria-describedby="basic-addon1"
-  />
-</div>
-<div>
-  <button>Agregar Suscripción</button>
-</div>
-</div> */
-}

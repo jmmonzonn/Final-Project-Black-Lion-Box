@@ -46,47 +46,81 @@ export const AdminCreateUser = () => {
 
   return (
     <>
-      <div className="container flex items-center justify-center mx-auto">
-        <div className="table w-full ...">
+      <div className="container px-10 py-4">
+        <div className="table w-full">
           <div className="table-header-group">
             <div className="table-row">
-              <div className="table-cell text-left">Nombre</div>
-              <div className="table-cell text-left">Apellidos</div>
-              <div className="table-cell text-left">Nombre de usuario</div>
-              <div className="table-cell text-left">Email</div>
-              <div className="table-cell text-left">Teléfono</div>
-              <div className="table-cell text-left">Dirección</div>
-              <div className="table-cell text-left">Rol</div>
-              <div className="table-cell text-left">Id</div>
-              <div className="table-cell text-left">Modificar</div>
-              <div className="table-cell text-left">Eliminar</div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
+                Nombre
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
+                Apellidos
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
+                Nombre de usuario
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
+                Email
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
+                Teléfono
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
+                Dirección
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
+                Rol
+              </div>
+              {/* <div className="table-cell font-bellfort text-left font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
+                Id
+              </div> */}
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
+                Modificar
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
+                Eliminar
+              </div>
             </div>
           </div>
           <div className="table-row-group">
             {usersList.map((value, index) => {
               return (
                 <div className="table-row" key={index}>
-                  <div className="table-cell">{value.first_name}</div>
-                  <div className="table-cell">{value.last_name}</div>
-                  <div className="table-cell">{value.username}</div>
-                  <div className="table-cell">{value.email}</div>
-                  <div className="table-cell">{value.phone}</div>
-                  <div className="table-cell">{value.adress}</div>
-                  <div className="table-cell">{value.role}</div>
-                  <div className="table-cell">{value.id}</div>
-                  <div className="table-cell">
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.first_name}
+                  </div>
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.last_name}
+                  </div>
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.username}
+                  </div>
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.email}
+                  </div>
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.phone}
+                  </div>
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.adress}
+                  </div>
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.role}
+                  </div>
+                  {/* <div className="table-cell text-center">{value.id}</div> */}
+                  <div className="table-cell text-center">
                     <button
-                      className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
+                      className="text-whitefocus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:focus:ring-blue-800"
                       type="button"
                       data-modal-toggle="authentication-modal"
                     >
                       📝
                     </button>
                   </div>
-                  <div className="table-cell ...">
+                  <div className="table-cell text-center">
                     <button
                       type="button"
-                      className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
+                      className="text-whitefocus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:focus:ring-blue-800"
                       onClick={() => {
                         fetch(
                           process.env.BACKEND_URL +
@@ -114,7 +148,7 @@ export const AdminCreateUser = () => {
       </div>
       <div className="container flex items-center justify-center mx-auto my-8">
         <button
-          className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="py-2 px-6 text-sm font-medium text-L-Gray-dark focus:outline-none bg-M-Lime rounded-lg border border-gray-200 hover:bg-A-Magenta hover:text-L-Gray-light focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
           type="button"
           data-modal-toggle="authentication-modal"
         >
@@ -128,7 +162,7 @@ export const AdminCreateUser = () => {
           className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center"
         >
           <div className="relative p-4 w-full max-w-md h-full md:h-auto">
-            <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div className="relative bg-L-Gray-light rounded-lg shadow dark:bg-D-Gray-dark">
               <div className="flex justify-end p-2">
                 <button
                   type="button"
@@ -324,7 +358,7 @@ export const AdminCreateUser = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="py-2 px-6 text-sm font-medium text-L-Gray-dark focus:outline-none bg-M-Lime rounded-lg border border-gray-200 hover:bg-A-Magenta hover:text-L-Gray-light focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                   onClick={() => {
                     fetch(process.env.BACKEND_URL + "/api/signup", {
                       method: "POST",
@@ -413,3 +447,5 @@ export const AdminCreateUser = () => {
     </>
   );
 };
+
+// w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800

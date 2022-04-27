@@ -51,35 +51,82 @@ export const AdminSessions = () => {
 
   return (
     <>
-      <div className="container flex items-center justify-center mx-auto">
+      <div className="container px-10 py-4">
         <div className="table w-full">
           <div className="table-header-group">
             <div className="table-row">
-              <div className="table-cell text-left">Nombre</div>
-              <div className="table-cell text-left">Descripción</div>
-              <div className="table-cell text-left">Regular</div>
-              <div className="table-cell text-left">Hora de inicio</div>
-              <div className="table-cell text-left">Duración</div>
-              <div className="table-cell text-left">Máximos participantes</div>
-              <div className="table-cell text-left">Tipo de sesión</div>
-              <div className="table-cell text-left">Días de la semana</div>
-              <div className="table-cell text-left">Modificar</div>
-              <div className="table-cell text-left">Eliminar</div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2">
+                Nombre
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime">
+                Descripción
+              </div>
+              {/* <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime">
+                Regular
+              </div> */}
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime">
+                Hora de inicio
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime">
+                Duración
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime">
+                Máximos participantes
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime">
+                Tipo de sesión
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime">
+                Días de la semana
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime">
+                Apuntar Usuario
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime">
+                Modificar
+              </div>
+              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime">
+                Eliminar
+              </div>
             </div>
           </div>
+
           <div className="table-row-group">
             {sessionsList.map((value, index) => {
               return (
                 <div className="table-row" key={index}>
-                  <div className="table-cell">{value.name}</div>
-                  <div className="table-cell">{value.description}</div>
-                  <div className="table-cell">{value.regular}</div>
-                  <div className="table-cell">{value.start_time}</div>
-                  <div className="table-cell">{value.duration}</div>
-                  <div className="table-cell">{value.max_users}</div>
-                  <div className="table-cell">{value.session_type}</div>
-                  <div className="table-cell">{value.weekdays}</div>
-                  <div className="table-cell">
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.name}
+                  </div>
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.description}
+                  </div>
+                  {/* <div className="table-cell dark:text-D-Gray-light">{value.regular}</div> */}
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.start_time}
+                  </div>
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.duration}
+                  </div>
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.max_users}
+                  </div>
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.session_type}
+                  </div>
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    {value.weekdays}
+                  </div>
+                  <div className="table-cell text-center dark:text-D-Gray-light">
+                    <button
+                      className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
+                      type="button"
+                      data-modal-toggle="authentication-modal"
+                    >
+                      👍
+                    </button>
+                  </div>
+                  <div className="table-cell text-center dark:text-D-Gray-light">
                     <button
                       className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
                       type="button"
@@ -88,10 +135,10 @@ export const AdminSessions = () => {
                       📝
                     </button>
                   </div>
-                  <div className="table-cell ...">
+                  <div className="table-cell text-center">
                     <button
                       type="button"
-                      className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
+                      className="text-white text-center focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
                       // onClick={() => {
                       //   fetch(
                       //     process.env.BACKEND_URL +
@@ -119,7 +166,7 @@ export const AdminSessions = () => {
       </div>
       <div className="container flex items-center justify-center mx-auto my-8">
         <button
-          className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="py-2 px-6 text-sm font-medium text-L-Gray-dark focus:outline-none bg-M-Lime rounded-lg border border-gray-200 hover:bg-A-Magenta hover:text-L-Gray-light focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
           type="button"
           data-modal-toggle="session-modal"
         >
@@ -133,7 +180,7 @@ export const AdminSessions = () => {
           className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center"
         >
           <div className="relative p-4 w-full max-w-md h-full md:h-auto">
-            <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div className="relative bg-L-Gray-light rounded-lg shadow dark:bg-D-Gray-dark">
               <div className="flex justify-end p-2">
                 <button
                   type="button"
@@ -296,7 +343,7 @@ export const AdminSessions = () => {
                 <button
                   type="button"
                   data-modal-toggle="session-modal"
-                  className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="py-2 px-6 text-sm font-medium text-L-Gray-dark focus:outline-none bg-M-Lime rounded-lg border border-gray-200 hover:bg-A-Magenta hover:text-L-Gray-light focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                   onClick={() => {
                     fetch(process.env.BACKEND_URL + "/api/sessions", {
                       method: "POST",

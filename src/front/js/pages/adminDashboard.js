@@ -77,7 +77,7 @@ export const AdminDashboard = () => {
           </div>
         </div>
         <div className="flex justify-center">
-          <div className="mb-4 border-b">
+          <div className="mb-4">
             <ul
               className="flex flex-wrap -mb-px font-bellfort text-xl text-center"
               id="myTab"
@@ -99,13 +99,13 @@ export const AdminDashboard = () => {
                     changeTab(e);
                   }}
                 >
-                  Usuarios
+                  Gestión de Usuarios
                 </button>
               </li>
 
               {/* Tab de la sección de tipos de entrenamiento */}
 
-              <li className="mr-2" role="presentation">
+              {/* <li className="mr-2" role="presentation">
                 <button
                   className={deactive_class}
                   id="training-tab"
@@ -120,7 +120,7 @@ export const AdminDashboard = () => {
                 >
                   Tipos de entrenamiento
                 </button>
-              </li>
+              </li> */}
 
               {/* Tab de la sección de tarifas */}
 
@@ -137,7 +137,7 @@ export const AdminDashboard = () => {
                     changeTab(e);
                   }}
                 >
-                  Tarifas
+                  Modificar Tarifas
                 </button>
               </li>
 
@@ -156,13 +156,13 @@ export const AdminDashboard = () => {
                     changeTab(e);
                   }}
                 >
-                  Sesiones
+                  Administrar Sesiones
                 </button>
               </li>
 
               {/* Tab de la sección de tipos de sesión. */}
 
-              <li role="presentation">
+              {/* <li role="presentation">
                 <button
                   className={deactive_class}
                   id="session_type-tab"
@@ -177,10 +177,10 @@ export const AdminDashboard = () => {
                 >
                   Tipo de sesiones
                 </button>
-              </li>
+              </li> */}
 
               {/* Tab de la sesión User Sessions (temp) */}
-              <li role="presentation">
+              {/* <li role="presentation">
                 <button
                   className={deactive_class}
                   id="user_sessions-tab"
@@ -195,7 +195,7 @@ export const AdminDashboard = () => {
                 >
                   User sesions
                 </button>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
@@ -204,7 +204,7 @@ export const AdminDashboard = () => {
           {/* Contenido de la sección de gestión de usuarios */}
 
           <div
-            className="p-4 bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
+            className="rounded-xl bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
             id="users"
             role="tabpanel"
             aria-labelledby="users-tab"
@@ -215,7 +215,7 @@ export const AdminDashboard = () => {
           {/* Contenido de la sección de administración de suscripciones */}
 
           <div
-            className="hidden p-4 bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
+            className="hidden rounded-xl p-4 bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
             id="training"
             role="tabpanel"
             aria-labelledby="training-tab"
@@ -226,7 +226,7 @@ export const AdminDashboard = () => {
           {/* Contenido de la sección de tarifas de suscripciones */}
 
           <div
-            className="hidden bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
+            className="hidden rounded-xl bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
             id="subscription"
             role="tabpanel"
             aria-labelledby="subscription-tab"
@@ -237,7 +237,7 @@ export const AdminDashboard = () => {
           {/* Contenido de la sección de gestión de sesiones */}
 
           <div
-            className="hidden bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
+            className="hidden rounded-xl bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
             id="sessions"
             role="tabpanel"
             aria-labelledby="sessions-tab"
@@ -247,25 +247,25 @@ export const AdminDashboard = () => {
 
           {/* Contenido de la sección de gestión de los tipos de sesión */}
 
-          <div
-            className="hidden bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
+          {/* <div
+            className="hidden rounded-xl bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
             id="session_type"
             role="tabpanel"
             aria-labelledby="session_type-tab"
           >
             <AdminSessionType />
-          </div>
+          </div> */}
 
           {/* Contenido de la sección de gestión de las sesiones por usuario (temp) */}
 
-          <div
-            className="hidden bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
+          {/* <div
+            className="hidden rounded-xl bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
             id="user_sessions"
             role="tabpanel"
             aria-labelledby="user_sessions-tab"
           >
             <AdminUserSessions />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

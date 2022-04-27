@@ -54,19 +54,19 @@ export const AdminUserSessions = () => {
   return (
     <>
       <div className="container flex items-center justify-center mx-auto">
-        <div className="table w-full ...">
-          <div className="table-header-group ...">
+        <div className="table w-full">
+          <div className="table-header-group">
             <div className="table-row">
-              <div className="table-cell text-left ...">Usuario</div>
-              <div className="table-cell text-left ...">Sesión</div>
+              <div className="table-cell text-left">Usuario</div>
+              <div className="table-cell text-left">Sesión</div>
             </div>
           </div>
           <div className="table-row-group">
             {userSessionsList.map((value, index) => {
               return (
                 <div className="table-row" key={index}>
-                  <div className="table-cell ...">{value.users}</div>
-                  <div className="table-cell ...">{value.sessions}</div>
+                  <div className="table-cell">{value.users}</div>
+                  <div className="table-cell">{value.sessions}</div>
                 </div>
               );
             })}
@@ -89,7 +89,7 @@ export const AdminUserSessions = () => {
           className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center"
         >
           <div className="relative p-4 w-full max-w-md h-full md:h-auto">
-            <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div className="relative bg-L-Gray-light rounded-lg shadow dark:bg-D-Gray-dark">
               <div className="flex justify-end p-2">
                 <button
                   type="button"
@@ -171,7 +171,7 @@ export const AdminUserSessions = () => {
 
                 <button
                   type="submit"
-                  className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="py-2 px-6 text-sm font-medium text-L-Gray-dark focus:outline-none bg-M-Lime rounded-lg border border-gray-200 hover:bg-A-Magenta hover:text-L-Gray-light focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                   onClick={() => {
                     fetch(process.env.BACKEND_URL + "/api/user_sessions", {
                       method: "POST",

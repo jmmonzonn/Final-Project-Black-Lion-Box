@@ -109,7 +109,7 @@ export const Navbar = () => {
                 <li>
                   <a
                     href="#Elgimnasio"
-                    className=" pl-8 border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
+                    className="ml-16 border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
                     aria-current="page"
                   >
                     El Gimnasio
