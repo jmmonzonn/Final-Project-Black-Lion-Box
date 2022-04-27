@@ -10,7 +10,12 @@ export const UserThisWeek = () => {
   }, []);
 
   const getThisWeek = async () => {
-    fetch(process.env.BACKEND_URL + "/api/thisweek")
+    fetch(process.env.BACKEND_URL + "/api/thisweek", {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
       .then((resp) => resp.json())
       .then((data) => {
         setThisWeek(data);
@@ -76,14 +81,14 @@ export const UserThisWeek = () => {
       </div>
 
       <div id="sessionsTabContent">
-        {thisWeek.map((value, index) => {
+        {thisWeek.map((day, index) => {
           return (
             <div
               key={index}
               class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
-              id={value.label}
+              id={day.label}
               role="tabpanel"
-              aria-labelledby={`${value.label}-tab`}
+              aria-labelledby={`${day.label}-tab`}
             >
               <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -120,10 +125,14 @@ export const UserThisWeek = () => {
                     </th>
                   </tr>
                 </thead>
-                {value.sessions.map((value, index) => {
+                {day.sessions.map((value, index) => {
                   return (
                     <tbody key={index}>
-                      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <tr
+                        class={`bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 ${
+                          value.user_logged ? "bg-A-Magenta" : ""
+                        }`}
+                      >
                         <td class="w-4 p-4">
                           <div class="flex items-center">
                             <input
@@ -153,6 +162,28 @@ export const UserThisWeek = () => {
                           <a
                             href="#"
                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                            data-id={value.id}
+                            data-date={day.date}
+                            onClick={(e) => {
+                              fetch(
+                                process.env.BACKEND_URL + "/api/joinsession",
+                                {
+                                  method: "POST",
+                                  headers: {
+                                    "Content-Type": "application/json",
+                                    Authorization:
+                                      "Bearer " + localStorage.getItem("token"),
+                                  },
+                                  body: JSON.stringify({
+                                    date: e.target.getAttribute("data-date"),
+                                    sessions_id:
+                                      e.target.getAttribute("data-id"),
+                                  }),
+                                }
+                              )
+                                .then((resp) => resp.json())
+                                .then((data) => console.log("tutto bene."));
+                            }}
                           >
                             Apuntarse
                           </a>
