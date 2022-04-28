@@ -149,7 +149,9 @@ export const UserThisWeek = () => {
                     <tbody key={index}>
                       <tr
                         class={`bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 ${
-                          value.user_logged ? "bg-A-Magenta" : ""
+                          value.user_logged
+                            ? "bg-gradient-to-r from-transparent to-M-Lime"
+                            : ""
                         }`}
                       >
                         <td class="w-4 p-4">
@@ -188,7 +190,7 @@ export const UserThisWeek = () => {
                         <td class="px-6 py-4 text-center dark:text-D-Gray-light">
                           <a
                             href="#"
-                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                            class="font-bellfort text-l text-L-Gray-dark dark:text-D-Gray-dark hover:text-A-Magenta dark:hover:text-A-Magenta"
                             data-id={value.id}
                             data-date={day.date}
                             onClick={(e) => {
