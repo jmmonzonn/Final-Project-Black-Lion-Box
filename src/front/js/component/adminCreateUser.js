@@ -121,21 +121,22 @@ export const AdminCreateUser = () => {
                   <div className="table-cell text-center">
                     <button
                       type="button"
+                      data-modal-toggle="popup-modal"
                       className="py-2.5 border-b-2 border-transparent text-L-Gray-dark dark:text-D-Gray-light hover:text-A-Magenta dark:hover:text-M-Lime mx-1.5 sm:mx-2"
                       onClick={() => {
-                        fetch(
-                          process.env.BACKEND_URL +
-                            "/api/delete_user/" +
-                            value.id,
-                          {
-                            method: "DELETE",
-                            headers: {
-                              "Content-Type": "application/json",
-                            },
-                          }
-                        )
-                          .then((resp) => resp.json())
-                          .then((data) => getUsers());
+                        // fetch(
+                        //   process.env.BACKEND_URL +
+                        //     "/api/delete_user/" +
+                        //     value.id,
+                        //   {
+                        //     method: "DELETE",
+                        //     headers: {
+                        //       "Content-Type": "application/json",
+                        //     },
+                        //   }
+                        // )
+                        //   .then((resp) => resp.json())
+                        //   .then((data) => getUsers());
                       }}
                     >
                       <FontAwesomeIcon icon={["fas", "xmark"]} />
@@ -390,6 +391,13 @@ export const AdminCreateUser = () => {
               <div class="flex justify-end p-2">
                 <button
                   type="button"
+                  onClick={() => {
+                    document
+                      .querySelectorAll("[modal-backdrop]")
+                      .forEach((element) => {
+                        element.remove();
+                      });
+                  }}
                   class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
                   data-modal-toggle="popup-modal"
                 >

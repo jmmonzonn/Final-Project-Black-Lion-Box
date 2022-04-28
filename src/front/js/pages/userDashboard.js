@@ -7,6 +7,16 @@ import { UserModifyProfile } from "../component/userModifyProfile";
 
 import "../../styles/home.css";
 import { UserThisWeek } from "../component/userThisWeek";
+
+// Funciones que se utilizan para definir el estilo de los botones de las tabs en el componente.
+
+const active_class =
+  "tab inline-block p-4 rounded-t-lg border-b-2 text-L-Gray-dark hover:text-A-Magenta dark:text-D-Gray-light dark:hover:text-M-Lime border-A-Magenta dark:border-M-Lime";
+// tab inline-block p-4 rounded-t-lg border-b-2 text-L-Gray-dark hover:text-A-Magenta dark:text-D-Gray-light dark:hover:text-M-Lime border-A-Magenta dark:border-M-Lime
+// tab inline-block p-4 rounded-t-lg border-b-2 text-L-Gray-dark hover:text-A-Magenta dark:text-D-Gray-light dark:hover:text-M-Lime border-A-Magenta dark:border-M-Lime text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-400 border-blue-600 dark:border-blue-500"
+const deactive_class =
+  "tab inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-A-Magenta hover:border-gray-300 dark:hover:text-M-Lime text-L-Gray-dark dark:text-D-Gray-light";
+
 export const UserDashboard = () => {
   // Fix para que Flowbite reinicie los eventos al cargar la página. Sin esto, no funcionan los modals, toggles y botones no funcionan.
 
@@ -30,13 +40,6 @@ export const UserDashboard = () => {
       history.push("/user/dashboard");
     }
   });
-
-  // Funciones que se utilizan para definir el estilo de los botones de las tabs en el componente.
-
-  const active_class =
-    "tab inline-block p-4 rounded-t-lg border-b-2 text-L-Gray-dark hover:text-A-Magenta dark:text-D-Gray-light dark:hover:text-M-Lime border-A-Magenta dark:border-M-Lime";
-  const deactive_class =
-    "tab inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-A-Magenta hover:border-gray-300 dark:hover:text-M-Lime text-L-Gray-dark dark:text-D-Gray-light";
 
   // Función que modifica las etiquetas de css de la navegación de tabs para activar y desactivar la pestaña activa.
 
@@ -89,7 +92,7 @@ export const UserDashboard = () => {
                   id="users-tab"
                   data-tabs-target="#users"
                   type="button"
-                  role="tab"
+                  // role="tab"
                   aria-controls="users"
                   aria-selected="true"
                   onClick={(e) => {
@@ -108,7 +111,7 @@ export const UserDashboard = () => {
                   id="training-tab"
                   data-tabs-target="#training"
                   type="button"
-                  role="tab"
+                  // role="tab"
                   aria-controls="training"
                   aria-selected="false"
                   onClick={(e) => {
@@ -127,7 +130,7 @@ export const UserDashboard = () => {
                   id="subscription-tab"
                   data-tabs-target="#subscription"
                   type="button"
-                  role="tab"
+                  // role="tab"
                   aria-controls="subscription"
                   aria-selected="false"
                   onClick={(e) => {
