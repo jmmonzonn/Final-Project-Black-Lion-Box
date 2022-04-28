@@ -5,6 +5,29 @@ import { Login } from "./login";
 
 export const Navbar = () => {
   let history = useHistory();
+  const buttonAdmin = () => {
+    return (
+      <button
+        type="button"
+        className="py-2 px-6 text-sm font-medium text-L-Gray-dark focus:outline-none bg-M-Lime rounded-lg border border-gray-200 hover:bg-A-Magenta hover:text-L-Gray-light focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+        onClick={() => history.push("/admin/dashboard")}
+      >
+        Panel administrativo
+      </button>
+    );
+  };
+
+  const buttonUser = () => {
+    return (
+      <button
+        type="button"
+        className="py-2 px-6 text-sm font-medium text-L-Gray-dark focus:outline-none bg-M-Lime rounded-lg border border-gray-200 hover:bg-A-Magenta hover:text-L-Gray-light focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+        onClick={() => history.push("/user/dashboard")}
+      >
+        Panel de usuario
+      </button>
+    );
+  };
   const logout = () => {
     return (
       <button
@@ -12,7 +35,12 @@ export const Navbar = () => {
         className="py-2.5 px-5 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         onClick={() => {
           localStorage.removeItem("token");
-          history.push("/");
+          localStorage.removeItem("username");
+          localStorage.removeItem("id");
+          localStorage.removeItem("email");
+          window.location.pathname == "/"
+            ? location.reload()
+            : history.push("/");
         }}
       >
         Desconectarse
@@ -32,6 +60,70 @@ export const Navbar = () => {
     );
   };
 
+  const navbarHome = () => {
+    return (
+      <>
+        <li>
+          <a
+            href="#Elgimnasio"
+            className="ml-16 border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
+            aria-current="page"
+          >
+            El Gimnasio
+          </a>
+        </li>
+        <li>
+          <a
+            href="#Suscripciones"
+            className="border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
+          >
+            Suscripciones
+          </a>
+        </li>
+        <li>
+          <a
+            href="#Contacto"
+            className="border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
+          >
+            Contacto
+          </a>
+        </li>
+      </>
+    );
+  };
+
+  const navbarHomeLogged = () => {
+    return (
+      <>
+        <li>
+          <a
+            href="#Elgimnasio"
+            className="ml-16 border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
+            aria-current="page"
+          >
+            El Gimnasio
+          </a>
+        </li>
+        <li>
+          <a
+            href="#Suscripciones"
+            className="border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
+          >
+            Suscripciones
+          </a>
+        </li>
+        <li>
+          <a
+            href="#Contacto"
+            className="border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
+          >
+            Contacto
+          </a>
+        </li>
+        {localStorage.getItem("role") == "admin" ? buttonAdmin() : buttonUser()}
+      </>
+    );
+  };
   // CONFIGURACIÓN NECESARIA DEL TEMA OSCURO
 
   useEffect(() => {
@@ -106,31 +198,12 @@ export const Navbar = () => {
               id="mobile-menu-4"
             >
               <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-xl md:font-bellfort">
-                <li>
-                  <a
-                    href="#Elgimnasio"
-                    className="ml-16 border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
-                    aria-current="page"
-                  >
-                    El Gimnasio
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#Suscripciones"
-                    className="border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
-                  >
-                    Suscripciones
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#Contacto"
-                    className="border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
-                  >
-                    Contacto
-                  </a>
-                </li>
+                {window.location.pathname == "/"
+                  ? localStorage.getItem("token")
+                    ? navbarHomeLogged()
+                    : navbarHome()
+                  : ""}
+
                 <li>
                   <a
                     href="https://www.instagram.com/blacklionbox/?hl=en"

@@ -25,6 +25,12 @@ export const AdminSessions = () => {
     })
       .then((resp) => resp.json())
       .then((data) => setSessionsList(data));
+    window.document.dispatchEvent(
+      new Event("DOMContentLoaded", {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
   };
 
   const getSession_types = () => {

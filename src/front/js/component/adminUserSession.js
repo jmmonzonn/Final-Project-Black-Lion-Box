@@ -49,6 +49,12 @@ export const AdminUserSessions = () => {
     })
       .then((resp) => resp.json())
       .then((data) => setUserSessionsList(data));
+    window.document.dispatchEvent(
+      new Event("DOMContentLoaded", {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
   };
 
   return (
