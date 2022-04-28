@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const UserThisWeek = () => {
   const [thisWeek, setThisWeek] = useState([]);
@@ -94,7 +95,7 @@ export const UserThisWeek = () => {
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
                     <th scope="col" class="p-4">
-                      <div class="flex items-center">
+                      <div class=" hidden flex items-center">
                         <input
                           id="checkbox-all-search"
                           type="checkbox"
@@ -105,23 +106,41 @@ export const UserThisWeek = () => {
                         </label>
                       </div>
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th
+                      scope="col"
+                      class="font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2"
+                    >
                       Nombre de la Sesión
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th
+                      scope="col"
+                      class="font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2"
+                    >
                       Descripción
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th
+                      scope="col"
+                      class="font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2"
+                    >
                       Duración
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th
+                      scope="col"
+                      class="font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2"
+                    >
                       Máximos participantes
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th
+                      scope="col"
+                      class="font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2"
+                    >
                       Participantes apuntados
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                      <span class="sr-only">Edit</span>
+                    <th
+                      scope="col"
+                      class="font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2"
+                    >
+                      Acciones
                     </th>
                   </tr>
                 </thead>
@@ -138,7 +157,7 @@ export const UserThisWeek = () => {
                             <input
                               id="checkbox-table-search-1"
                               type="checkbox"
-                              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                              class="hidden w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                             />
                             <label
                               for="checkbox-table-search-1"
@@ -150,15 +169,23 @@ export const UserThisWeek = () => {
                         </td>
                         <th
                           scope="row"
-                          class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                          class="px-6 py-4 text-center dark:text-D-Gray-light"
                         >
                           {value.name} {value.id}
                         </th>
-                        <td class="px-6 py-4">{value.description}</td>
-                        <td class="px-6 py-4">{value.duration}</td>
-                        <td class="px-6 py-4">{value.max_users}</td>
-                        <td class="px-6 py-4">{value.users_per_sessions}</td>
-                        <td class="px-6 py-4 text-right">
+                        <td class="px-6 py-4 text-center dark:text-D-Gray-light">
+                          {value.description}
+                        </td>
+                        <td class="px-6 py-4 text-center dark:text-D-Gray-light">
+                          {value.duration}
+                        </td>
+                        <td class="px-6 py-4 text-center dark:text-D-Gray-light">
+                          {value.max_users}
+                        </td>
+                        <td class="px-6 py-4 text-center dark:text-D-Gray-light">
+                          {value.users_per_sessions}
+                        </td>
+                        <td class="px-6 py-4 text-center dark:text-D-Gray-light">
                           <a
                             href="#"
                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
@@ -238,32 +265,8 @@ export const UserThisWeek = () => {
   );
 };
 
-// Search! hay que montarlo al final
-
-// <div class="p-4">
-// <label for="table-search" class="sr-only">
-//   Search
-// </label>
-// <div class="relative mt-1">
-//   <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-//     <svg
-//       class="w-5 h-5 text-gray-500 dark:text-gray-400"
-//       fill="currentColor"
-//       viewBox="0 0 20 20"
-//       xmlns="http://www.w3.org/2000/svg"
-//     >
-//       <path
-//         fill-rule="evenodd"
-//         d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-//         clip-rule="evenodd"
-//       ></path>
-//     </svg>
-//   </div>
-//   <input
-//     type="text"
-//     id="table-search"
-//     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-//     placeholder="Search for items"
-//   />
-// </div>
-// </div>
+// {value.user_logged ? (
+//   <FontAwesomeIcon icon={["fas", "user-x-mark"]} />
+// ) : (
+//   <FontAwesomeIcon icon={["fas", "user-plus"]} />
+// )}

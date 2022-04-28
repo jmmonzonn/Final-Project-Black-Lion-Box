@@ -9,10 +9,10 @@ export const Navbar = () => {
     return (
       <button
         type="button"
-        className="py-2 px-6 text-sm font-medium text-L-Gray-dark focus:outline-none bg-M-Lime rounded-lg border border-gray-200 hover:bg-A-Magenta hover:text-L-Gray-light focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+        className="border-b-2 border-transparent text-L-Gray-dark dark:text-M-Lime hover:text-M-Lime dark:hover:text-D-Gray-light mx-1.5 sm:mx-2"
         onClick={() => history.push("/admin/dashboard")}
       >
-        Panel administrativo
+        <FontAwesomeIcon icon={["fas", "user"]} />
       </button>
     );
   };
@@ -21,10 +21,10 @@ export const Navbar = () => {
     return (
       <button
         type="button"
-        className="py-2 px-6 text-sm font-medium text-L-Gray-dark focus:outline-none bg-M-Lime rounded-lg border border-gray-200 hover:bg-A-Magenta hover:text-L-Gray-light focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+        className="border-b-2 border-transparent text-L-Gray-dark dark:text-M-Lime hover:text-M-Lime dark:hover:text-D-Gray-light mx-1.5 sm:mx-2"
         onClick={() => history.push("/user/dashboard")}
       >
-        Panel de usuario
+        <FontAwesomeIcon icon={["fas", "user"]} />
       </button>
     );
   };
@@ -120,7 +120,6 @@ export const Navbar = () => {
             Contacto
           </a>
         </li>
-        {localStorage.getItem("role") == "admin" ? buttonAdmin() : buttonUser()}
       </>
     );
   };
@@ -262,6 +261,12 @@ export const Navbar = () => {
                 ></path>
               </svg>
             </button>
+            {localStorage.getItem("token")
+              ? localStorage.getItem("role") == "admin"
+                ? buttonAdmin()
+                : buttonUser()
+              : ""}
+
             {localStorage.getItem("token") ? logout() : login()}
 
             {/* Botón de menu en vista móvil */}

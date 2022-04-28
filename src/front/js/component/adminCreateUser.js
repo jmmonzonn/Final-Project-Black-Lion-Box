@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { useHistory } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const AdminCreateUser = () => {
   const { store, actions } = useContext(Context);
@@ -110,17 +111,17 @@ export const AdminCreateUser = () => {
                   {/* <div className="table-cell text-center">{value.id}</div> */}
                   <div className="table-cell text-center">
                     <button
-                      className="text-whitefocus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:focus:ring-blue-800"
+                      className="py-2.5 border-b-2 border-transparent text-L-Gray-dark dark:text-D-Gray-light hover:text-A-Magenta dark:hover:text-M-Lime mx-1.5 sm:mx-2"
                       type="button"
                       data-modal-toggle="authentication-modal"
                     >
-                      📝
+                      <FontAwesomeIcon icon={["fas", "pen-to-square"]} />
                     </button>
                   </div>
                   <div className="table-cell text-center">
                     <button
                       type="button"
-                      className="text-whitefocus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:focus:ring-blue-800"
+                      className="py-2.5 border-b-2 border-transparent text-L-Gray-dark dark:text-D-Gray-light hover:text-A-Magenta dark:hover:text-M-Lime mx-1.5 sm:mx-2"
                       onClick={() => {
                         fetch(
                           process.env.BACKEND_URL +
@@ -137,7 +138,7 @@ export const AdminCreateUser = () => {
                           .then((data) => getUsers());
                       }}
                     >
-                      ❌
+                      <FontAwesomeIcon icon={["fas", "xmark"]} />
                     </button>
                   </div>
                 </div>

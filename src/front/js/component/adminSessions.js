@@ -86,9 +86,6 @@ export const AdminSessions = () => {
                 Días de la semana
               </div>
               <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime">
-                Apuntar Usuario
-              </div>
-              <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime">
                 Modificar
               </div>
               <div className="table-cell font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime">
@@ -125,43 +122,19 @@ export const AdminSessions = () => {
                   </div>
                   <div className="table-cell text-center dark:text-D-Gray-light">
                     <button
-                      className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
+                      className="py-2.5 border-b-2 border-transparent text-L-Gray-dark dark:text-D-Gray-light hover:text-A-Magenta dark:hover:text-M-Lime mx-1.5 sm:mx-2"
                       type="button"
                       data-modal-toggle="authentication-modal"
                     >
-                      👍
-                    </button>
-                  </div>
-                  <div className="table-cell text-center dark:text-D-Gray-light">
-                    <button
-                      className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
-                      type="button"
-                      data-modal-toggle="authentication-modal"
-                    >
-                      📝
+                      <FontAwesomeIcon icon={["fas", "pen-to-square"]} />
                     </button>
                   </div>
                   <div className="table-cell text-center">
                     <button
                       type="button"
-                      className="text-white text-center focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
-                      // onClick={() => {
-                      //   fetch(
-                      //     process.env.BACKEND_URL +
-                      //       "/api/delete_user/" +
-                      //       value.id,
-                      //     {
-                      //       method: "DELETE",
-                      //       headers: {
-                      //         "Content-Type": "application/json",
-                      //       },
-                      //     }
-                      //   )
-                      //     .then((resp) => resp.json())
-                      //     .then((data) => getUsers());
-                      // }}
+                      className="py-2.5 border-b-2 border-transparent text-L-Gray-dark dark:text-D-Gray-light hover:text-A-Magenta dark:hover:text-M-Lime mx-1.5 sm:mx-2"
                     >
-                      ❌
+                      <FontAwesomeIcon icon={["fas", "xmark"]} />
                     </button>
                   </div>
                 </div>
