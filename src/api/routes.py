@@ -68,6 +68,19 @@ def delete_user(id):
     
     return jsonify({"message": "Usuario eliminado."})
 
+# @api.route("/delete_user_sessu/<id>", methods=["DELETE"])
+# def delete_user(id):
+#     try:
+#         user = User.query.filter_by(id=id).first()
+#         db.session.delete(user)
+#         db.session.commit()
+
+#     except:
+#         return jsonify({"message": "Error"}), 400
+    
+#     return jsonify({"message": "Usuario eliminado."})
+
+
 # Modificar usuarios desde el administrador
 @api.route("/edit_user/<id>", methods=["PUT"])
 def edit_user(id):
@@ -76,12 +89,13 @@ def edit_user(id):
     except:
         return jsonify({"message": "usuario no existe"}), 400
 
-    new_username = request.json.get("username", None)
-    new_email = request.json.get("email", None)
-    new_phone = request.json.get("phone", None)
-    new_first_name = request.json.get("first_name", None)
-    new_last_name = request.json.get("last_name", None)
-    new_adress = request.json.get("adress", None)
+    new_username = request.json.get("username", user.username)
+    new_email = request.json.get("email", user.email)
+    new_phone = request.json.get("phone", user.phone)
+    new_first_name = request.json.get("first_name", user.first_name)
+    new_last_name = request.json.get("last_name", user.last_name)
+    new_adress = request.json.get("adress", user.adress)
+    new_info = request.json.get("info", user.info)
 
     setattr(user, "username", new_username)
     setattr(user, "email", new_email)
@@ -89,6 +103,7 @@ def edit_user(id):
     setattr(user, "first_name", new_first_name)
     setattr(user, "last_name", new_last_name)
     setattr(user, "adress", new_adress)
+    setattr(user, "info", new_info)
     db.session.commit()
        
     return jsonify(user.serialize()), 200
@@ -242,30 +257,45 @@ def user_sessions(user_id):
     results = User_sessions.query.filter_by(user_id=user_id).filter(extract('month', User_sessions.date)==currentMonth).filter(extract('year', User_sessions.date)==currentYear).all()
     return jsonify([user_sessions.serialize() for user_sessions in results]), 200
 
+@api.route("/user_sessions2/<user_id>/<sessions_id>", methods=["GET"])
+#@jwt_required()
+def user_sessions2(user_id, sessions_id):
+    currentMonth = datetime.now().month
+    currentYear = datetime.now().year
+    results = User_sessions.query.filter_by(user_id=user_id,sessions_id=sessions_id).filter(extract('month', User_sessions.date)==currentMonth).filter(extract('year', User_sessions.date)==currentYear).all()
+    return jsonify([user_sessions.serialize() for user_sessions in results]), 200
+
 @api.route("/user/<id>", methods=["GET"])
 #@jwt_required()
 def user_info(id):
     return jsonify([user.serialize() for user in User.query.filter_by(id=id)]), 200
 
-@api.route('/user_sessions', methods=["POST"])
-#@jwt_required()
-def create_user_sessions():
-     user_id = request.json.get("user_id", None)
-     sessions_id = request.json.get("sessions_id", None)
-     date = request.json.get("date", None)
+@api.route("/joinsession", methods=["POST"])
+@jwt_required()
+def joinsession():
+    date = request.json.get("date", None)
+    sessions_id = request.json.get("sessions_id", None)
+    user = get_jwt_identity()
 
-    #  not_unique_name = Sessions.query.filter_by(name = name).first()  
-    #  if not_unique_name != None:
-    #     return jsonify({"message": "Este nombre ya existe, prueba con otro."}),401
+    usersession = User_sessions(user_id = user, date = date, sessions_id = sessions_id)
+    db.session.add(usersession)
+    db.session.commit()
+
+    return jsonify(usersession.serialize()),200
+
+
+@api.route("/delete_session/<id>", methods=["DELETE"])
+@jwt_required()
+def delete_session(id):
+    try:
+        user_sessions = User_sessions.query.filter_by(id=id).first()
+        db.session.delete(user_sessions)
+        db.session.commit()
+
+    except:
+        return jsonify({"message": "Error"}), 400
     
-    #  if name == '' or name == None or description == '' or description == None or regular == '' or regular == None or days == '' or days == None or start_time == '' or start_time == None or duration == '' or duration == None or max_users == '' or max_users == None or sessions_type_id == '' or sessions_type_id == None:
-    #     return jsonify({"message": "Rellena todos los campos obligatorios"}), 401
-
-     new_user_sessions = User_sessions(user_id = user_id, sessions_id = sessions_id, date = date)
-     db.session.add(new_user_sessions)
-     db.session.commit()
- 
-     return jsonify({"message" : "User sesion nueva creada"}),200
+    return jsonify({"message": "User session eliminado."})
 
 
 @api.route('/role', methods=["POST"])
@@ -399,18 +429,7 @@ def weeklysessions():
 
 
 
-@api.route("/joinsession", methods=["POST"])
-@jwt_required()
-def joinsession():
-    date = request.json.get("date", None)
-    sessions_id = request.json.get("sessions_id", None)
-    user = get_jwt_identity()
 
-    usersession = User_sessions(user_id = user, date = date, sessions_id = sessions_id)
-    db.session.add(usersession)
-    db.session.commit()
-
-    return jsonify(usersession.serialize()),200
 
 
 

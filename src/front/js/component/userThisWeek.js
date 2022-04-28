@@ -52,8 +52,8 @@ export const UserThisWeek = () => {
   };
 
   return (
-    <div className="container mx-auto">
-      <div class="mb-4 border-b border-gray-200">
+    <div className="container mx-auto ">
+      <div class="mb-4 border-b border-gray-200 flex justify-center">
         <ul
           class="flex flex-wrap -mb-px text-sm font-medium text-center"
           id="sessionsTab"
@@ -165,27 +165,64 @@ export const UserThisWeek = () => {
                             data-id={value.id}
                             data-date={day.date}
                             onClick={(e) => {
-                              fetch(
-                                process.env.BACKEND_URL + "/api/joinsession",
-                                {
-                                  method: "POST",
-                                  headers: {
-                                    "Content-Type": "application/json",
-                                    Authorization:
-                                      "Bearer " + localStorage.getItem("token"),
-                                  },
-                                  body: JSON.stringify({
-                                    date: e.target.getAttribute("data-date"),
-                                    sessions_id:
-                                      e.target.getAttribute("data-id"),
-                                  }),
-                                }
-                              )
-                                .then((resp) => resp.json())
-                                .then((data) => console.log("tutto bene."));
+                              if (value.user_logged) {
+                                fetch(
+                                  process.env.BACKEND_URL +
+                                    "/api/user_sessions2/" +
+                                    localStorage.getItem("id") +
+                                    "/" +
+                                    value.id,
+                                  {
+                                    method: "GET",
+                                    headers: {
+                                      Authorization:
+                                        "Bearer " +
+                                        localStorage.getItem("token"),
+                                    },
+                                  }
+                                )
+                                  .then((resp) => resp.json())
+                                  .then((data) =>
+                                    fetch(
+                                      process.env.BACKEND_URL +
+                                        "/api/delete_session/" +
+                                        data[0].id,
+                                      {
+                                        method: "DELETE",
+                                        headers: {
+                                          Authorization:
+                                            "Bearer " +
+                                            localStorage.getItem("token"),
+                                        },
+                                      }
+                                    )
+                                      .then((resp) => resp.json())
+                                      .then((data) => location.reload())
+                                  );
+                              } else {
+                                fetch(
+                                  process.env.BACKEND_URL + "/api/joinsession",
+                                  {
+                                    method: "POST",
+                                    headers: {
+                                      "Content-Type": "application/json",
+                                      Authorization:
+                                        "Bearer " +
+                                        localStorage.getItem("token"),
+                                    },
+                                    body: JSON.stringify({
+                                      date: e.target.getAttribute("data-date"),
+                                      sessions_id:
+                                        e.target.getAttribute("data-id"),
+                                    }),
+                                  }
+                                )
+                                  .then((resp) => resp.json())
+                                  .then((data) => location.reload());
+                              }
                             }}
                           >
-                            Apuntarse
+                            {value.user_logged ? "Cancelar" : "Apuntarse"}
                           </a>
                         </td>
                       </tr>
