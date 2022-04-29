@@ -16,9 +16,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             customerEmail: localStorage.getItem("email"),
             mode: "subscription",
             successUrl:
-              "https://3000-jmmonzonn-finalprojectb-z206juyf162.ws-eu42.gitpod.io/user/dashboard",
+              "https://3000-jmmonzonn-finalprojectb-hhw9h19v6vn.ws-eu43.gitpod.io/user/dashboard",
             cancelUrl:
-              "https://3000-jmmonzonn-finalprojectb-z206juyf162.ws-eu42.gitpod.io/cancel",
+              "https://3000-jmmonzonn-finalprojectb-hhw9h19v6vn.ws-eu43.gitpod.io/cancel",
           })
           .then(function (result) {
             if (result.error) {

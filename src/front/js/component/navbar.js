@@ -66,7 +66,7 @@ export const Navbar = () => {
         <li>
           <a
             href="#Elgimnasio"
-            className="ml-16 border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
+            className="ml-16 border-b-2 border-transparent hover: text-L-Gray-dark dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
             aria-current="page"
           >
             El Gimnasio
@@ -75,7 +75,7 @@ export const Navbar = () => {
         <li>
           <a
             href="#Suscripciones"
-            className="border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
+            className="border-b-2 border-transparent hover: text-L-Gray-dark dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
           >
             Suscripciones
           </a>
@@ -83,7 +83,7 @@ export const Navbar = () => {
         <li>
           <a
             href="#Contacto"
-            className="border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
+            className="border-b-2 border-transparent hover: text-L-Gray-dark dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
           >
             Contacto
           </a>
@@ -98,7 +98,7 @@ export const Navbar = () => {
         <li>
           <a
             href="#Elgimnasio"
-            className="ml-16 border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
+            className="ml-16 border-b-2 border-transparent hover: text-L-Gray-dark dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
             aria-current="page"
           >
             El Gimnasio
@@ -107,7 +107,7 @@ export const Navbar = () => {
         <li>
           <a
             href="#Suscripciones"
-            className="border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
+            className="border-b-2 border-transparent hover: text-L-Gray-dark dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
           >
             Suscripciones
           </a>
@@ -115,7 +115,7 @@ export const Navbar = () => {
         <li>
           <a
             href="#Contacto"
-            className="border-b-2 border-transparent hover: text-gray-800 dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
+            className="border-b-2 border-transparent hover: text-L-Gray-dark dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
           >
             Contacto
           </a>

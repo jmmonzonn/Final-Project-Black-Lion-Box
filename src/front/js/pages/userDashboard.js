@@ -105,7 +105,7 @@ export const UserDashboard = () => {
 
               {/* Tab de la sección de tipos de editar suscripción */}
 
-              <li className="mr-2" role="presentation">
+              {/* <li className="mr-2" role="presentation">
                 <button
                   className={deactive_class}
                   id="training-tab"
@@ -120,7 +120,7 @@ export const UserDashboard = () => {
                 >
                   Suscripción
                 </button>
-              </li>
+              </li> */}
 
               {/* Tab de la sección de editar los datos del usuario */}
 
@@ -156,7 +156,7 @@ export const UserDashboard = () => {
             <UserThisWeek />
           </div>
 
-          {/* Contenido de la sección de administración de suscripciones */}
+          {/* Contenido de la sección de administración de suscripciones
 
           <div
             className="hidden p-4 bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
@@ -165,7 +165,7 @@ export const UserDashboard = () => {
             aria-labelledby="training-tab"
           >
             <SubscriptionTiers />
-          </div>
+          </div> */}
 
           {/* Contenido de la sección de tarifas de suscripciones */}
 
