@@ -18,7 +18,7 @@ export const SubscriptionTiers = (props) => {
             TENEMOS UN PLAN QUE SE ADAPTA A TÍ
           </p>
         </div>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-3 gap-4">
           {store.suscriptionList.map((value, index) => {
             return (
               <div
@@ -26,7 +26,7 @@ export const SubscriptionTiers = (props) => {
                 key={index}
               >
                 {/* Nombre de la sesión */}
-                <h5 className="mb-4 text-4xl font-bellfort text-L-Gray-dark dark:text-D-Gray-light">
+                <h5 className="mb-4 pt-8 text-6xl font-bellfort text-L-Gray-dark dark:text-D-Gray-light">
                   {value.name}
                 </h5>
                 {/* Precio de la sesión */}
@@ -40,12 +40,22 @@ export const SubscriptionTiers = (props) => {
                   </span>
                 </div>
                 {/* Descripción de la sesión */}
-                <div>
+                <div className="pt-4">
                   <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">
                     {value.description}
                   </span>
                 </div>
-                <div>
+                <div className="pt-2">
+                  <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">
+                    Uso ilimitado de las instalaciones
+                  </span>
+                </div>
+                <div className="pt-2">
+                  <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">
+                    Asesoría personalizada{" "}
+                  </span>
+                </div>
+                <div div className="pt-4">
                   {/* Botón Call-to-action de la suscripción */}
                   <button
                     type="button"
