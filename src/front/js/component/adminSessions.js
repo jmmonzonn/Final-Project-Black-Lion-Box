@@ -109,7 +109,7 @@ export const AdminSessions = () => {
                     {value.start_time}
                   </div>
                   <div className="table-cell text-center dark:text-D-Gray-light">
-                    {value.duration}
+                    {value.duration} {" minutos"}
                   </div>
                   <div className="table-cell text-center dark:text-D-Gray-light">
                     {value.max_users}

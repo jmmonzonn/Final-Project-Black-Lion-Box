@@ -29,12 +29,15 @@ export const UserHeader = () => {
                 <span className="text-L-Gray-dark dark:text-D-Gray-light">
                   {value.first_name}
                 </span>
+                . Tienes{" "}
+                <span className="text-L-Gray-dark dark:text-D-Gray-light">
+                  8
+                </span>{" "}
+                sesiones disponibles
               </p>
               <p className="text-m text-L-Gray-dark dark:text-D-Gray-light px-5 pb-3">
-                Actualmente estas suscrito al plan{" "}
-                <span>{user.suscription_id}</span>
-                {/* y tu próxima renovación será
-                el {value.username} */}
+                Actualmente estas suscrito al Plan S y tu próxima fecha de pago
+                será el 01/05/2022
               </p>
             </div>
           </div>

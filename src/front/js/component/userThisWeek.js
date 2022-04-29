@@ -185,13 +185,15 @@ export const UserThisWeek = () => {
                           scope="row"
                           className="px-6 py-4 text-center dark:text-D-Gray-light"
                         >
-                          {value.name} {value.id}
+                          {value.name}
+                          {/* {value.id} */}
                         </th>
                         <td className="px-6 py-4 text-center dark:text-D-Gray-light">
                           {value.description}
                         </td>
                         <td className="px-6 py-4 text-center dark:text-D-Gray-light">
                           {value.duration}
+                          {" minutos"}
                         </td>
                         <td className="px-6 py-4 text-center dark:text-D-Gray-light">
                           {value.max_users}
