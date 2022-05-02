@@ -30,13 +30,13 @@ export const Contact = () => {
   return (
     <div className="container mx-auto py-40">
       <form onSubmit={sendEmail}>
-        <div className="grid xl:grid-cols-2 xl:gap-6">
-          <div className="relative z-0 mb-6 w-full group">
+        <div className="grid l:grid-cols-2 l:gap-6 ">
+          <div className="relative z-0 mb-6 w-full px-3 group">
             <input
               type="text"
               name="from_name"
               id="floating_first_name"
-              className="block py-2.5 px-0 w-full text-sm text-L-Gray-dark bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-M-Lime focus:outline-none focus:ring-0 focus:border-M-Lime peer"
+              className="block py-2.5 px-2 w-full text-sm text-L-Gray-dark bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-M-Lime focus:outline-none focus:ring-0 focus:border-M-Lime peer"
               placeholder=" "
               required
             />
@@ -47,7 +47,7 @@ export const Contact = () => {
               Nombre
             </label>
           </div>
-          <div className="relative z-0 mb-6 w-full group">
+          <div className="relative z-0 mb-6 w-full px-3 group">
             <input
               type="email"
               name="from_email"
@@ -63,7 +63,7 @@ export const Contact = () => {
             </label>
           </div>
         </div>
-        <div className="relative z-0 mb-6 w-full group">
+        <div className="relative z-0 mb-6 w-full px-3 group">
           <input
             type="text"
             name="message"

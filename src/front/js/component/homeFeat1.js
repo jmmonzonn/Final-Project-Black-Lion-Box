@@ -30,7 +30,7 @@ export const HomeFeat1 = () => {
 
   return (
     <div className="container mx-auto text-center " id="Elgimnasio">
-      <div className="grid grid-cols-2 gap-4 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-4 items-center">
         <div id="newfeats1">
           <div className="newfeatstext"></div>
         </div>
@@ -50,7 +50,7 @@ export const HomeFeat1 = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-4 items-center">
         <div>
           <h4
             className="hero glitch layers font-bellfort"

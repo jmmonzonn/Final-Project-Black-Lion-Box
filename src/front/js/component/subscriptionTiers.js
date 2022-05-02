@@ -18,7 +18,7 @@ export const SubscriptionTiers = (props) => {
             TENEMOS UN PLAN QUE SE ADAPTA A TÍ
           </p>
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {store.suscriptionList.map((value, index) => {
             return (
               <div

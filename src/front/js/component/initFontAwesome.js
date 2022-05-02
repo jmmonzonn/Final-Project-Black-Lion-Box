@@ -16,6 +16,7 @@ import {
   faUserXmark,
   faCloudMoon,
   faUser,
+  faTriangleExclamation,
   faSun,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -33,6 +34,7 @@ function initFontAwesome() {
     faUserPlus,
     faUser,
     faCheck,
+    faTriangleExclamation,
     faCloudMoon,
     faSun
   );

@@ -29,25 +29,21 @@ const Layout = () => {
   return (
     <div className=" bg-L-Gray-light dark:bg-D-Gray-dark min-h-full">
       <BrowserRouter basename={basename}>
+        <Navbar />
         <Switch>
           <Route exact path="/">
-            <Navbar />
             <Home />
           </Route>
           <Route exact path="/user/dashboard">
-            <Navbar />
             <UserDashboard />
           </Route>
           <Route exact path="/admin/dashboard">
-            <Navbar />
             <AdminDashboard />
           </Route>
           <Route exact path="/register">
-            <Navbar />
             <Register />
           </Route>
           <Route exact path="/login">
-            <Navbar />
             <Login />
           </Route>
           <Route exact path="/contact">
@@ -77,11 +73,7 @@ const Layout = () => {
           <Route exact path="/addsubscription">
             <FirstSubscription />
           </Route>
-          <Route exact path="/cancel">
-            <Cancel />
-          </Route>
           <Route>
-            <Navbar />
             <NotFound />
           </Route>
         </Switch>
