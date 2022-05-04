@@ -44,18 +44,6 @@ export const AdminCreateUser = () => {
       .then((data) => setRolesList(data));
   };
 
-  // const deleteUser = (id) => {
-  //   fetch(process.env.BACKEND_URL + "/api/delete_user/" + id, {
-  //     method: "DELETE",
-  //     headers: {
-  //       "Content-type": "application/json; charset=UTF-8",
-  //       Authorization: "Bearer " + localStorage.getItem("token"),
-  //     },
-  //   })
-  //     .then((resp) => resp.json())
-  //     .then((data) => console.log(data.response));
-  // };
-
   return (
     <>
       <div className="container flex items-center justify-center mx-auto ">
@@ -98,19 +86,25 @@ export const AdminCreateUser = () => {
                       type="button"
                       className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800"
                       onClick={() => {
-                        fetch(
-                          process.env.BACKEND_URL +
-                            "/api/delete_user/" +
-                            value.id,
-                          {
-                            method: "DELETE",
-                            headers: {
-                              "Content-Type": "application/json",
-                            },
-                          }
-                        )
-                          .then((resp) => resp.json())
-                          .then((data) => getUsers());
+                        if (
+                          window.confirm(
+                            "Estas seguro que quieres eliminar este usuario?"
+                          )
+                        ) {
+                          fetch(
+                            process.env.BACKEND_URL +
+                              "/api/delete_user/" +
+                              value.id,
+                            {
+                              method: "DELETE",
+                              headers: {
+                                "Content-Type": "application/json",
+                              },
+                            }
+                          )
+                            .then((resp) => resp.json())
+                            .then((data) => getUsers());
+                        }
                       }}
                     >
                       ❌
