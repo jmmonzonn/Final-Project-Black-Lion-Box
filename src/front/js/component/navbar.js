@@ -5,6 +5,9 @@ import { Login } from "./login";
 
 export const Navbar = () => {
   let history = useHistory();
+
+  // Función del botón para entrar en el área de admin, en caso de estar logueado con unas credenciales válidas
+
   const buttonAdmin = () => {
     return (
       <button
@@ -17,6 +20,8 @@ export const Navbar = () => {
     );
   };
 
+  // Función del botón para entrar en el área de user, en caso de estar logueado con unas credenciales válidas
+
   const buttonUser = () => {
     return (
       <button
@@ -28,6 +33,9 @@ export const Navbar = () => {
       </button>
     );
   };
+
+  // Función del botón para salir de tu sesión, elimina el contenido almacenado en local storage.
+
   const logout = () => {
     return (
       <button
@@ -38,6 +46,7 @@ export const Navbar = () => {
           localStorage.removeItem("username");
           localStorage.removeItem("id");
           localStorage.removeItem("email");
+          localStorage.removeItem("role");
           window.location.pathname == "/"
             ? location.reload()
             : history.push("/");
@@ -47,6 +56,8 @@ export const Navbar = () => {
       </button>
     );
   };
+
+  // Función del botón que te lleva al formulario de login
 
   const login = () => {
     return (
@@ -59,6 +70,8 @@ export const Navbar = () => {
       </button>
     );
   };
+
+  // Función que pinta la navegación estás en el home. Pinta los anchors de las diferentes secciones del landing.
 
   const navbarHome = () => {
     return (
@@ -92,6 +105,8 @@ export const Navbar = () => {
     );
   };
 
+  // Evita que se enseñen los anchors en el navbar cuando estás en tu zona de usuario
+
   const navbarHomeLogged = () => {
     return (
       <>
@@ -123,6 +138,7 @@ export const Navbar = () => {
       </>
     );
   };
+
   // CONFIGURACIÓN NECESARIA DEL TEMA OSCURO
 
   useEffect(() => {
