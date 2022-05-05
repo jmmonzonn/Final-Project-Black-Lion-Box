@@ -1,6 +1,8 @@
 import React from "react";
 
 export const HomeFeat1 = () => {
+  // Función que calcula el parallax de las imágenes
+
   (function () {
     // Add event listener
     // document.addEventListener("mousemove", parallax);
@@ -29,11 +31,16 @@ export const HomeFeat1 = () => {
   })();
 
   return (
+    // Inicio de la sección Gimnasio
     <div className="container mx-auto text-center " id="Elgimnasio">
+      {/* Fila de la primera imagen  */}
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-4 items-center">
+        {/* Primera imagen con parallax */}
         <div id="newfeats1">
           <div className="newfeatstext"></div>
         </div>
+
+        {/* Texto con glitch de la primera imagen */}
         <div>
           <h4
             className="hero glitch layers font-bellfort"
@@ -50,7 +57,11 @@ export const HomeFeat1 = () => {
         </div>
       </div>
 
+      {/* Fila de la segunda imagen  */}
+
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-4 items-center">
+        {/* Texto con glitch de la segunda imagen */}
+
         <div>
           <h4
             className="hero glitch layers font-bellfort"
@@ -63,6 +74,8 @@ export const HomeFeat1 = () => {
           <h6 className="font-bellfort pt-8 text-3xl text-L-Gray-med dark:text-D-Gray-med">
             TODAS LAS SESIONES SON DIRIGIDAS POR NUESTROS ENTRENADORES
           </h6>
+
+          {/* Segunda imagen con parallax */}
         </div>
         <div id="newfeats2">
           <div className="newfeatstext"></div>
