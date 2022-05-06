@@ -10,6 +10,7 @@ import {
 import {
   fas,
   faCheck,
+  faDumbbell,
   faPenToSquare,
   faXmark,
   faUserPlus,
@@ -36,7 +37,8 @@ function initFontAwesome() {
     faCheck,
     faTriangleExclamation,
     faCloudMoon,
-    faSun
+    faSun,
+    faDumbbell
   );
 }
 

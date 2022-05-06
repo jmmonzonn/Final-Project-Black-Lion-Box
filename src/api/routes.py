@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Role, Suscription, Sessions, Sessions_type, Suscription_type, Weekdays, User_sessions
+from api.models import db, User, Role, Suscription, Sessions, Sessions_type, Suscription_type, Weekdays, User_sessions, Icon_library
 from api.utils import generate_sitemap, APIException
 from sqlalchemy.exc import IntegrityError
 from psycopg2.errors import NotNullViolation, UniqueViolation
@@ -349,6 +349,8 @@ def create_weekdays():
 #@jwt_required()
 def create_sessions_type():
     name = request.json.get("name", None)
+    icon_id = request.json.get("icon_id", None)
+
 
     not_unique_name = Sessions_type.query.filter_by(name = name).first()
     if not_unique_name != None:
@@ -357,7 +359,7 @@ def create_sessions_type():
     if name == '' or name == None:
         return jsonify({"message": "Introduce un tipo de sesion"}), 401
 
-    new_sessions_type = Sessions_type(name = name)
+    new_sessions_type = Sessions_type(name = name, icon_id = icon_id)
     db.session.add(new_sessions_type)
     db.session.commit()
 
@@ -427,6 +429,26 @@ def weeklysessions():
 
     return jsonify(data_response),200
 
+@api.route('/icon_library', methods=["POST"])
+#@jwt_required()
+def create_icon_style():
+    name = request.json.get("name", None)
+    icon = request.json.get("icon", None)
+    color = request.json.get("color", None)
+
+    not_unique_name = Icon_library.query.filter_by(name = name).first()
+    if not_unique_name != None:
+        return jsonify({"message": "Ya existe un estilo con este nombre."}),401
+    
+    if name == '' or name == None:
+        return jsonify({"message": "El campo 'Nombre' no puede estar vacío"}), 401
+
+    new_icon_style = Icon_library(name = name, icon = icon, color = color)
+    db.session.add(new_icon_style)
+    db.session.commit()
+    
+    return jsonify({"message" : "Estilo de icono creado con éxito"}),200
+
 
 
 
@@ -473,3 +495,4 @@ def webhook():
       print('Unhandled event type {}'.format(event['type']))
 
     return jsonify(success=True)
+
