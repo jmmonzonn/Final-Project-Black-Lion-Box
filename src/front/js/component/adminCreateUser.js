@@ -7,6 +7,7 @@ export const AdminCreateUser = () => {
   const { store, actions } = useContext(Context);
   const [user, setUser] = useState({});
   const [usersList, setUsersList] = useState([]);
+  const [userValue, setUserValue] = useState(null);
   const [rolesList, setRolesList] = useState([]);
   let history = useHistory();
 
@@ -24,6 +25,7 @@ export const AdminCreateUser = () => {
     })
       .then((resp) => resp.json())
       .then((data) => {
+        console.log("getusersworkinclass");
         setUsersList(data);
         window.document.dispatchEvent(
           new Event("DOMContentLoaded", {
@@ -120,23 +122,12 @@ export const AdminCreateUser = () => {
                   </div>
                   <div className="table-cell text-center">
                     <button
+                      data-modal-toggle="popup-modal"
+                      onClick={() => {
+                        setUserValue(value.id);
+                      }}
                       type="button"
                       className="py-2.5 border-b-2 border-transparent text-L-Gray-dark dark:text-D-Gray-light hover:text-A-Magenta dark:hover:text-M-Lime mx-1.5 sm:mx-2"
-                      onClick={() => {
-                        fetch(
-                          process.env.BACKEND_URL +
-                            "/api/delete_user/" +
-                            value.id,
-                          {
-                            method: "DELETE",
-                            headers: {
-                              "Content-Type": "application/json",
-                            },
-                          }
-                        )
-                          .then((resp) => resp.json())
-                          .then((data) => getUsers());
-                      }}
                     >
                       <FontAwesomeIcon icon={["fas", "xmark"]} />
                     </button>
@@ -442,6 +433,24 @@ export const AdminCreateUser = () => {
                 <button
                   data-modal-toggle="popup-modal"
                   type="button"
+                  onClick={() => {
+                    fetch(
+                      process.env.BACKEND_URL + "/api/delete_user/" + userValue,
+                      {
+                        method: "DELETE",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                      }
+                    )
+                      .then((resp) => resp.json())
+                      .then((data) => getUsers());
+                    document
+                      .querySelectorAll("[modal-backdrop]")
+                      .forEach((element) => {
+                        element.remove();
+                      });
+                  }}
                   className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
                 >
                   Yes, I'm sure

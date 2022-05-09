@@ -3,7 +3,7 @@ import { Link, useHistory, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Login } from "./login";
 
-export const Navbar = () => {
+export const Navbar = (props) => {
   let history = useHistory();
 
   // Función del botón para entrar en el área de admin, en caso de estar logueado con unas credenciales válidas
@@ -47,6 +47,7 @@ export const Navbar = () => {
           localStorage.removeItem("id");
           localStorage.removeItem("email");
           localStorage.removeItem("role");
+          props.setLogged(false);
           window.location.pathname == "/"
             ? location.reload()
             : history.push("/");
@@ -142,6 +143,7 @@ export const Navbar = () => {
   // CONFIGURACIÓN NECESARIA DEL TEMA OSCURO
 
   useEffect(() => {
+    console.log("HOlaa");
     var themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
     var themeToggleLightIcon = document.getElementById(
       "theme-toggle-light-icon"
@@ -277,13 +279,13 @@ export const Navbar = () => {
                 ></path>
               </svg>
             </button>
-            {localStorage.getItem("token")
+            {localStorage.getItem("token") && props.logged
               ? localStorage.getItem("role") == "admin"
                 ? buttonAdmin()
                 : buttonUser()
               : ""}
 
-            {localStorage.getItem("token") ? logout() : login()}
+            {localStorage.getItem("token") && props.logged ? logout() : login()}
 
             {/* Botón de menu en vista móvil */}
 

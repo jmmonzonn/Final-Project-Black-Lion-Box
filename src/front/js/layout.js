@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Home } from "./pages/home";
@@ -26,10 +26,18 @@ const Layout = () => {
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
 
+  const [logged, setLogged] = useState(
+    localStorage.getItem("token") ? true : false
+  );
+
+  useEffect(() => {
+    console.log("usefectworkins");
+  }, [logged]);
+
   return (
     <div className=" bg-L-Gray-light dark:bg-D-Gray-dark min-h-full">
       <BrowserRouter basename={basename}>
-        <Navbar />
+        <Navbar logged={logged} setLogged={setLogged} />
         <Switch>
           <Route exact path="/">
             <Home />
@@ -44,7 +52,7 @@ const Layout = () => {
             <Register />
           </Route>
           <Route exact path="/login">
-            <Login />
+            <Login logged={setLogged} />
           </Route>
           <Route exact path="/contact">
             <Contact />
