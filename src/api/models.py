@@ -159,14 +159,17 @@ class Role(db.Model):
 class Sessions_type(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(24), unique=True, nullable=False)
-
+    icon_library = db.relationship('Icon_library', backref='sessions_type', lazy=True)
+    icon_id = db.Column(db.Integer, db.ForeignKey('icon_library.id'), unique=False, nullable=False)
+   
     def __repr__(self):
         return '<Sessions_type %r>' % self.name
 
     def serialize(self):
         return {
             "id": self.id,
-            "name": self.name
+            "name": self.name,
+            "icon_id": self.icon_id
         }
 
 class Suscription_type(db.Model):
@@ -220,5 +223,23 @@ class Available_sessions(db.Model):
             "sessions_id": self.sessions_id,
             "is_coach": self.is_coach
         }
+
+class Icon_library(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(32), unique=True, nullable=False)
+    icon = db.Column(db.String(32), unique=True, nullable=False)
+    color = db.Column(db.String(6), unique=False, nullable=False)             
+
+    def __repr__(self):
+        return '<Icon %r>' % self.name
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "icon": self.icon,
+            "color": self.color
+        }
+
 
 
