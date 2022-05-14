@@ -89,11 +89,11 @@ export const UserDashboard = () => {
               <li className="mr-2" role="presentation">
                 <button
                   className={active_class}
-                  id="users-tab"
-                  data-tabs-target="#users"
+                  id="sessions-tab"
+                  data-tabs-target="#sessions"
                   type="button"
                   // role="tab"
-                  aria-controls="users"
+                  aria-controls="sessions"
                   aria-selected="true"
                   onClick={(e) => {
                     changeTab(e);
@@ -127,11 +127,11 @@ export const UserDashboard = () => {
               <li className="mr-2" role="presentation">
                 <button
                   className={deactive_class}
-                  id="subscription-tab"
-                  data-tabs-target="#subscription"
+                  id="profile-tab"
+                  data-tabs-target="#profile"
                   type="button"
                   // role="tab"
-                  aria-controls="subscription"
+                  aria-controls="profile"
                   aria-selected="false"
                   onClick={(e) => {
                     changeTab(e);
@@ -149,9 +149,9 @@ export const UserDashboard = () => {
 
           <div
             className="p-4 bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
-            id="users"
+            id="sessions"
             role="tabpanel"
-            aria-labelledby="users-tab"
+            aria-labelledby="sessions-tab"
           >
             <UserThisWeek />
           </div>
@@ -171,9 +171,9 @@ export const UserDashboard = () => {
 
           <div
             className="hidden p-4 bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
-            id="subscription"
+            id="profile"
             role="tabpanel"
-            aria-labelledby="subscription-tab"
+            aria-labelledby="profile-tab"
           >
             <UserModifyProfile />
           </div>

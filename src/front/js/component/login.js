@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { useHistory } from "react-router-dom";
 
-export const Login = () => {
+export const Login = (props) => {
   const { store, actions } = useContext(Context);
   const [user, setUser] = useState({});
   let history = useHistory();
@@ -37,6 +37,7 @@ export const Login = () => {
           localStorage.setItem("id", data.id);
           localStorage.setItem("email", data.email);
           localStorage.setItem("role", data.role);
+          props.logged(true);
           if (data.role == "admin") {
             history.push("/admin/dashboard");
           } else {
