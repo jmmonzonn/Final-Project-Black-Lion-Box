@@ -86,6 +86,7 @@ class Suscription(db.Model):
             "description": self.description,
             "price": self.price,
             "tokens": self.tokens,
+            "suscription_type_id": self.suscription_type_id,
             "suscription_type": self.suscription_type.name if self.suscription_type else None,
             "stripe_id": self.stripe_id
         }
@@ -160,7 +161,7 @@ class Sessions_type(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(24), unique=True, nullable=False)
     icon_library = db.relationship('Icon_library', backref='sessions_type', lazy=True)
-    icon_id = db.Column(db.Integer, db.ForeignKey('icon_library.id'), unique=False, nullable=False)
+    icon_id = db.Column(db.Integer, db.ForeignKey('icon_library.id'), unique=False, nullable=True)
    
     def __repr__(self):
         return '<Sessions_type %r>' % self.name

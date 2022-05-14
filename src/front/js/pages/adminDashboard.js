@@ -11,6 +11,13 @@ import { AdminUserSessions } from "../component/adminUserSession";
 
 import "../../styles/home.css";
 
+// Funciones que se utilizan para definir el estilo de los botones de las tabs en el componente.
+
+const active_class =
+  "tab inline-block p-4 rounded-t-lg border-b-2 text-L-Gray-dark hover:text-A-Magenta dark:text-D-Gray-light dark:hover:text-M-Lime border-A-Magenta dark:border-M-Lime";
+const deactive_class =
+  "tab inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-A-Magenta hover:border-gray-300 dark:hover:text-M-Lime text-L-Gray-dark dark:text-D-Gray-light";
+
 export const AdminDashboard = () => {
   // Fix para que Flowbite reinicie los eventos al cargar la página. Sin esto, no funcionan los modals, toggles y botones no funcionan.
 
@@ -36,18 +43,11 @@ export const AdminDashboard = () => {
   });
   // Funciones que se utilizan para definir el estilo de los botones de las tabs en el componente.
 
-  const active_class =
-    "tab inline-block p-4 rounded-t-lg border-b-2 text-L-Gray-dark hover:text-A-Magenta dark:text-D-Gray-light dark:hover:text-M-Lime border-A-Magenta dark:border-M-Lime";
-  const deactive_class =
-    "tab inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-A-Magenta hover:border-gray-300 dark:hover:text-M-Lime text-L-Gray-dark dark:text-D-Gray-light";
-
-  // Función que modifica las etiquetas de css de la navegación de tabs para activar y desactivar la pestaña activa.
-
   const changeTab = (e) => {
     let id = e.target.getAttribute("data-tabs-target");
 
     document
-      .querySelectorAll("#myTabContent > div")
+      .querySelectorAll("#myTab2Content > div")
       .forEach((el) => el.classList.add("hidden"));
 
     document.querySelector(id).classList.remove("hidden");
@@ -80,8 +80,8 @@ export const AdminDashboard = () => {
           <div className="mb-4">
             <ul
               className="flex flex-wrap -mb-px font-bellfort text-xl text-center"
-              id="myTab"
-              data-tabs-toggle="#myTabContent"
+              id="myTab2"
+              data-tabs-toggle="#myTab2Content"
               role="tablist"
             >
               {/* Tab de la sección de usuarios */}
@@ -92,7 +92,6 @@ export const AdminDashboard = () => {
                   id="users-tab"
                   data-tabs-target="#users"
                   type="button"
-                  role="tab"
                   aria-controls="users"
                   aria-selected="true"
                   onClick={(e) => {
@@ -130,7 +129,6 @@ export const AdminDashboard = () => {
                   id="subscription-tab"
                   data-tabs-target="#subscription"
                   type="button"
-                  role="tab"
                   aria-controls="subscription"
                   aria-selected="false"
                   onClick={(e) => {
@@ -149,7 +147,6 @@ export const AdminDashboard = () => {
                   id="sessions-tab"
                   data-tabs-target="#sessions"
                   type="button"
-                  role="tab"
                   aria-controls="sessions"
                   aria-selected="false"
                   onClick={(e) => {
@@ -200,11 +197,11 @@ export const AdminDashboard = () => {
           </div>
         </div>
 
-        <div id="myTabContent">
+        <div id="myTab2Content">
           {/* Contenido de la sección de gestión de usuarios */}
 
           <div
-            className="rounded-xl bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
+            className=" p-4 bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
             id="users"
             role="tabpanel"
             aria-labelledby="users-tab"
@@ -215,7 +212,7 @@ export const AdminDashboard = () => {
           {/* Contenido de la sección de administración de suscripciones */}
 
           <div
-            className="hidden rounded-xl p-4 bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
+            className="hidden p-4 bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
             id="training"
             role="tabpanel"
             aria-labelledby="training-tab"
@@ -226,7 +223,7 @@ export const AdminDashboard = () => {
           {/* Contenido de la sección de tarifas de suscripciones */}
 
           <div
-            className="hidden rounded-xl bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
+            className="hidden p-4 bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
             id="subscription"
             role="tabpanel"
             aria-labelledby="subscription-tab"
@@ -237,7 +234,7 @@ export const AdminDashboard = () => {
           {/* Contenido de la sección de gestión de sesiones */}
 
           <div
-            className="hidden rounded-xl bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
+            className="hidden p-4 bg-L-Gray-light dark:bg-D-Gray-dark border border-L-Gray-dark border-opacity-30 dark:border-D-Gray-light dark:border-opacity-10"
             id="sessions"
             role="tabpanel"
             aria-labelledby="sessions-tab"

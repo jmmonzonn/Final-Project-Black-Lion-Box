@@ -33,15 +33,13 @@ def create_user():
     info = request.json.get("info", None)
     role_id = request.json.get("role_id", None)
 
-    # if None in [username, password, email, phone, first_name, last_name, conditions_terms]:
-    #     return jsonify({"message" : "Alguno de los campos obligatorios no furula"}),400
     try:
 
         role = Role.query.filter_by(name="user").first() if not role_id else Role.query.filter_by(id=role_id).first()
         new_user = User(username = username, password = password, email = email, phone = phone, 
                         first_name = first_name, last_name = last_name, adress = adress, 
                         avatar_url = avatar_url, conditions_terms = conditions_terms, 
-                        marketing_comunication = marketing_comunication, info = info, is_active = False, role = role)
+                        marketing_comunication = marketing_comunication, info = info, is_active = False, role = role, role_id = role_id)
         db.session.add(new_user)
         db.session.commit()
         data_response = create_token(new_user)
@@ -52,6 +50,10 @@ def create_user():
         elif isinstance(ex.orig, UniqueViolation):
             return jsonify({"message" : "Ya se encuentra un usuario registrado con estos datos"}),400
         return jsonify({"message" : ex.orig}),400 
+
+    # if None in [username, password, email, phone, first_name, last_name, conditions_terms]:
+    #     return jsonify({"message" : "Alguno de los campos obligatorios no furula"}),400
+   
 
     return jsonify({"message" : "Usuario registrado", "response": data_response}),200
 
@@ -96,6 +98,7 @@ def edit_user(id):
     new_last_name = request.json.get("last_name", user.last_name)
     new_adress = request.json.get("adress", user.adress)
     new_info = request.json.get("info", user.info)
+    new_role_id = request.json.get("role_id", user.role_id)
 
     setattr(user, "username", new_username)
     setattr(user, "email", new_email)
@@ -104,6 +107,7 @@ def edit_user(id):
     setattr(user, "last_name", new_last_name)
     setattr(user, "adress", new_adress)
     setattr(user, "info", new_info)
+    setattr(user, "role_id", new_role_id)
     db.session.commit()
        
     return jsonify(user.serialize()), 200
@@ -141,12 +145,29 @@ def login():
 @api.route('/suscription', methods=["POST"])
 #@jwt_required()
 def create_suscription():
-     name = request.json.get("name", None)
-     description = request.json.get("description", None)
-     price = request.json.get("price", None)
-     tokens = request.json.get("tokens", None)
-     suscription_type_id = request.json.get("suscription_type_id", None)
-     stripe_id = request.json.get("stripe_id", None)
+    name = request.json.get("name", None)
+    description = request.json.get("description", None)
+    price = request.json.get("price", None)
+    tokens = request.json.get("tokens", None)
+    suscription_type_id = request.json.get("suscription_type_id", None)
+    stripe_id = request.json.get("stripe_id", None)
+
+    try:
+
+        suscription_type = Suscription_type.query.filter_by(id=suscription_type_id).first()
+        new_suscription = Suscription(name = name, stripe_id= stripe_id, description = description, price = price, tokens = tokens, suscription_type_id = suscription_type_id, suscription_type = suscription_type)
+        db.session.add(new_suscription)
+        db.session.commit()
+
+    except IntegrityError as ex:
+        print(ex)
+        if isinstance(ex.orig, NotNullViolation):
+            return jsonify({"message" : "Los campos son obligatorios no pueden quedar como null."}),400
+        elif isinstance(ex.orig, UniqueViolation):
+            return jsonify({"message" : "Ya se encuentra un usuario registrado con estos datos"}),400
+        return jsonify({"message" : ex.orig}),400 
+
+    
      
     #  suscription_type = request.json.get("suscription_type", None)
 
@@ -158,11 +179,11 @@ def create_suscription():
     #     return jsonify({"message": "Rellena todos los campos obligatorios"}), 401
     
     
-     new_suscription = Suscription(name = name, stripe_id= stripe_id, description = description, price = price, tokens = tokens, suscription_type_id = suscription_type_id)
-     db.session.add(new_suscription)
-     db.session.commit()
- 
-     return jsonify({"message" : "Suscription nueva creada"}),200
+    new_suscription = Suscription(name = name, stripe_id= stripe_id, description = description, price = price, tokens = tokens, suscription_type_id = suscription_type_id)
+    db.session.add(new_suscription)
+    db.session.commit()
+
+    return jsonify({"message" : "Suscription nueva creada"}),200
 
 @api.route("/get_suscriptions", methods=["GET"])
 #@jwt_required()
@@ -195,11 +216,11 @@ def edit_suscriptions(id):
     except:
         return jsonify({"message": "Error"}), 400
 
-    new_name = request.json.get("name", None)
-    new_description = request.json.get("description", None)
-    new_price = request.json.get("price", None)
-    new_tokens = request.json.get("tokens", None)
-    new_suscription_type_id = request.json.get("suscription_type_id", None)
+    new_name = request.json.get("name", suscription.name)
+    new_description = request.json.get("description", suscription.description)
+    new_price = request.json.get("price", suscription.price)
+    new_tokens = request.json.get("tokens", suscription.tokens)
+    new_suscription_type_id = request.json.get("suscription_type_id", suscription.suscription_type_id)
    
 
     setattr(suscription, "name", new_name)
@@ -284,9 +305,9 @@ def joinsession():
     return jsonify(usersession.serialize()),200
 
 
-@api.route("/delete_session/<id>", methods=["DELETE"])
+@api.route("/delete_user_session/<id>", methods=["DELETE"])
 @jwt_required()
-def delete_session(id):
+def delete_user_session(id):
     try:
         user_sessions = User_sessions.query.filter_by(id=id).first()
         db.session.delete(user_sessions)
@@ -295,7 +316,20 @@ def delete_session(id):
     except:
         return jsonify({"message": "Error"}), 400
     
-    return jsonify({"message": "User session eliminado."})
+    return jsonify({"message": "User session eliminado."}), 200
+
+@api.route("/delete_session/<id>", methods=["DELETE"])
+@jwt_required()
+def delete_session(id):
+    try:
+        sessions = Sessions.query.filter_by(id=id).first()
+        db.session.delete(sessions)
+        db.session.commit()
+
+    except:
+        return jsonify({"message": "Error"}), 400
+    
+    return jsonify({"message": "Sesion eliminada."}), 200
 
 
 @api.route('/role', methods=["POST"])

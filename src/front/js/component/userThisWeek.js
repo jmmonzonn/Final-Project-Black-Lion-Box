@@ -228,7 +228,7 @@ export const UserThisWeek = () => {
                                   .then((data) =>
                                     fetch(
                                       process.env.BACKEND_URL +
-                                        "/api/delete_session/" +
+                                        "/api/delete_user_session/" +
                                         data[0].id,
                                       {
                                         method: "DELETE",
