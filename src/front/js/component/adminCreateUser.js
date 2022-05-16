@@ -118,6 +118,7 @@ export const AdminCreateUser = () => {
                       className="py-2.5 border-b-2 border-transparent text-L-Gray-dark dark:text-D-Gray-light hover:text-A-Magenta dark:hover:text-M-Lime mx-1.5 sm:mx-2"
                       onClick={() => {
                         setOldUser(value);
+                        setModifyUser(value);
                       }}
                       type="button"
                       data-modal-toggle="modify-modal"
@@ -440,6 +441,8 @@ export const AdminCreateUser = () => {
                       ...modifyUser,
                       first_name: e.target.value,
                     });
+                    console.log(oldUser);
+                    console.log(modifyUser);
                   }}
                   className="my-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   defaultValue={oldUser.first_name ? oldUser.first_name : ""}
