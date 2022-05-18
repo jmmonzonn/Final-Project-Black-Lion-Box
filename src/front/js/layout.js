@@ -12,6 +12,7 @@ import { Register } from "./component/register";
 import { Login } from "./component/login";
 import { Contact } from "./component/contact";
 import { Maps } from "./component/maps";
+import { UploadView } from "./component/upload";
 import { Features } from "./component/features";
 import { SubscriptionTiers } from "./component/adminSubscriptionTiers";
 import { Success } from "./component/success";
@@ -47,6 +48,9 @@ const Layout = () => {
           </Route>
           <Route exact path="/admin/dashboard">
             <AdminDashboard />
+          </Route>
+          <Route exact path="/upload">
+            <UploadView />
           </Route>
           <Route exact path="/register">
             <Register />

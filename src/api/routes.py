@@ -12,6 +12,8 @@ import calendar
 from sqlalchemy import extract  
 import os
 import stripe
+import cloudinary
+import cloudinary.uploader
 
 
 from babel.dates import format_date
@@ -126,6 +128,19 @@ def create_token(user):
 @api.route("/get_users", methods=["GET"])
 def get_users():
     return jsonify([user.serialize() for user in User.query.all()]), 200
+
+@api.route("/upload/<id>", methods=["POST"])
+def upload(id):
+    user = User.query.get(id)
+    result = cloudinary.uploader.upload(request.files['profile_image'], public_id=f'user_images/{user.username}')
+    
+    new_avatar_url = result['secure_url']
+   
+    setattr(user, "avatar_url", new_avatar_url)
+    
+    db.session.commit()
+    
+    return jsonify("que pasa nota"), 200
 
 @api.route('/login', methods=['POST'])
 def login():
