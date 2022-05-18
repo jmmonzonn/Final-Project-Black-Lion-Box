@@ -34,7 +34,7 @@ export const HomeFeat1 = () => {
     // Inicio de la sección Gimnasio
     <div className="container mx-auto text-center " id="Elgimnasio">
       {/* Fila de la primera imagen  */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-4 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-4 items-center  h-max">
         {/* Primera imagen con parallax */}
         <div id="newfeats1">
           <div className="newfeatstext"></div>
@@ -59,7 +59,7 @@ export const HomeFeat1 = () => {
 
       {/* Fila de la segunda imagen  */}
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-4 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-4 items-center  h-max">
         {/* Texto con glitch de la segunda imagen */}
 
         <div>
