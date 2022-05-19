@@ -3659,6 +3659,13 @@ html {
   max-height: 56rem /* 384px */;
 }
 
+#googlemaps {
+  height: 600px;
+  /* The height is 400 pixels */
+  width: 100%;
+  /* The width is the width of the web page */
+}
+
 .hover\:border-M-Lime:hover{
   --tw-border-opacity: 1;
   border-color: rgb(220 219 55 / var(--tw-border-opacity));

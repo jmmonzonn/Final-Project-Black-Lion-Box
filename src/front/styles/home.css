@@ -633,3 +633,10 @@ html {
 .max-h-120 {
   max-height: 56rem /* 384px */;
 }
+
+#googlemaps {
+  height: 600px;
+  /* The height is 400 pixels */
+  width: 100%;
+  /* The width is the width of the web page */
+}
