@@ -34,6 +34,12 @@ export const UploadView = (props) => {
         />
         <button>Upload</button>
       </form>
+      <form
+        action="https://3001-jmmonzonn-finalprojectb-v3wj2bnmms6.ws-eu45.gitpod.io/api/stripe_pay/1"
+        method="POST"
+      >
+        <button type="submit">Checkout</button>
+      </form>
     </div>
   );
 };

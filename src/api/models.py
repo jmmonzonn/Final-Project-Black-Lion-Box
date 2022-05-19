@@ -68,7 +68,7 @@ class Suscription(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(24), unique=True, nullable=False)
     description = db.Column(db.String(48), unique=False, nullable=False)
-    price = db.Column(db.Float, unique=False, nullable=False)
+    price = db.Column(db.Integer, unique=False, nullable=False)
     tokens = db.Column(db.Integer, unique=False, nullable=False)
     suscription_image = db.Column(db.String(256), unique=False, nullable=True)
     suscription_type_id = db.Column(db.Integer, db.ForeignKey('suscription_type.id'), unique=False, nullable=True)
