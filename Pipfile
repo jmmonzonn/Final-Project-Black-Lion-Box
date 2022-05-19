@@ -20,7 +20,6 @@ flask-admin = "*"
 flask-jwt-extended = "*"
 babel = "*"
 stripe = "*"
-trigger = "*"
 
 [requires]
 python_version = "3.8"
