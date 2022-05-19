@@ -2,7 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       username: "",
-      user_id: null,
+      user_id: 1,
       stripe_id: "",
       suscriptionList: [],
     },

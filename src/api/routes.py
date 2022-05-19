@@ -1,7 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, request, jsonify, url_for, Blueprint, redirect
 from api.models import db, User, Role, Suscription, Sessions, Sessions_type, Suscription_type, Weekdays, User_sessions, Icon_library
 from api.utils import generate_sitemap, APIException
 from sqlalchemy.exc import IntegrityError
@@ -10,8 +10,12 @@ from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identi
 from datetime import date, timedelta, datetime
 import calendar
 from sqlalchemy import extract  
+import json
 import os
 import stripe
+import cloudinary
+import cloudinary.uploader
+stripe.api_key = 'sk_test_51Kj4gkDlzem2mj3wDWi04s8L4wuY6z5JyfSowGjpDreXl81PbLpgU54KKex8ZycEMrmGXFF5YyNYj3ELJ4iuZtZd00GSOzhcF4'
 
 
 from babel.dates import format_date
@@ -126,6 +130,52 @@ def create_token(user):
 @api.route("/get_users", methods=["GET"])
 def get_users():
     return jsonify([user.serialize() for user in User.query.all()]), 200
+
+@api.route("/stripe_pay", methods=["POST"])
+def payload():
+    print(request.json)
+    return jsonify(request.json)
+
+@api.route("/stripe_pay/<id>", methods=["POST"])
+def create_checkout_session(id):
+    try:
+        subscription = Suscription.query.filter_by(id=id).first()
+        checkout_session = stripe.checkout.Session.create(
+            customer_email='customer@example.com',
+            billing_address_collection='auto',
+            line_items=[
+                {
+                    'price_data': {
+                        'currency': 'eur',
+                        'product_data': {
+                            'name': subscription.name,
+                        },
+                        'unit_amount': subscription.price * 100,
+                    },
+                    'quantity': 1,
+                },
+            ],
+            mode='payment',
+            success_url='https://3000-jmmonzonn-finalprojectb-v3wj2bnmms6.ws-eu45.gitpod.io/user/dashboard',
+            cancel_url='https://3000-jmmonzonn-finalprojectb-v3wj2bnmms6.ws-eu45.gitpod.io/',
+        )
+    except Exception as e:
+        return str(e)
+
+    return redirect(checkout_session.url, code=303)
+
+@api.route("/upload/<id>", methods=["POST"])
+def upload(id):
+    user = User.query.get(id)
+    result = cloudinary.uploader.upload(request.files['profile_image'], public_id=f'user_images/{user.username}')
+    
+    new_avatar_url = result['secure_url']
+   
+    setattr(user, "avatar_url", new_avatar_url)
+    
+    db.session.commit()
+    
+    return jsonify("que pasa nota"), 200
 
 @api.route('/login', methods=['POST'])
 def login():
