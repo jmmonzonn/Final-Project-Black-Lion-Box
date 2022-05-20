@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint, redirect
-from api.models import db, User, Role, Suscription, Sessions, Sessions_type, Suscription_type, Weekdays, User_sessions, Icon_library
+from api.models import db, User, Role, Suscription, Sessions, Sessions_type, Suscription_type, Weekdays, User_sessions, Icon_library, Payments
 from api.utils import generate_sitemap, APIException
 from sqlalchemy.exc import IntegrityError
 from psycopg2.errors import NotNullViolation, UniqueViolation
@@ -133,15 +133,30 @@ def get_users():
 
 @api.route("/stripe_pay", methods=["POST"])
 def payload():
-    print(request.json)
+    data = request.json['type']
+    if data == "charge.succeeded":
+        
+        email = request.json['data']['object']['billing_details']['email']
+        user = User.query.filter_by(email=email).first()
+        subscription = Suscription.query.filter_by(id=user.suscription_id).first()
+        now = datetime.now()
+        new_payment = Payments(user_id = user.id, suscription_id = subscription.id, payment_date = str(now)[:-7])
+        db.session.add(new_payment)
+        db.session.commit()
+            
+    
+    
+            
+        
     return jsonify(request.json)
 
-@api.route("/stripe_pay/<id>", methods=["POST"])
-def create_checkout_session(id):
+@api.route("/stripe_pay/<subs_id>/<user_id>", methods=["POST"])
+def create_checkout_session(subs_id, user_id):
     try:
-        subscription = Suscription.query.filter_by(id=id).first()
+        subscription = Suscription.query.filter_by(id=subs_id).first()
+        user = User.query.filter_by(id=user_id).first()
         checkout_session = stripe.checkout.Session.create(
-            customer_email='customer@example.com',
+            customer_email=user.email,
             billing_address_collection='auto',
             line_items=[
                 {
@@ -156,9 +171,11 @@ def create_checkout_session(id):
                 },
             ],
             mode='payment',
-            success_url='https://3000-jmmonzonn-finalprojectb-v3wj2bnmms6.ws-eu45.gitpod.io/user/dashboard',
+            success_url='https://3000-jmmonzonn-finalprojectb-ug5nkpiyhxe.ws-eu45.gitpod.io/admin/dashboard',
             cancel_url='https://3000-jmmonzonn-finalprojectb-v3wj2bnmms6.ws-eu45.gitpod.io/',
         )
+        setattr(user, "suscription_id", subs_id)
+        db.session.commit()
     except Exception as e:
         return str(e)
 

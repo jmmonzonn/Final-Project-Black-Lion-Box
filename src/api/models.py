@@ -128,7 +128,9 @@ class Sessions(db.Model):
 class Payments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     suscription_id = db.Column(db.Integer, db.ForeignKey('suscription.id'), unique=False, nullable=False)
+    suscription = db.relationship('Suscription', backref='payments', lazy=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), unique=False, nullable=False)
+    user = db.relationship('User', backref='payments', lazy=True)
     payment_date = db.Column(db.DateTime, nullable=False)
     
 
