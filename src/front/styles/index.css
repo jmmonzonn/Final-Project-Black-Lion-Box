@@ -1174,16 +1174,16 @@ select{
   margin-top: 0.75rem;
 }
 
+.mt-32{
+  margin-top: 8rem;
+}
+
 .mb-12{
   margin-bottom: 3rem;
 }
 
 .mb-20{
   margin-bottom: 5rem;
-}
-
-.mt-32{
-  margin-top: 8rem;
 }
 
 .ml-16{
@@ -1889,6 +1889,22 @@ select{
   padding-bottom: 2rem;
 }
 
+.pb-24{
+  padding-bottom: 6rem;
+}
+
+.pl-1{
+  padding-left: 0.25rem;
+}
+
+.pt-2{
+  padding-top: 0.5rem;
+}
+
+.pb-2{
+  padding-bottom: 0.5rem;
+}
+
 .pt-4{
   padding-top: 1rem;
 }
@@ -1899,10 +1915,6 @@ select{
 
 .pb-32{
   padding-bottom: 8rem;
-}
-
-.pt-2{
-  padding-top: 0.5rem;
 }
 
 .text-left{
@@ -1960,14 +1972,14 @@ select{
   line-height: 1;
 }
 
-.text-3xl{
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-
 .text-6xl{
   font-size: 3.75rem;
   line-height: 1;
+}
+
+.text-3xl{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .text-base{
@@ -2063,6 +2075,11 @@ select{
   color: rgb(163 175 192 / var(--tw-text-opacity));
 }
 
+.text-A-Magenta{
+  --tw-text-opacity: 1;
+  color: rgb(221 21 109 / var(--tw-text-opacity));
+}
+
 .text-L-Gray-light{
   --tw-text-opacity: 1;
   color: rgb(241 240 242 / var(--tw-text-opacity));
@@ -2076,11 +2093,6 @@ select{
 .text-gray-800{
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
-}
-
-.text-A-Magenta{
-  --tw-text-opacity: 1;
-  color: rgb(221 21 109 / var(--tw-text-opacity));
 }
 
 .text-gray-700{
@@ -2191,6 +2203,11 @@ select{
 
 html {
   scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
 }
 
 /* Configuración del Navbar */
@@ -3659,6 +3676,13 @@ html {
   max-height: 56rem /* 384px */;
 }
 
+#googlemaps {
+  height: 600px;
+  /* The height is 400 pixels */
+  width: 100%;
+  /* The width is the width of the web page */
+}
+
 .hover\:border-M-Lime:hover{
   --tw-border-opacity: 1;
   border-color: rgb(220 219 55 / var(--tw-border-opacity));
@@ -4216,6 +4240,10 @@ html {
 
   .sm\:mt-0{
     margin-top: 0px;
+  }
+
+  .sm\:h-36{
+    height: 9rem;
   }
 
   .sm\:h-9{
