@@ -1,8 +1,9 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
+      subscription_id: "",
       username: "",
-      user_id: 1,
+      user_id: "",
       stripe_id: "",
       suscriptionList: [],
     },
@@ -41,6 +42,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       setUsername: (username) => {
         setStore({ username: username });
+      },
+      setUser_id: (id) => {
+        setStore({ user_id: id });
+      },
+      setSubscription_id: (id) => {
+        setStore({ subscription_id: id });
       },
       // Use getActions to call a function within a fuction
       exampleFunction: () => {

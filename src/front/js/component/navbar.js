@@ -199,13 +199,17 @@ export const Navbar = (props) => {
         <div className="flex items-center">
           <div>
             {/* Logo principal del navbar */}
-            <a href="/" className="flex items-center">
+            <button
+              className="flex items-center"
+              type="button"
+              onClick={() => history.push("/")}
+            >
               <img
                 src="https://res.cloudinary.com/blacklionbox/image/upload/v1650757336/white-black-lion-box_large_oenn7r.png"
                 className="mr-3 h-6 sm:h-9"
                 alt="Black Lion Box"
               />
-            </a>
+            </button>
             {/* Inicio de botones de navegación interna del home */}
           </div>
 

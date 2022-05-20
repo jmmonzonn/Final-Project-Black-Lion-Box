@@ -37,6 +37,7 @@ export const Login = (props) => {
           localStorage.setItem("id", data.id);
           localStorage.setItem("email", data.email);
           localStorage.setItem("role", data.role);
+          actions.setUser_id(data.id);
           props.logged(true);
           if (data.role == "admin") {
             history.push("/admin/dashboard");
