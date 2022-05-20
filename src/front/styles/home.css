@@ -27,6 +27,11 @@ html {
   scroll-behavior: smooth;
 }
 
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
 /* Configuración del Navbar */
 
 .navLogo {

@@ -8,7 +8,7 @@ import { Contact } from "../component/contact";
 import { Features } from "../component/features";
 import { SubscriptionTiers } from "../component/subscriptionTiers";
 import { HomeFeat1 } from "../component/homeFeat1";
-import { GoogleMaps } from "../component/googlemaps";
+import { Map } from "../component/googlemaps";
 export const Home = () => {
   const { store, actions } = useContext(Context);
   const history = useHistory();
@@ -36,7 +36,7 @@ export const Home = () => {
       <SubscriptionTiers />
       {/* <Features /> */}
       {/* <Maps /> */}
-      <GoogleMaps />
+      <Map />
       <Contact />
     </div>
   );
