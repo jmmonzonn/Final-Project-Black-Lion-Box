@@ -1,34 +1,62 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
+      user_sessions: [],
+      user: {},
+      thisWeek: [],
       subscription_id: "",
       username: "",
       user_id: "",
       stripe_id: "",
       suscriptionList: [],
+      tokens: null,
     },
     actions: {
       /* Funcion para pagos en Stripe */
-      pay: (stripe_id) => {
-        let stripe = Stripe(process.env.React_APP_STRIPE_KEY);
-        stripe
-          .redirectToCheckout({
-            lineItems: [{ price: stripe_id, quantity: 1 }],
-            customerEmail: localStorage.getItem("email"),
-            mode: "subscription",
-            successUrl:
-              "https://3000-jmmonzonn-finalprojectb-hhw9h19v6vn.ws-eu43.gitpod.io/user/dashboard",
-            cancelUrl:
-              "https://3000-jmmonzonn-finalprojectb-hhw9h19v6vn.ws-eu43.gitpod.io/cancel",
-          })
-          .then(function (result) {
-            if (result.error) {
-              var displayError = document.getElementById("error-message");
-              displayError.textContent = result.error.message;
-            }
+
+      getUser: () => {
+        fetch(
+          process.env.BACKEND_URL + "/api/user/" + localStorage.getItem("id"),
+          {
+            method: "GET",
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          }
+        )
+          .then((resp) => resp.json())
+          .then((data) => {
+            setStore({ user: data[0] });
           });
       },
-      /* Funcion para guardar la informacion de las subscripciones dentro del Store */
+      getThisWeek: () => {
+        fetch(process.env.BACKEND_URL + "/api/thisweek", {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+          .then((resp) => resp.json())
+          .then((data) => {
+            console.log(data);
+            setStore({ thisWeek: data });
+          });
+      },
+      getUserSessions: () => {
+        fetch(
+          process.env.BACKEND_URL +
+            "/api/user_sessions/" +
+            localStorage.getItem("id"),
+          {
+            method: "GET",
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          }
+        )
+          .then((resp) => resp.json())
+          .then((data) => setStore({ user_sessions: data }));
+      },
       getSuscriptions: () => {
         fetch(process.env.BACKEND_URL + "/api/get_suscriptions", {
           method: "GET",
@@ -39,15 +67,132 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((resp) => resp.json())
           .then((data) => setStore({ suscriptionList: data }));
       },
+      postUserSession: (date, sessions_id, user) => {
+        const store = getStore();
+        fetch(process.env.BACKEND_URL + "/api/joinsession", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          body: JSON.stringify({
+            date: date,
+            sessions_id: sessions_id,
+          }),
+        })
+          .then((resp) => resp.json())
+          .then((data) => {
+            setStore({ user_sessions: data });
+            // getActions().putUser(user);
+            // getActions().getThisWeek();
+            fetch(
+              process.env.BACKEND_URL +
+                "/api/edit_user/" +
+                localStorage.getItem("id"),
+              {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: "Bearer" + localStorage.getItem("token"),
+                },
+                body: JSON.stringify({
+                  remaining_tokens: store.user.remaining_tokens - 1,
+                }),
+              }
+            )
+              .then((resp) => resp.json())
+              .then((data) => {
+                // console.log(newUser);
+                console.log(data);
+                setStore({ user: data });
+                getActions().getThisWeek();
+              });
+          });
+      },
+      deleteUserSession: (user_id, sessions_id, date) => {
+        const store = getStore();
+        // date = date.replace(/\//g, ":");
+        fetch(
+          process.env.BACKEND_URL +
+            "/api/delete_user_session/" +
+            user_id +
+            "/" +
+            sessions_id +
+            "/" +
+            date,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          }
+        )
+          .then((resp) => resp.json())
+          .then(
+            (data) => {
+              console.log(data);
+              // setStore({ user_sessions: data });
+              fetch(
+                process.env.BACKEND_URL +
+                  "/api/edit_user/" +
+                  localStorage.getItem("id"),
+                {
+                  method: "PUT",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer" + localStorage.getItem("token"),
+                  },
+                  body: JSON.stringify({
+                    remaining_tokens: store.user.remaining_tokens + 1,
+                  }),
+                }
+              )
+                .then((resp) => resp.json())
+                .then((data) => {
+                  // console.log(newUser);
+                  console.log(data);
+                  setStore({ user: data });
+                  getActions().getThisWeek();
+                });
+            }
+
+            // setStore({ user_sessions: data })
+          );
+      },
+      /* Funcion para guardar la informacion de las subscripciones dentro del Store */
 
       setUsername: (username) => {
         setStore({ username: username });
+      },
+      setTokens: (tokens) => {
+        setStore({ tokens: tokens });
       },
       setUser_id: (id) => {
         setStore({ user_id: id });
       },
       setSubscription_id: (id) => {
         setStore({ subscription_id: id });
+      },
+      putUser: (newUser) => {
+        fetch(
+          process.env.BACKEND_URL +
+            "/api/edit_user/" +
+            localStorage.getItem("id"),
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer" + localStorage.getItem("token"),
+            },
+            body: JSON.stringify(newUser),
+          }
+        )
+          .then((resp) => resp.json())
+          .then((data) => {
+            console.log(newUser);
+            console.log(data);
+            setStore({ user: data });
+          });
       },
       // Use getActions to call a function within a fuction
       exampleFunction: () => {

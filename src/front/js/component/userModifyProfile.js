@@ -4,30 +4,19 @@ import "../../styles/home.css";
 import { useHistory } from "react-router-dom";
 
 export const UserModifyProfile = () => {
+  const { store, actions } = useContext(Context);
   const [user, setUser] = useState({});
   const [oldUser, setOldUser] = useState({});
   useEffect(() => {
-    getUser();
-  }, []);
+    window.document.dispatchEvent(
+      new Event("DOMContentLoaded", {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
+    setOldUser(store.user);
+  }, [store.user]);
 
-  const getUser = () => {
-    fetch(process.env.BACKEND_URL + "/api/user/" + localStorage.getItem("id"), {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setOldUser(data[0]);
-        window.document.dispatchEvent(
-          new Event("DOMContentLoaded", {
-            bubbles: true,
-            cancelable: true,
-          })
-        );
-      });
-  };
   return (
     <div className="container items-center justify-center mx-auto">
       <div className="relative z-0 mb-6 w-full group ">
@@ -168,20 +157,7 @@ export const UserModifyProfile = () => {
         <button
           type="submit"
           onClick={() => {
-            fetch(
-              process.env.BACKEND_URL +
-                "/api/edit_user/" +
-                localStorage.getItem("id"),
-              {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(user),
-              }
-            )
-              .then((resp) => resp.json())
-              .then((data) => console.log(data));
+            actions.putUser(user);
           }}
           className="py-2 px-2 text-sm font-medium text-L-Gray-dark focus:outline-none bg-M-Lime rounded-lg border border-gray-200 hover:bg-A-Magenta hover:text-L-Gray-light focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         >
