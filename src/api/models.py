@@ -22,6 +22,7 @@ class User(db.Model):
     role = db.relationship('Role', backref='user', lazy=True)
     suscription = db.relationship('Suscription', backref='user', lazy=True)
     user_sessions = db.relationship("User_sessions", back_populates="users")
+    remaining_tokens = db.Column(db.Integer, unique=False, nullable=True)
 
   
 
@@ -47,6 +48,7 @@ class User(db.Model):
             "role": self.role.name if self.role else None,
             "suscription_id": self.suscription_id,
             "suscription": self.suscription.name if self.suscription else None,
+            "remaining_tokens": self.remaining_tokens,
 
         }
 

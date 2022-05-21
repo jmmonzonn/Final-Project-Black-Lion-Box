@@ -103,6 +103,7 @@ def edit_user(id):
     new_adress = request.json.get("adress", user.adress)
     new_info = request.json.get("info", user.info)
     new_role_id = request.json.get("role_id", user.role_id)
+    new_remaining_tokens = request.json.get("remaining_tokens", user.remaining_tokens)
 
     setattr(user, "username", new_username)
     setattr(user, "email", new_email)
@@ -112,6 +113,8 @@ def edit_user(id):
     setattr(user, "adress", new_adress)
     setattr(user, "info", new_info)
     setattr(user, "role_id", new_role_id)
+    setattr(user, "remaining_tokens", new_remaining_tokens)
+
     db.session.commit()
        
     return jsonify(user.serialize()), 200
@@ -142,6 +145,7 @@ def payload():
         now = datetime.now()
         new_payment = Payments(user_id = user.id, suscription_id = subscription.id, payment_date = str(now)[:-7])
         db.session.add(new_payment)
+        setattr(user, "remaining_tokens", subscription.tokens)
         db.session.commit()
             
     
@@ -171,8 +175,8 @@ def create_checkout_session(subs_id, user_id):
                 },
             ],
             mode='payment',
-            success_url='https://3000-jmmonzonn-finalprojectb-ug5nkpiyhxe.ws-eu45.gitpod.io/admin/dashboard',
-            cancel_url='https://3000-jmmonzonn-finalprojectb-v3wj2bnmms6.ws-eu45.gitpod.io/',
+            success_url='https://3000-jmmonzonn-finalprojectb-lcmruucp4ya.ws-eu45.gitpod.io/admin/dashboard',
+            cancel_url='https://3000-jmmonzonn-finalprojectb-lcmruucp4ya.ws-eu45.gitpod.io/cancel',
         )
         setattr(user, "suscription_id", subs_id)
         db.session.commit()
@@ -256,6 +260,11 @@ def create_suscription():
 #@jwt_required()
 def get_suscriptions():
     return jsonify([suscription.serialize() for suscription in Suscription.query.all()]), 200
+
+@api.route("/get_suscription/<id>", methods=["GET"])
+#@jwt_required()
+def get_suscription(id):
+    return jsonify([suscription.serialize() for suscription in Suscription.query.filter_by(id=id)]), 200
 
 
 @api.route("/delete_suscriptions/<int:id>", methods=["DELETE"])
@@ -369,21 +378,22 @@ def joinsession():
     db.session.add(usersession)
     db.session.commit()
 
-    return jsonify(usersession.serialize()),200
+    return jsonify([user_sessions.serialize() for user_sessions in User_sessions.query.all()]),200
 
 
-@api.route("/delete_user_session/<id>", methods=["DELETE"])
+@api.route("/delete_user_session/<user_id>/<sessions_id>/<year>/<month>/<day>", methods=["DELETE"])
 @jwt_required()
-def delete_user_session(id):
+def delete_user_session(user_id, sessions_id, year, month, day):
     try:
-        user_sessions = User_sessions.query.filter_by(id=id).first()
-        db.session.delete(user_sessions)
+        date = year + "/" + month + "/" + day
+        user_session = User_sessions.query.filter_by(user_id=user_id, sessions_id=sessions_id, date=date).first()
+        db.session.delete(user_session)
         db.session.commit()
 
     except:
         return jsonify({"message": "Error"}), 400
     
-    return jsonify({"message": "User session eliminado."}), 200
+    return jsonify([user_sessions.serialize() for user_sessions in User_sessions.query.all()]), 200
 
 @api.route("/delete_session/<id>", methods=["DELETE"])
 @jwt_required()

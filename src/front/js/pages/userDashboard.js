@@ -39,7 +39,10 @@ export const UserDashboard = () => {
     ) {
       history.push("/user/dashboard");
     }
-  });
+    actions.getUser();
+    actions.getUserSessions();
+    actions.getThisWeek();
+  }, []);
 
   // Función que modifica las etiquetas de css de la navegación de tabs para activar y desactivar la pestaña activa.
 
