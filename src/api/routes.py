@@ -321,6 +321,8 @@ def create_sessions():
      duration = request.json.get("duration", None)
      max_users = request.json.get("max_users", None)
      sessions_type_id = request.json.get("sessions_type_id", None)
+    #  session_type_icon_id = request.json.get("sessions_type_icon_id", None)
+
      
     #  not_unique_name = Sessions.query.filter_by(name = name).first()  
     #  if not_unique_name != None:
@@ -515,9 +517,10 @@ def handle_validate():
         return jsonify({"validate": False}), 400
 
 @api.route("/thisweek", methods=["GET"])
-@jwt_required()
+# @jwt_required()
 def weeklysessions():
-    user = get_jwt_identity()
+    user = 1
+    # user = get_jwt_identity()
     today = date.today()
     data_response = []
     for i in range(7):
