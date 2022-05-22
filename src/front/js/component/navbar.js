@@ -102,38 +102,22 @@ export const Navbar = (props) => {
             Contacto
           </a>
         </li>
-      </>
-    );
-  };
-
-  // Evita que se enseñen los anchors en el navbar cuando estás en tu zona de usuario
-
-  const navbarHomeLogged = () => {
-    return (
-      <>
         <li>
           <a
-            href="#Elgimnasio"
-            className="ml-16 border-b-2 border-transparent hover: text-L-Gray-dark dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
-            aria-current="page"
+            href="https://www.instagram.com/blacklionbox/?hl=en"
+            className="border-b-2 border-transparent text-L-Gray-dark dark:text-M-Lime hover:text-M-Lime dark:hover:text-D-Gray-light mx-1.5 sm:mx-2"
+            target="_blank"
           >
-            El Gimnasio
+            <FontAwesomeIcon icon={["fab", "instagram"]} />
           </a>
         </li>
         <li>
           <a
-            href="#Suscripciones"
-            className="border-b-2 border-transparent hover: text-L-Gray-dark dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
+            href="https://www.facebook.com/Black-Lion-Box-109771724135332"
+            className="border-b-2 border-transparent text-L-Gray-dark dark:text-M-Lime hover:text-M-Lime dark:hover:text-D-Gray-light mx-1.5 sm:mx-2"
+            target="_blank"
           >
-            Suscripciones
-          </a>
-        </li>
-        <li>
-          <a
-            href="#Contacto"
-            className="border-b-2 border-transparent hover: text-L-Gray-dark dark:text-M-Lime hover:border-M-Lime dark:hover:border-D-Gray-light mx-1.5 sm:mx-2"
-          >
-            Contacto
+            <FontAwesomeIcon icon={["fab", "facebook-f"]} />
           </a>
         </li>
       </>
@@ -143,13 +127,10 @@ export const Navbar = (props) => {
   // CONFIGURACIÓN NECESARIA DEL TEMA OSCURO
 
   useEffect(() => {
-    console.log("HOlaa");
     var themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
     var themeToggleLightIcon = document.getElementById(
       "theme-toggle-light-icon"
     );
-    console.log(themeToggleDarkIcon);
-    console.log(themeToggleLightIcon);
 
     // Change the icons inside the button based on previous settings
 
@@ -195,7 +176,7 @@ export const Navbar = (props) => {
 
   return (
     <nav className=" bg-L-Gray-light border-L-Graty-med px-2 sm:px-4 py-2.5 rounded dark:bg-D-Gray-dark">
-      <div className="container flex justify-around mx-auto">
+      <div className="container flex justify-between mx-auto">
         <div className="flex items-center">
           <div>
             {/* Logo principal del navbar */}
@@ -210,7 +191,6 @@ export const Navbar = (props) => {
                 alt="Black Lion Box"
               />
             </button>
-            {/* Inicio de botones de navegación interna del home */}
           </div>
 
           <div>
@@ -219,34 +199,10 @@ export const Navbar = (props) => {
               id="mobile-menu-4"
             >
               <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-xl md:font-bellfort">
-                {window.location.pathname == "/"
-                  ? localStorage.getItem("token")
-                    ? navbarHomeLogged()
-                    : navbarHome()
-                  : ""}
-
-                <li>
-                  <a
-                    href="https://www.instagram.com/blacklionbox/?hl=en"
-                    className="border-b-2 border-transparent text-L-Gray-dark dark:text-M-Lime hover:text-M-Lime dark:hover:text-D-Gray-light mx-1.5 sm:mx-2"
-                    target="_blank"
-                  >
-                    <FontAwesomeIcon icon={["fab", "instagram"]} />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.facebook.com/Black-Lion-Box-109771724135332"
-                    className="border-b-2 border-transparent text-L-Gray-dark dark:text-M-Lime hover:text-M-Lime dark:hover:text-D-Gray-light mx-1.5 sm:mx-2"
-                    target="_blank"
-                  >
-                    <FontAwesomeIcon icon={["fab", "facebook-f"]} />
-                  </a>
-                </li>
+                {window.location.pathname == "/" ? navbarHome() : ""}
               </ul>
             </div>
           </div>
-          {/* Fin de botones de navegación interna del home */}
         </div>
 
         <div className="flex items-center">
@@ -293,7 +249,7 @@ export const Navbar = (props) => {
 
             {/* Botón de menu en vista móvil */}
 
-            <button
+            {/* <button
               data-collapse-toggle="mobile-menu-4"
               type="button"
               className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -325,7 +281,7 @@ export const Navbar = (props) => {
                   clipRule="evenodd"
                 ></path>
               </svg>
-            </button>
+            </button>  */}
           </div>
 
           {/* Fin de los botones de acciones de usuario */}
@@ -333,7 +289,7 @@ export const Navbar = (props) => {
 
         {/* Inicio de botón de navegación para móviles */}
 
-        <div>
+        {/* <div>
           <button
             id="theme-toggle"
             type="button"
@@ -362,7 +318,7 @@ export const Navbar = (props) => {
               ></path>
             </svg>
           </button>
-        </div>
+        </div> */}
 
         {/* Fin de botón de navegación para móviles */}
       </div>

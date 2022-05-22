@@ -83,7 +83,7 @@ export const UserThisWeek = () => {
               key={index}
               className={`${
                 index != 0 ? "hidden" : ""
-              } p-4 L-Gray-light rounded-lg dark:bg-D-Gray-dark`}
+              } p-2 L-Gray-light rounded-lg dark:bg-D-Gray-dark`}
               id={day.label}
               role="tabpanel"
               aria-labelledby={`${day.label}-tab`}
@@ -107,7 +107,7 @@ export const UserThisWeek = () => {
                       scope="col"
                       className="font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2"
                     >
-                      Nombre de la Sesión
+                      Sesión
                     </th>
                     <th
                       scope="col"
