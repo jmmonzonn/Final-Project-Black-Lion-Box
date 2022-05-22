@@ -5,8 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const active_class =
   "tab inline-block p-4 rounded-t-lg border-b-2 text-L-Gray-dark hover:text-A-Magenta dark:text-D-Gray-light dark:hover:text-M-Lime border-A-Magenta dark:border-M-Lime";
-// tab inline-block p-4 rounded-t-lg border-b-2 text-L-Gray-dark hover:text-A-Magenta dark:text-D-Gray-light dark:hover:text-M-Lime border-A-Magenta dark:border-M-Lime
-// tab inline-block p-4 rounded-t-lg border-b-2 text-L-Gray-dark hover:text-A-Magenta dark:text-D-Gray-light dark:hover:text-M-Lime border-A-Magenta dark:border-M-Lime text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-400 border-blue-600 dark:border-blue-500"
 const deactive_class =
   "tab inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-A-Magenta hover:border-gray-300 dark:hover:text-M-Lime text-L-Gray-dark dark:text-D-Gray-light";
 
@@ -48,7 +46,7 @@ export const UserThisWeek = () => {
 
   return (
     <div className="container mx-auto">
-      <div className="mb-4 border-b border-gray-200 flex justify-center">
+      <div className="mb-4  flex justify-center">
         <ul
           className="flex flex-wrap -mb-px text-sm font-medium text-center"
           id="sessionsTab"
@@ -85,15 +83,15 @@ export const UserThisWeek = () => {
               key={index}
               className={`${
                 index != 0 ? "hidden" : ""
-              } p-4 bg-gray-50 rounded-lg dark:bg-gray-800`}
+              } p-2 L-Gray-light rounded-lg dark:bg-D-Gray-dark`}
               id={day.label}
               role="tabpanel"
               aria-labelledby={`${day.label}-tab`}
             >
-              <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <table className="w-full text-sm text-left D-Gray-light dark:L-Gray-dark">
+                <thead className="text-xs text-L-Gray-dark uppercase bg-L-Gray-light dark:bg-D-Gray-dark dark:text-D-Gray-light">
                   <tr>
-                    <th scope="col" className="p-4">
+                    {/* <th scope="col" className="p-4">
                       <div className="hidden flex items-center">
                         <input
                           id="checkbox-all-search"
@@ -104,12 +102,12 @@ export const UserThisWeek = () => {
                           checkbox
                         </label>
                       </div>
-                    </th>
+                    </th> */}
                     <th
                       scope="col"
                       className="font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2"
                     >
-                      Nombre de la Sesión
+                      Sesión
                     </th>
                     <th
                       scope="col"
@@ -123,12 +121,12 @@ export const UserThisWeek = () => {
                     >
                       Duración
                     </th>
-                    <th
+                    {/* <th
                       scope="col"
                       className="font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2"
                     >
                       Máximos participantes
-                    </th>
+                    </th> */}
                     <th
                       scope="col"
                       className="font-bellfort text-center font-bold text-xl text-L-Gray-dark dark:text-D-Gray-light border-b-2 border-A-Magenta dark:border-M-Lime py-2"
@@ -147,13 +145,13 @@ export const UserThisWeek = () => {
                   return (
                     <tbody key={index}>
                       <tr
-                        className={`bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 ${
+                        className={`bg-L-Gray-light/75 border-b dark:bg-D-Gray-dark dark:border-D-Gray-med/25 hover:bg-L-Gray-med dark:hover:bg-D-Gray-med ${
                           value.user_logged
                             ? "bg-gradient-to-r from-transparent to-M-Lime"
                             : ""
                         }`}
                       >
-                        <td className="w-4 p-4">
+                        {/* <td className="w-4 p-4">
                           <div className="flex items-center">
                             <input
                               id="checkbox-table-search-1"
@@ -167,7 +165,7 @@ export const UserThisWeek = () => {
                               checkbox
                             </label>
                           </div>
-                        </td>
+                        </td> */}
                         <th
                           scope="row"
                           className="px-6 py-4 text-center dark:text-D-Gray-light"
@@ -183,15 +181,16 @@ export const UserThisWeek = () => {
                           {" minutos"}
                         </td>
                         <td className="px-6 py-4 text-center dark:text-D-Gray-light">
+                          {value.users_per_sessions} {""} / {""}
                           {value.max_users}
                         </td>
-                        <td className="px-6 py-4 text-center dark:text-D-Gray-light">
+                        {/* <td className="px-6 py-4 text-center dark:text-D-Gray-light">
                           {value.users_per_sessions}
-                        </td>
+                        </td> */}
                         <td className="px-6 py-4 text-center dark:text-D-Gray-light">
                           <button
                             type="button"
-                            className="font-bellfort text-l text-L-Gray-dark dark:text-D-Gray-dark hover:text-A-Magenta dark:hover:text-A-Magenta"
+                            className="font-bellfort text-l text-A-Magenta dark:text-A-Magenta hover:text-L-Gray-dark dark:hover:text-D-Gray-dark"
                             onClick={() => {
                               if (value.user_logged) {
                                 actions.deleteUserSession(
@@ -204,7 +203,7 @@ export const UserThisWeek = () => {
                               }
                             }}
                           >
-                            {value.user_logged ? "Cancelar" : "Apuntarse"}
+                            {value.user_logged ? "❌ Cancelar" : "✅ Apuntarse"}
                           </button>
                         </td>
                       </tr>
