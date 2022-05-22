@@ -42,6 +42,19 @@ const getState = ({ getStore, getActions, setStore }) => {
             setStore({ thisWeek: data });
           });
       },
+      getSessionTypes: () => {
+        fetch(process.env.BACKEND_URL + "/api/get_session_types", {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+          .then((resp) => resp.json())
+          .then((data) => {
+            console.log(data);
+            setStore({ sessionTypes: data });
+          });
+      },
       getUserSessions: () => {
         fetch(
           process.env.BACKEND_URL +

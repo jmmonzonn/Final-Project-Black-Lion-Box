@@ -19,6 +19,9 @@ import {
   faUser,
   faTriangleExclamation,
   faSun,
+  faPersonRunning,
+  faSpa,
+  faOm,
 } from "@fortawesome/free-solid-svg-icons";
 
 function initFontAwesome() {
@@ -38,7 +41,10 @@ function initFontAwesome() {
     faTriangleExclamation,
     faCloudMoon,
     faSun,
-    faDumbbell
+    faDumbbell,
+    faPersonRunning,
+    faSpa,
+    faOm
   );
 }
 
