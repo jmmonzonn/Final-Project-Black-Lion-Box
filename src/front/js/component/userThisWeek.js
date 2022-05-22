@@ -13,9 +13,6 @@ const deactive_class =
 export const UserThisWeek = () => {
   const { store, actions } = useContext(Context);
   const [thisWeek, setThisWeek] = useState([]);
-  const [actualize, setActualize] = useState(false);
-  const [user, setUser] = useState({});
-  const [oldUser, setOldUser] = useState({});
 
   useEffect(() => {
     window.document.dispatchEvent(
@@ -25,8 +22,6 @@ export const UserThisWeek = () => {
       })
     );
     setThisWeek(store.thisWeek);
-
-    console.log(store.user);
   }, [store.thisWeek]);
 
   // Función que modifica las etiquetas de css de la navegación de tabs para activar y desactivar la pestaña activa.
@@ -189,173 +184,18 @@ export const UserThisWeek = () => {
                             className="font-bellfort text-l text-L-Gray-dark dark:text-D-Gray-dark hover:text-A-Magenta dark:hover:text-A-Magenta"
                             onClick={() => {
                               if (value.user_logged) {
-                                setUser({
-                                  ...store.user,
-                                  remaining_tokens:
-                                    store.user.remaining_tokens + 1,
-                                });
                                 actions.deleteUserSession(
                                   store.user.id,
                                   value.id,
                                   day.date
                                 );
-                                // fetch(
-                                //   process.env.BACKEND_URL +
-                                //     "/api/user_sessions2/" +
-                                //     localStorage.getItem("id") +
-                                //     "/" +
-                                //     value.id,
-                                //   {
-                                //     method: "GET",
-                                //     headers: {
-                                //       Authorization:
-                                //         "Bearer " +
-                                //         localStorage.getItem("token"),
-                                //     },
-                                //   }
-                                // )
-                                //   .then((resp) => resp.json())
-                                //   .then((data) =>
-                                //     fetch(
-                                //       process.env.BACKEND_URL +
-                                //         "/api/delete_user_session/" +
-                                //         data[0].id,
-                                //       {
-                                //         method: "DELETE",
-                                //         headers: {
-                                //           Authorization:
-                                //             "Bearer " +
-                                //             localStorage.getItem("token"),
-                                //         },
-                                //       }
-                                //     )
-                                //       .then((resp) => resp.json())
-                                //       .then((data) => {})
-                                //   );
                               } else {
-                                setUser({
-                                  ...store.user,
-                                  remaining_tokens:
-                                    store.user.remaining_tokens - 1,
-                                });
-                                actions.postUserSession(
-                                  day.date,
-                                  value.id,
-                                  user
-                                );
-                                // setUser({
-                                //   ...user,
-                                //   remaining_tokens: user.remaining_tokens - 1,
-                                // });
-
-                                // actions.postUserSession(day.date, value.id);
-                                // fetch(
-                                //   process.env.BACKEND_URL + "/api/joinsession",
-                                //   {
-                                //     method: "POST",
-                                //     headers: {
-                                //       "Content-Type": "application/json",
-                                //       Authorization:
-                                //         "Bearer " +
-                                //         localStorage.getItem("token"),
-                                //     },
-                                //     body: JSON.stringify({
-                                //       date: e.target.getAttribute("data-date"),
-                                //       sessions_id:
-                                //         e.target.getAttribute("data-id"),
-                                //     }),
-                                //   }
-                                // )
-                                //   .then((resp) => resp.json())
-                                //   .then((data) => {
-                                //     actions.putUser(user);
-                                //   });
+                                actions.postUserSession(day.date, value.id);
                               }
                             }}
                           >
                             {value.user_logged ? "Cancelar" : "Apuntarse"}
                           </button>
-                          {/* <a
-                            href="#"
-                            className="font-bellfort text-l text-L-Gray-dark dark:text-D-Gray-dark hover:text-A-Magenta dark:hover:text-A-Magenta"
-                            data-id={value.id}
-                            data-date={day.date}
-                            onClick={async (e) => {
-                              let date = e.target.getAttribute("data-date");
-                              let sessions_id =
-                                e.target.getAttribute("data-id");
-                              if (value.user_logged) {
-                                actions.deleteUserSession(
-                                  user.id,
-                                  value.id,
-                                  day.date
-                                );
-                                // fetch(
-                                //   process.env.BACKEND_URL +
-                                //     "/api/user_sessions2/" +
-                                //     localStorage.getItem("id") +
-                                //     "/" +
-                                //     value.id,
-                                //   {
-                                //     method: "GET",
-                                //     headers: {
-                                //       Authorization:
-                                //         "Bearer " +
-                                //         localStorage.getItem("token"),
-                                //     },
-                                //   }
-                                // )
-                                //   .then((resp) => resp.json())
-                                //   .then((data) =>
-                                //     fetch(
-                                //       process.env.BACKEND_URL +
-                                //         "/api/delete_user_session/" +
-                                //         data[0].id,
-                                //       {
-                                //         method: "DELETE",
-                                //         headers: {
-                                //           Authorization:
-                                //             "Bearer " +
-                                //             localStorage.getItem("token"),
-                                //         },
-                                //       }
-                                //     )
-                                //       .then((resp) => resp.json())
-                                //       .then((data) => {})
-                                //   );
-                              } else {
-                                setUser({
-                                  ...user,
-                                  remaining_tokens: user.remaining_tokens - 1,
-                                });
-
-                                actions.postUserSession(day.date, value.id);
-                                // fetch(
-                                //   process.env.BACKEND_URL + "/api/joinsession",
-                                //   {
-                                //     method: "POST",
-                                //     headers: {
-                                //       "Content-Type": "application/json",
-                                //       Authorization:
-                                //         "Bearer " +
-                                //         localStorage.getItem("token"),
-                                //     },
-                                //     body: JSON.stringify({
-                                //       date: e.target.getAttribute("data-date"),
-                                //       sessions_id:
-                                //         e.target.getAttribute("data-id"),
-                                //     }),
-                                //   }
-                                // )
-                                //   .then((resp) => resp.json())
-                                //   .then((data) => {
-                                //     actions.putUser(user);
-                                //   });
-                              }
-                            }}
-                          >
-                            {value.user_logged ? "Cancelar" : "Apuntarse"}
-                          </a> */}
                         </td>
                       </tr>
                     </tbody>
