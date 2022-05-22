@@ -67,7 +67,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((resp) => resp.json())
           .then((data) => setStore({ suscriptionList: data }));
       },
-      postUserSession: (date, sessions_id, user) => {
+      postUserSession: (date, sessions_id) => {
         const store = getStore();
         fetch(process.env.BACKEND_URL + "/api/joinsession", {
           method: "POST",
