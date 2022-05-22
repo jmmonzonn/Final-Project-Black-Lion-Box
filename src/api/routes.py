@@ -517,10 +517,9 @@ def handle_validate():
         return jsonify({"validate": False}), 400
 
 @api.route("/thisweek", methods=["GET"])
-# @jwt_required()
+@jwt_required()
 def weeklysessions():
-    user = 1
-    # user = get_jwt_identity()
+    user = get_jwt_identity()
     today = date.today()
     data_response = []
     for i in range(7):
