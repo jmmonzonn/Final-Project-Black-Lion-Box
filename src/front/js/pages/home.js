@@ -35,8 +35,8 @@ export const Home = () => {
       <HomeFeat1 />
       <SubscriptionTiers />
       {/* <Features /> */}
-      {/* <Maps /> */}
-      <Map />
+      <Maps />
+      {/* <Map /> */}
       <Contact />
     </div>
   );

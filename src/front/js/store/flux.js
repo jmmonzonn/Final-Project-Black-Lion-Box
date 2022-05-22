@@ -12,8 +12,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       tokens: null,
     },
     actions: {
-      /* Funcion para pagos en Stripe */
-
       getUser: () => {
         fetch(
           process.env.BACKEND_URL + "/api/user/" + localStorage.getItem("id"),
