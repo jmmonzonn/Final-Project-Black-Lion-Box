@@ -175,7 +175,7 @@ def create_checkout_session(subs_id, user_id):
                 },
             ],
             mode='payment',
-            success_url='https://3000-jmmonzonn-finalprojectb-lcmruucp4ya.ws-eu45.gitpod.io/admin/dashboard',
+            success_url='https://3000-jmmonzonn-finalprojectb-nuuo6x68ja9.ws-eu45.gitpod.io/user/dashboard',
             cancel_url='https://3000-jmmonzonn-finalprojectb-lcmruucp4ya.ws-eu45.gitpod.io/cancel',
         )
         setattr(user, "suscription_id", subs_id)
