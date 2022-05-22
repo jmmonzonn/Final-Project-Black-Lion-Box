@@ -121,7 +121,8 @@ class Sessions(db.Model):
             "start_time": self.start_time.strftime("%H:%M:%S"),
             "duration": self.duration,
             "max_users": self.max_users,
-            "session_type": self.session_type.serialize() if self.session_type else None,
+            "session_type": self.session_type.name if self.session_type else None,
+            # "full_session_type": self.session_type.serialize() if self.session_type else None,
             "weekdays": self.weekdays.name if self.weekdays else None,
             "users_per_sessions": self.users_per_session,
             "user_logged": self.user_logged
@@ -172,6 +173,9 @@ class Sessions_type(db.Model):
 
     def serialize(self):
         return {
+            "id": self.id,
+            "name": self.name,
+            "icon_id": self.icon_id,
             "icon_name": self.icon_library.name,
             "icon_color": self.icon_library.color,
             
