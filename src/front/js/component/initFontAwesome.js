@@ -22,7 +22,6 @@ import {
   faPersonRunning,
   faSpa,
   faOm,
-  faDumbbell,
 } from "@fortawesome/free-solid-svg-icons";
 
 function initFontAwesome() {
@@ -45,8 +44,7 @@ function initFontAwesome() {
     faDumbbell,
     faPersonRunning,
     faSpa,
-    faOm,
-    faDumbbell
+    faOm
   );
 }
 
