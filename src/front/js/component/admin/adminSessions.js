@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const AdminSessions = () => {
   const [session, setSession] = useState({});
   const [sessionsList, setSessionsList] = useState([]);
-  const [sessionValue, setSessionValue] = useState([]);
+  const [sessionValue, setSessionValue] = useState(null);
   const [sessionsTypeList, setSessionsTypeList] = useState([]);
   const [weekdays, setWeekdays] = useState([]);
   let history = useHistory();

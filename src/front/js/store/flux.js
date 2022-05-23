@@ -4,12 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       user_sessions: [],
       user: {},
       thisWeek: [],
-      subscription_id: "",
-      username: "",
-      user_id: "",
-      stripe_id: "",
       suscriptionList: [],
-      tokens: null,
     },
     actions: {
       getUser: () => {
@@ -170,38 +165,18 @@ const getState = ({ getStore, getActions, setStore }) => {
             // setStore({ user_sessions: data })
           );
       },
-      /* Funcion para guardar la informacion de las subscripciones dentro del Store */
-
-      setUsername: (username) => {
-        setStore({ username: username });
-      },
-      setTokens: (tokens) => {
-        setStore({ tokens: tokens });
-      },
-      setUser_id: (id) => {
-        setStore({ user_id: id });
-      },
-      setSubscription_id: (id) => {
-        setStore({ subscription_id: id });
-      },
-      putUser: (newUser) => {
-        fetch(
-          process.env.BACKEND_URL +
-            "/api/edit_user/" +
-            localStorage.getItem("id"),
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer" + localStorage.getItem("token"),
-            },
-            body: JSON.stringify(newUser),
-          }
-        )
+      putUser: (user) => {
+        const store = getStore();
+        fetch(process.env.BACKEND_URL + "/api/edit_user/" + store.user.id, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer" + localStorage.getItem("token"),
+          },
+          body: JSON.stringify(user),
+        })
           .then((resp) => resp.json())
           .then((data) => {
-            console.log(newUser);
-            console.log(data);
             setStore({ user: data });
           });
       },
