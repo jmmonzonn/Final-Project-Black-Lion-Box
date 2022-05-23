@@ -7,6 +7,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       suscriptionList: [],
     },
     actions: {
+      setUser: (user) => {
+        setStore({ user: user });
+      },
       getUser: () => {
         fetch(
           process.env.BACKEND_URL + "/api/user/" + localStorage.getItem("id"),

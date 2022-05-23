@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 
 export const Register = () => {
   const [user, setUser] = useState({});
+  const { store, actions } = useContext(Context);
   const history = useHistory();
 
   return (
@@ -246,6 +247,7 @@ export const Register = () => {
                 .then((resp) => resp.json())
                 .then((data) => {
                   if (data.response.token) {
+                    actions.setUser(user);
                     localStorage.setItem("token", data.response.token);
                     localStorage.setItem("username", data.response.username);
                     localStorage.setItem("id", data.response.id);
