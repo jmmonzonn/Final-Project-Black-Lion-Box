@@ -122,7 +122,7 @@ class Sessions(db.Model):
             "duration": self.duration,
             "max_users": self.max_users,
             "session_type": self.session_type.name if self.session_type else None,
-            # "full_session_type": self.session_type.serialize() if self.session_type else None,
+            "session": self.session_type.serialize() if self.session_type else None,
             "weekdays": self.weekdays.name if self.weekdays else None,
             "users_per_sessions": self.users_per_session,
             "user_logged": self.user_logged
@@ -175,9 +175,7 @@ class Sessions_type(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "icon_id": self.icon_id,
-            "icon_name": self.icon_library.name,
-            "icon_color": self.icon_library.color,
+            "icon": self.icon_library.serialize() if self.icon_library else None,
             
         }
 
@@ -198,7 +196,7 @@ class User_sessions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), unique=False, nullable=False)
     users = db.relationship('User', back_populates="user_sessions")
-    sessions_id = db.Column(db.Integer, db.ForeignKey('sessions.id'), unique=False, nullable=False)
+    sessions_id = db.Column(db.Integer, db.ForeignKey('sessions.id'), unique=False, nullable=True)
     sessions = db.relationship('Sessions', back_populates="session_users")
     date =  db.Column(db.Date, unique=False, nullable=False)
 
