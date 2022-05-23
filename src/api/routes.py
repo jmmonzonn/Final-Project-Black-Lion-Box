@@ -405,7 +405,8 @@ def delete_session(id):
         db.session.delete(sessions)
         db.session.commit()
 
-    except:
+    except Exception as e:
+        print(e)
         return jsonify({"message": "Error"}), 400
     
     return jsonify({"message": "Sesion eliminada."}), 200

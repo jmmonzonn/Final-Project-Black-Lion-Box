@@ -11,15 +11,15 @@ export const Footer = () => (
         <p className="mr-4 md:mr-6 ">
           Made with 😎🤙 by{" "}
           <a
-            href="https://ohi.vetmed.ucdavis.edu/sites/g/files/dgvnsk5251/files/styles/sf_landscape_16x9/public/images/article/3-mountain-gorillas.jpg"
-            className=" text-L-Gray-dark dark:text-L-Gray-light"
+            href="https://i.guim.co.uk/img/media/509edc7afba167b8adbf22b894f8d56038c996d6/0_0_3504_2102/master/3504.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=63d71a95ec65633c70faeac4847a6ca5"
+            className=" text-M-Lime dark:text-M-Lime"
           >
             Some geeks
-          </a>
-          at{" "}
+          </a>{" "}
+          <a>at</a>{" "}
           <a
             href="https://4geeksacademy.com/"
-            className=" text-L-Gray-dark dark:text-L-Gray-light"
+            className=" text-A-Magenta dark:text-A-Magenta"
           >
             4Geeks Academy
           </a>
