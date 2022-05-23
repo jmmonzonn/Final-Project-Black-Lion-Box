@@ -175,8 +175,8 @@ def create_checkout_session(subs_id, user_id):
                 },
             ],
             mode='payment',
-            success_url='https://3000-jmmonzonn-finalprojectb-nuuo6x68ja9.ws-eu45.gitpod.io/user/dashboard',
-            cancel_url='https://3000-jmmonzonn-finalprojectb-lcmruucp4ya.ws-eu45.gitpod.io/cancel',
+            success_url='https://immense-plains-04645.herokuapp.com/user/dashboard',
+            cancel_url='https://immense-plains-04645.herokuapp.com/cancel',
         )
         setattr(user, "suscription_id", subs_id)
         db.session.commit()

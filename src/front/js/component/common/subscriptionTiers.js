@@ -58,7 +58,7 @@ export const SubscriptionTiers = (props) => {
                 <div div className="pt-4">
                   {/* Botón Call-to-action de la suscripción */}
                   <form
-                    action={`${process.env.BACKEND_URL}/api/stripe_pay/${value.id}/${store.user_id}`}
+                    action={`${process.env.BACKEND_URL}/api/stripe_pay/${value.id}/${store.user.id}`}
                     method="POST"
                   >
                     <button
