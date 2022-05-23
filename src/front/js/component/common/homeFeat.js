@@ -1,6 +1,6 @@
 import React from "react";
 
-export const HomeFeat1 = () => {
+export const HomeFeat = () => {
   // Función que calcula el parallax de las imágenes
 
   (function () {

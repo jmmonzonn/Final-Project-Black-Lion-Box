@@ -1,6 +1,5 @@
 import React from "react";
-import { Context } from "../store/appContext";
-import "../../styles/home.css";
+import { Context } from "../../store/appContext";
 
 export const Maps = () => {
   return (
