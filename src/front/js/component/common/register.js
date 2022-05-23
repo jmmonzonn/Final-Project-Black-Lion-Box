@@ -194,6 +194,7 @@ export const Register = () => {
                     Acepto los{" "}
                     <a
                       href="/userterms"
+                      target="_blank"
                       className="text-A-Magenta hover:underline dark:text-M-Lime"
                     >
                       términos y condiciones.
