@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Context } from "../store/appContext";
-import "../../styles/home.css";
+import { Context } from "../../store/appContext";
 import { useHistory } from "react-router-dom";
 
 export const UserModifyProfile = () => {

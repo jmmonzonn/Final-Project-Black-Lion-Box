@@ -1,6 +1,5 @@
 import React, { useContext, useState, useRef } from "react";
-import { Context } from "../store/appContext";
-import "../../styles/home.css";
+import { Context } from "../../store/appContext";
 import emailjs from "emailjs-com";
 import { init } from "@emailjs/browser";
 init("75IF0AuPvicgNL5xA");

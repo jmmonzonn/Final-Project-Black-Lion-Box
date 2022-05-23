@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert } from "../component/alert";
+import { Alert } from "./alert";
 
 export const MainHeader = () => {
   return (

@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { AdminHeader } from "../component/adminHeader";
-import { AdminSuscription } from "../component/adminSuscription";
-import { AdminSessions } from "../component/adminSessions";
-import { AdminCreateUser } from "../component/adminCreateUser";
-import { SubscriptionTiers } from "../component/adminSubscriptionTiers";
-import { AdminSessionType } from "../component/adminSessionType";
-import { AdminUserSessions } from "../component/adminUserSession";
+import { AdminHeader } from "../component/admin/adminHeader";
+import { AdminSuscription } from "../component/admin/adminSuscription";
+import { AdminSessions } from "../component/admin/adminSessions";
+import { AdminCreateUser } from "../component/admin/adminCreateUser";
+import { SubscriptionTiers } from "../component/admin/adminSubscriptionTiers";
+import { AdminSessionType } from "../component/admin/adminSessionType";
+import { AdminUserSessions } from "../component/admin/adminUserSession";
 
 import "../../styles/home.css";
 

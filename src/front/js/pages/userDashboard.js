@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { UserHeader } from "../component/userHeader";
-import { SubscriptionTiers } from "../component/adminSubscriptionTiers";
-import { UserModifyProfile } from "../component/userModifyProfile";
+import { UserHeader } from "../component/user/userHeader";
+import { SubscriptionTiers } from "../component/admin/adminSubscriptionTiers";
+import { UserModifyProfile } from "../component/user/userModifyProfile";
 
 import "../../styles/home.css";
-import { UserThisWeek } from "../component/userThisWeek";
+import { UserThisWeek } from "../component/user/userThisWeek";
 
 // Funciones que se utilizan para definir el estilo de los botones de las tabs en el componente.
 

@@ -5,21 +5,18 @@ import { Home } from "./pages/home";
 import { AdminDashboard } from "./pages/adminDashboard";
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/navbar";
-import { Footer } from "./component/footer";
+import { Navbar } from "./component/common/navbar";
+import { Footer } from "./component/common/footer";
 import { UserDashboard } from "./pages/userDashboard";
-import { Register } from "./component/register";
-import { Login } from "./component/login";
-import { Contact } from "./component/contact";
-import { Maps } from "./component/maps";
-import { UploadView } from "./component/upload";
-import { Features } from "./component/features";
-import { SubscriptionTiers } from "./component/adminSubscriptionTiers";
-import { Success } from "./component/success";
-import { Cancel } from "./component/cancel";
-import { Payment } from "./component/payment";
-import { NotFound } from "./component/404.js";
-import { TermsAndConditions } from "./component/userTerms";
+import { Register } from "./component/common/register";
+import { Login } from "./component/common/login";
+import { Contact } from "./component/common/contact";
+import { Maps } from "./component/common/maps";
+import { UploadView } from "./component/common/upload";
+import { SubscriptionTiers } from "./component/admin/adminSubscriptionTiers";
+import { Cancel } from "./component/common/cancel";
+import { NotFound } from "./component/common/404.js";
+import { TermsAndConditions } from "./component/user/userTerms";
 import { FirstSubscription } from "./pages/subscriptions";
 
 const Layout = () => {
@@ -63,15 +60,6 @@ const Layout = () => {
           </Route>
           <Route exact path="/maps">
             <Maps />
-          </Route>
-          <Route exact path="/features">
-            <Features />
-          </Route>
-          <Route exact path="/payment">
-            <Payment />
-          </Route>
-          <Route exact path="/success">
-            <Success />
           </Route>
           <Route exact path="/cancel">
             <Cancel />
