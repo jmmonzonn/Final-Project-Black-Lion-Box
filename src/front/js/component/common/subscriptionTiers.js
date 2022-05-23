@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Context } from "../store/appContext.js";
+import { Context } from "../../store/appContext.js";
 import { useHistory } from "react-router-dom";
 
 export const SubscriptionTiers = (props) => {

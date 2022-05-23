@@ -1320,6 +1320,10 @@ select{
   height: 24rem;
 }
 
+.h-24{
+  height: 6rem;
+}
+
 .h-fit{
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -1531,10 +1535,6 @@ select{
   justify-content: space-between;
 }
 
-.justify-around{
-  justify-content: space-around;
-}
-
 .gap-0{
   gap: 0px;
 }
@@ -1709,6 +1709,10 @@ select{
 .bg-gray-100{
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+.bg-L-Gray-light\/75{
+  background-color: rgb(241 240 242 / 0.75);
 }
 
 .bg-gray-200{
@@ -3746,6 +3750,11 @@ html {
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-L-Gray-med:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(163 175 192 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-white:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -3779,6 +3788,11 @@ html {
 .hover\:text-gray-800:hover{
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
+}
+
+.hover\:text-L-Gray-dark:hover{
+  --tw-text-opacity: 1;
+  color: rgb(109 111 115 / var(--tw-text-opacity));
 }
 
 .hover\:text-blue-600:hover{
@@ -3986,6 +4000,10 @@ html {
   border-color: rgb(55 65 81 / var(--tw-border-opacity));
 }
 
+.dark .dark\:border-D-Gray-med\/25{
+  border-color: rgb(134 143 155 / 0.25);
+}
+
 .dark .dark\:border-blue-500{
   --tw-border-opacity: 1;
   border-color: rgb(63 131 248 / var(--tw-border-opacity));
@@ -4087,6 +4105,11 @@ html {
   color: rgb(63 131 248 / var(--tw-text-opacity));
 }
 
+.dark .dark\:text-A-Magenta{
+  --tw-text-opacity: 1;
+  color: rgb(221 21 109 / var(--tw-text-opacity));
+}
+
 .dark .dark\:placeholder-gray-400::-moz-placeholder{
   --tw-placeholder-opacity: 1;
   color: rgb(156 163 175 / var(--tw-placeholder-opacity));
@@ -4160,14 +4183,14 @@ html {
   color: rgb(220 219 219 / var(--tw-text-opacity));
 }
 
+.dark .dark\:hover\:text-D-Gray-dark:hover{
+  --tw-text-opacity: 1;
+  color: rgb(46 46 48 / var(--tw-text-opacity));
+}
+
 .dark .dark\:hover\:text-blue-400:hover{
   --tw-text-opacity: 1;
   color: rgb(118 169 250 / var(--tw-text-opacity));
-}
-
-.dark .dark\:hover\:text-A-Magenta:hover{
-  --tw-text-opacity: 1;
-  color: rgb(221 21 109 / var(--tw-text-opacity));
 }
 
 .dark .dark\:hover\:text-gray-300:hover{
