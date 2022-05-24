@@ -36,7 +36,9 @@ export const SubscriptionTiers = (props) => {
                   </span>
                   <span className="text-3xl font-semibold">€</span>
                   <span className="ml-1 text-xl font-normal text-gray-500 dark:text-gray-400">
-                    /al mes
+                    {value.suscription_type == "Mensual"
+                      ? "/al mes"
+                      : "/al año"}
                   </span>
                 </div>
                 {/* Descripción de la sesión */}

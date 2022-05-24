@@ -219,7 +219,7 @@ export const AdminSessions = () => {
                       });
                     }}
                     className="my-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                    placeholder="Introduce apellido"
+                    placeholder="Introduce descripción"
                   ></input>
 
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
@@ -231,7 +231,7 @@ export const AdminSessions = () => {
                       setSession({ ...session, start_time: e.target.value });
                     }}
                     className="my-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                    placeholder="Introduce usuario"
+                    placeholder="Introduce hora de inicio"
                   ></input>
 
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
@@ -243,7 +243,7 @@ export const AdminSessions = () => {
                       setSession({ ...session, duration: e.target.value });
                     }}
                     className="my-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                    placeholder="Introduce usuario"
+                    placeholder="Introduce duración en minutos"
                   ></input>
 
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
@@ -255,7 +255,7 @@ export const AdminSessions = () => {
                       setSession({ ...session, max_users: e.target.value });
                     }}
                     className="my-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                    placeholder="Introduce usuario"
+                    placeholder="Introduce la cantidad máxima de participantes"
                   ></input>
 
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
@@ -344,7 +344,7 @@ export const AdminSessions = () => {
                       .then((data) => getSessions());
                   }}
                 >
-                  Añadir tarifa
+                  Añadir sesión
                 </button>
               </form>
             </div>

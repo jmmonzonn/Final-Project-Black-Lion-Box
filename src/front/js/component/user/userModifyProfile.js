@@ -157,6 +157,7 @@ export const UserModifyProfile = () => {
           type="submit"
           onClick={() => {
             actions.putUser(user);
+            alert("Usuario modificado correctamente");
           }}
           className="py-2 px-2 text-sm font-medium text-L-Gray-dark focus:outline-none bg-M-Lime rounded-lg border border-gray-200 hover:bg-A-Magenta hover:text-L-Gray-light focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-M-Lime dark:text-D-Gray-dark dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         >

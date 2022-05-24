@@ -49,7 +49,7 @@ export const AdminSuscription = () => {
           type="button"
           data-modal-toggle="training-modal"
         >
-          Añadir nuevo tipo de entrenamiento
+          Añadir nuevo tipo de suscripción
         </button>
 
         <div

@@ -19,7 +19,9 @@ export const UserHeader = () => {
           </span>
           . Tienes{" "}
           <span className="text-L-Gray-dark dark:text-D-Gray-light">
-            {user.remaining_tokens}
+            {user.remaining_tokens == null || undefined
+              ? 0
+              : user.remaining_tokens}
           </span>{" "}
           sesiones disponibles
         </p>
