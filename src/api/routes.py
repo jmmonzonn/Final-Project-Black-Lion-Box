@@ -22,7 +22,7 @@ from babel.dates import format_date
 
 api = Blueprint('api', __name__)
 
-@api.route('/signup', methods=["POST"])
+@api.route('/postUser', methods=["POST"])
 def create_user():
     username = request.json.get("username", None)
     password = request.json.get("password", None)
@@ -118,6 +118,63 @@ def edit_user(id):
     db.session.commit()
        
     return jsonify(user.serialize()), 200
+
+@api.route("/edit_suscriptions/<int:id>", methods=["PUT"])
+# @jwt_required()
+def edit_suscriptions(id):
+    try:
+        suscription = Suscription.query.get(id)
+    except:
+        return jsonify({"message": "Error"}), 400
+
+    new_name = request.json.get("name", suscription.name)
+    new_description = request.json.get("description", suscription.description)
+    new_price = request.json.get("price", suscription.price)
+    new_tokens = request.json.get("tokens", suscription.tokens)
+    new_suscription_type_id = request.json.get("suscription_type_id", suscription.suscription_type_id)
+   
+
+    setattr(suscription, "name", new_name)
+    setattr(suscription, "description", new_description)
+    setattr(suscription, "price", new_price)
+    setattr(suscription, "tokens", new_tokens)
+    setattr(suscription, "suscription_type_id", new_suscription_type_id)
+    
+    db.session.commit()
+       
+    return jsonify(suscription.serialize()), 200
+
+@api.route("/edit_session/<int:id>", methods=["PUT"])
+# @jwt_required()
+def edit_session(id):
+    try:
+        session = Sessions.query.get(id)
+    except:
+        return jsonify({"message": "Error"}), 400
+
+    new_name = request.json.get("name", session.name)
+    new_description = request.json.get("description", session.description)
+    new_regular = request.json.get("regular", session.regular)
+    new_weekdays_id = request.json.get("weekdays_id", session.weekdays_id)
+    new_start_time = request.json.get("start_time", session.start_time)
+    new_duration = request.json.get("duration", session.duration)
+    new_max_users = request.json.get("max_users", session.max_users)
+    new_sessions_type_id = request.json.get("sessions_type_id", session.sessions_type_id)
+
+   
+
+    setattr(session, "name", new_name)
+    setattr(session, "description", new_description)
+    setattr(session, "regular", new_regular)
+    setattr(session, "weekdays_id", new_weekdays_id)
+    setattr(session, "start_time", new_start_time)
+    setattr(session, "duration", new_duration)
+    setattr(session, "max_users", new_max_users)
+    setattr(session, "sessions_type_id", new_sessions_type_id)
+    
+    db.session.commit()
+       
+    return jsonify(session.serialize()), 200
     
 def create_token(user): 
     token = create_access_token(identity=user.id)
@@ -185,9 +242,10 @@ def create_checkout_session(subs_id, user_id):
 
     return redirect(checkout_session.url, code=303)
 
-@api.route("/upload/<id>", methods=["POST"])
-def upload(id):
-    user = User.query.get(id)
+@api.route("/upload/<user_id>", methods=["POST"])
+def upload(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    print(user.id)
     result = cloudinary.uploader.upload(request.files['profile_image'], public_id=f'user_images/{user.username}')
     
     new_avatar_url = result['secure_url']
@@ -221,12 +279,12 @@ def create_suscription():
     price = request.json.get("price", None)
     tokens = request.json.get("tokens", None)
     suscription_type_id = request.json.get("suscription_type_id", None)
-    stripe_id = request.json.get("stripe_id", None)
+    
 
     try:
 
         suscription_type = Suscription_type.query.filter_by(id=suscription_type_id).first()
-        new_suscription = Suscription(name = name, stripe_id= stripe_id, description = description, price = price, tokens = tokens, suscription_type_id = suscription_type_id, suscription_type = suscription_type)
+        new_suscription = Suscription(name = name, description = description, price = price, tokens = tokens, suscription_type_id = suscription_type_id, suscription_type = suscription_type)
         db.session.add(new_suscription)
         db.session.commit()
 
@@ -235,22 +293,22 @@ def create_suscription():
         if isinstance(ex.orig, NotNullViolation):
             return jsonify({"message" : "Los campos son obligatorios no pueden quedar como null."}),400
         elif isinstance(ex.orig, UniqueViolation):
-            return jsonify({"message" : "Ya se encuentra un usuario registrado con estos datos"}),400
+            return jsonify({"message" : "Ya se encuentra una suscripción registrado con estos datos"}),400
         return jsonify({"message" : ex.orig}),400 
 
     
      
-    #  suscription_type = request.json.get("suscription_type", None)
+    suscription_type = request.json.get("suscription_type", None)
 
-    #  not_unique_name = Suscription.query.filter_by(name = name).first()  
-    #  if not_unique_name != None:
-    #     return jsonify({"message": "Este suscritor ya existe, prueba con otro."}),401
+    not_unique_name = Suscription.query.filter_by(name = name).first()  
+    if not_unique_name != None:
+        return jsonify({"message": "Este suscritor ya existe, prueba con otro."}),401
 
-    #  if name == '' or name == None or description == '' or description == None or price == '' or price == None or tokens == '' or tokens == None:
-    #     return jsonify({"message": "Rellena todos los campos obligatorios"}), 401
+    if name == '' or name == None or description == '' or description == None or price == '' or price == None or tokens == '' or tokens == None:
+        return jsonify({"message": "Rellena todos los campos obligatorios"}), 401
     
     
-    new_suscription = Suscription(name = name, stripe_id= stripe_id, description = description, price = price, tokens = tokens, suscription_type_id = suscription_type_id)
+    new_suscription = Suscription(name = name, description = description, price = price, tokens = tokens, suscription_type_id = suscription_type_id)
     db.session.add(new_suscription)
     db.session.commit()
 
@@ -268,7 +326,7 @@ def get_suscription(id):
 
 
 @api.route("/delete_suscriptions/<int:id>", methods=["DELETE"])
-@jwt_required()
+# @jwt_required()
 def delete_suscriptions(id):
 
     try:
@@ -284,58 +342,35 @@ def delete_suscriptions(id):
 
 
 # Modificar subscripciones desde el administrador
-@api.route("/edit_suscriptions/<int:id>", methods=["PUT"])
-# @jwt_required()
-def edit_suscriptions(id):
-    try:
-        suscription = Suscription.query.get(id)
-    except:
-        return jsonify({"message": "Error"}), 400
-
-    new_name = request.json.get("name", suscription.name)
-    new_description = request.json.get("description", suscription.description)
-    new_price = request.json.get("price", suscription.price)
-    new_tokens = request.json.get("tokens", suscription.tokens)
-    new_suscription_type_id = request.json.get("suscription_type_id", suscription.suscription_type_id)
-   
-
-    setattr(suscription, "name", new_name)
-    setattr(suscription, "description", new_description)
-    setattr(suscription, "price", new_price)
-    setattr(suscription, "tokens", new_tokens)
-    setattr(suscription, "suscription_type_id", new_suscription_type_id)
-    
-    db.session.commit()
-       
-    return jsonify(suscription.serialize()), 200
 
 
-@api.route('/sessions', methods=["POST"])
+
+@api.route('/postSession', methods=["POST"])
 #@jwt_required()
 def create_sessions():
-     name = request.json.get("name", None)
-     description = request.json.get("description", None)
-     regular = request.json.get("regular", None)
-     weekdays_id = request.json.get("weekdays_id", None)
-     start_time = request.json.get("start_time", None)
-     duration = request.json.get("duration", None)
-     max_users = request.json.get("max_users", None)
-     sessions_type_id = request.json.get("sessions_type_id", None)
-    #  session_type_icon_id = request.json.get("sessions_type_icon_id", None)
+    name = request.json.get("name", None)
+    description = request.json.get("description", None)
+    regular = request.json.get("regular", None)
+    weekdays_id = request.json.get("weekdays_id", None)
+    start_time = request.json.get("start_time", None)
+    duration = request.json.get("duration", None)
+    max_users = request.json.get("max_users", None)
+    sessions_type_id = request.json.get("sessions_type_id", None)
+#  session_type_icon_id = request.json.get("sessions_type_icon_id", None)
 
-     
-    #  not_unique_name = Sessions.query.filter_by(name = name).first()  
-    #  if not_unique_name != None:
-    #     return jsonify({"message": "Este nombre ya existe, prueba con otro."}),401
     
-    #  if name == '' or name == None or description == '' or description == None or regular == '' or regular == None or days == '' or days == None or start_time == '' or start_time == None or duration == '' or duration == None or max_users == '' or max_users == None or sessions_type_id == '' or sessions_type_id == None:
-    #     return jsonify({"message": "Rellena todos los campos obligatorios"}), 401
+#  not_unique_name = Sessions.query.filter_by(name = name).first()  
+#  if not_unique_name != None:
+#     return jsonify({"message": "Este nombre ya existe, prueba con otro."}),401
 
-     new_sessions = Sessions(name = name, description = description, regular = regular, weekdays_id = weekdays_id, start_time = start_time, duration = duration, max_users = max_users, sessions_type_id = sessions_type_id)
-     db.session.add(new_sessions)
-     db.session.commit()
- 
-     return jsonify({"message" : "Session nueva creada"}),200
+#  if name == '' or name == None or description == '' or description == None or regular == '' or regular == None or days == '' or days == None or start_time == '' or start_time == None or duration == '' or duration == None or max_users == '' or max_users == None or sessions_type_id == '' or sessions_type_id == None:
+#     return jsonify({"message": "Rellena todos los campos obligatorios"}), 401
+
+    new_sessions = Sessions(name = name, description = description, regular = regular, weekdays_id = weekdays_id, start_time = start_time, duration = duration, max_users = max_users, sessions_type_id = sessions_type_id)
+    db.session.add(new_sessions)
+    db.session.commit()
+
+    return jsonify({"message" : "Session nueva creada"}),200
 
 
 @api.route("/get_sessions", methods=["GET"])
@@ -343,12 +378,12 @@ def create_sessions():
 def get_sessions():
     return jsonify([sessions.serialize() for sessions in Sessions.query.all()]), 200
 
-@api.route("/user_sessions", methods=["GET"])
+@api.route("/get_user_sessions", methods=["GET"])
 #@jwt_required()
 def get_user_sessions():
     return jsonify([user_sessions.serialize() for user_sessions in User_sessions.query.all()]), 200
 
-@api.route("/user_sessions/<user_id>", methods=["GET"])
+@api.route("/get_user_session/<user_id>", methods=["GET"])
 #@jwt_required()
 def user_sessions(user_id):
     currentMonth = datetime.now().month
@@ -364,10 +399,13 @@ def user_sessions2(user_id, sessions_id):
     results = User_sessions.query.filter_by(user_id=user_id,sessions_id=sessions_id).filter(extract('month', User_sessions.date)==currentMonth).filter(extract('year', User_sessions.date)==currentYear).all()
     return jsonify([user_sessions.serialize() for user_sessions in results]), 200
 
-@api.route("/user/<id>", methods=["GET"])
+@api.route("/get_user/<id>", methods=["GET"])
 #@jwt_required()
 def user_info(id):
-    return jsonify([user.serialize() for user in User.query.filter_by(id=id)]), 200
+    user = User.query.filter_by(id=id)
+    if user:
+        return jsonify(user[0].serialize()), 200
+    return jsonify("usuario no encontrado"), 400
 
 @api.route("/joinsession", methods=["POST"])
 @jwt_required()
@@ -398,7 +436,7 @@ def delete_user_session(user_id, sessions_id, year, month, day):
     return jsonify([user_sessions.serialize() for user_sessions in User_sessions.query.all()]), 200
 
 @api.route("/delete_session/<id>", methods=["DELETE"])
-@jwt_required()
+# @jwt_required()
 def delete_session(id):
     try:
         sessions = Sessions.query.filter_by(id=id).first()
@@ -430,12 +468,12 @@ def create_role():
 
     return jsonify({"message" : "Rol creado"}),200
 
-@api.route("/get_role", methods=["GET"])
+@api.route("/get_roles", methods=["GET"])
 #@jwt_required()
-def get_role():
+def get_roles():
     return jsonify([role.serialize() for role in Role.query.all()]), 200
 
-@api.route("/weekdays", methods=["GET"])
+@api.route("/get_weekdays", methods=["GET"])
 #@jwt_required()
 def get_weekdays():
     return jsonify([name.serialize() for name in Weekdays.query.all()]), 200
@@ -517,7 +555,7 @@ def handle_validate():
     else:
         return jsonify({"validate": False}), 400
 
-@api.route("/thisweek", methods=["GET"])
+@api.route("/get_thisweek", methods=["GET"])
 @jwt_required()
 def weeklysessions():
     user = get_jwt_identity()

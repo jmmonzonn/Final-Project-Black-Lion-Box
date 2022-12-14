@@ -13,7 +13,7 @@ export const AdminRole = () => {
   }, []);
 
   const getRoles = () => {
-    fetch(process.env.BACKEND_URL + "/api/get_role")
+    fetch(process.env.BACKEND_URL + "/api/get_roles")
       .then((resp) => resp.json())
       .then((data) => setRoleList(data));
   };

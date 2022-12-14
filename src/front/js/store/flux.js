@@ -1,10 +1,16 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      user_sessions: [],
       user: {},
       thisWeek: [],
+      userList: [],
+      roleList: [],
       suscriptionList: [],
+      suscriptionTypeList: [],
+      sessionList: [],
+      sessionTypeList: [],
+      weekdayList: [],
+      userSessionList: [],
     },
     actions: {
       getUser: () => {
@@ -19,11 +25,11 @@ const getState = ({ getStore, getActions, setStore }) => {
         )
           .then((resp) => resp.json())
           .then((data) => {
-            setStore({ user: data[0] });
+            setStore({ user: data });
           });
       },
-      getThisWeek: () => {
-        fetch(process.env.BACKEND_URL + "/api/thisweek", {
+      getItem: (itemToGet, listToSet) => {
+        fetch(process.env.BACKEND_URL + "/api/get_" + itemToGet, {
           method: "GET",
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
@@ -31,47 +37,46 @@ const getState = ({ getStore, getActions, setStore }) => {
         })
           .then((resp) => resp.json())
           .then((data) => {
-            console.log(data);
-            setStore({ thisWeek: data });
+            setStore({ [listToSet]: data });
           });
       },
-      getSessionTypes: () => {
-        fetch(process.env.BACKEND_URL + "/api/get_session_types", {
-          method: "GET",
+      postItem: (route, itemToPost, itemToGet, listToSet) => {
+        let x = fetch(process.env.BACKEND_URL + "/api/" + route, {
+          method: "POST",
           headers: {
+            "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
+          body: JSON.stringify(itemToPost),
+        })
+          .then((resp) => resp.json())
+          .then((data) => getActions().getItem(itemToGet, listToSet));
+        return x;
+      },
+      putItem: (route, itemToPut, itemToGet, listToSet) => {
+        let x = fetch(process.env.BACKEND_URL + "/api/" + route, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer" + localStorage.getItem("token"),
+          },
+          body: JSON.stringify(itemToPut),
         })
           .then((resp) => resp.json())
           .then((data) => {
-            console.log(data);
-            setStore({ sessionTypes: data });
+            getActions().getItem(itemToGet, listToSet);
           });
+        return x;
       },
-      getUserSessions: () => {
-        fetch(
-          process.env.BACKEND_URL +
-            "/api/user_sessions/" +
-            localStorage.getItem("id"),
-          {
-            method: "GET",
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          }
-        )
-          .then((resp) => resp.json())
-          .then((data) => setStore({ user_sessions: data }));
-      },
-      getSuscriptions: () => {
-        fetch(process.env.BACKEND_URL + "/api/get_suscriptions", {
-          method: "GET",
+      deleteItem: (route, itemToGet, listToSet) => {
+        fetch(process.env.BACKEND_URL + "/api/" + route, {
+          method: "DELETE",
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            "Content-Type": "application/json",
           },
         })
           .then((resp) => resp.json())
-          .then((data) => setStore({ suscriptionList: data }));
+          .then((data) => getActions().getItem(itemToGet, listToSet));
       },
       postUserSession: (date, sessions_id) => {
         const store = getStore();
@@ -109,11 +114,35 @@ const getState = ({ getStore, getActions, setStore }) => {
               .then((resp) => resp.json())
               .then((data) => {
                 // console.log(newUser);
-                console.log(data);
+                // console.log(data);
                 setStore({ user: data });
                 getActions().getThisWeek();
               });
           });
+      },
+
+      getSessionTypes: () => {
+        fetch(process.env.BACKEND_URL + "/api/get_session_types", {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+          .then((resp) => resp.json())
+          .then((data) => {
+            console.log(data);
+            setStore({ sessionTypes: data });
+          });
+      },
+      getSuscriptions: () => {
+        fetch(process.env.BACKEND_URL + "/api/get_suscriptions", {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+          .then((resp) => resp.json())
+          .then((data) => setStore({ suscriptionList: data }));
       },
       deleteUserSession: (user_id, sessions_id, date) => {
         const store = getStore();

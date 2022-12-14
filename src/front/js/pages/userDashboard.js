@@ -28,20 +28,18 @@ export const UserDashboard = () => {
       })
     );
 
-    if (
-      localStorage.getItem("token") &&
-      localStorage.getItem("role") == "admin"
-    ) {
-      history.push("/admin/dashboard");
-    } else if (
-      localStorage.getItem("token") &&
-      localStorage.getItem("role") == "user"
-    ) {
-      history.push("/user/dashboard");
-    }
-    actions.getUser();
-    actions.getUserSessions();
-    actions.getThisWeek();
+    localStorage.getItem("token")
+      ? localStorage.getItem("role") == "admin"
+        ? history.push("/admin/dashboard")
+        : ""
+      : history.push("/");
+
+    actions.getItem(`user/${localStorage.getItem("id")}`, "user");
+    actions.getItem(
+      `user_session/${localStorage.getItem("id")}`,
+      "userSessionList"
+    );
+    actions.getItem("thisweek", "thisWeek");
   }, []);
 
   // Función que modifica las etiquetas de css de la navegación de tabs para activar y desactivar la pestaña activa.

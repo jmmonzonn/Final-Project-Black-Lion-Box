@@ -68,14 +68,13 @@ class Weekdays(db.Model):
 
 class Suscription(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(24), unique=True, nullable=False)
+    name = db.Column(db.String(24), unique=False, nullable=False)
     description = db.Column(db.String(48), unique=False, nullable=False)
     price = db.Column(db.Integer, unique=False, nullable=False)
     tokens = db.Column(db.Integer, unique=False, nullable=False)
     suscription_image = db.Column(db.String(256), unique=False, nullable=True)
     suscription_type_id = db.Column(db.Integer, db.ForeignKey('suscription_type.id'), unique=False, nullable=True)
     suscription_type = db.relationship('Suscription_type', backref='suscription', lazy=True)
-    stripe_id = db.Column(db.String(50), unique=True, nullable=True)
 
 
     def __repr__(self):
@@ -89,8 +88,7 @@ class Suscription(db.Model):
             "price": self.price,
             "tokens": self.tokens,
             "suscription_type_id": self.suscription_type_id,
-            "suscription_type": self.suscription_type.name if self.suscription_type else None,
-            "stripe_id": self.stripe_id
+            "suscription_type": self.suscription_type.name if self.suscription_type else None
         }
 
 class Sessions(db.Model):

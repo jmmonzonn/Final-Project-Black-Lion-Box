@@ -29,18 +29,21 @@ export const AdminDashboard = () => {
       })
     );
 
-    if (
-      localStorage.getItem("token") &&
-      localStorage.getItem("role") == "admin"
-    ) {
-      history.push("/admin/dashboard");
-    } else if (
-      localStorage.getItem("token") &&
-      localStorage.getItem("role") == "user"
-    ) {
-      history.push("/user/dashboard");
-    }
-  });
+    localStorage.getItem("token")
+      ? localStorage.getItem("role") == "user"
+        ? history.push("user/dashboard")
+        : ""
+      : history.push("/");
+
+    actions.getItem(`user/${localStorage.getItem("id")}`, "user");
+    actions.getItem("users", "userList");
+    actions.getItem("roles", "roleList");
+    actions.getItem("suscriptions", "suscriptionList");
+    actions.getItem("suscription_types", "suscriptionTypeList");
+    actions.getItem("sessions", "sessionList");
+    actions.getItem("session_types", "sessionTypeList");
+    actions.getItem("weekdays", "weekdayList");
+  }, []);
   // Funciones que se utilizan para definir el estilo de los botones de las tabs en el componente.
 
   const changeTab = (e) => {

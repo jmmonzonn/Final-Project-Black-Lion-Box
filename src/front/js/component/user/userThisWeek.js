@@ -20,7 +20,7 @@ export const UserThisWeek = () => {
       })
     );
     setThisWeek(store.thisWeek);
-  }, [store.thisWeek]);
+  }, [store.thisWeek, store.user, store.userSessionList]);
 
   // Función que modifica las etiquetas de css de la navegación de tabs para activar y desactivar la pestaña activa.
 
@@ -199,7 +199,26 @@ export const UserThisWeek = () => {
                                   day.date
                                 );
                               } else {
-                                actions.postUserSession(day.date, value.id);
+                                actions
+                                  .postItem(
+                                    "joinsession",
+                                    { date: day.date, sessions_id: value.id },
+                                    "user_sessions",
+                                    "userSessionList"
+                                  )
+                                  .then((data) => {
+                                    actions.putItem(
+                                      `edit_user/${localStorage.getItem("id")}`,
+                                      {
+                                        remaining_tokens:
+                                          store.user.remaining_tokens - 1,
+                                      },
+                                      "thisweek",
+                                      "thisWeek"
+                                    );
+                                  })
+                                  .then((data) => actions.getUser());
+                                // actions.postUserSession(day.date, value.id);
                               }
                             }}
                           >
